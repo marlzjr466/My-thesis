@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="myCtrl">
+	<head>
+		<meta charset="utf-8" />
+	    <meta name="format-detection" content="telephone=no" />
+	    <meta name="msapplication-tap-highlight" content="no" />
+	    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+		<meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' data: gap: 'unsafe-eval'; style-src * 'self' 'unsafe-inline'; connect-src *; script-src * 'self' 'unsafe-inline'; media-src *" />
+		
+
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="lib/jquery-3.1.1.min.js"></script>
+		<script src="framework/angular.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/animate.js"></script>
+
+		<script type="text/javascript" type="text/javascript" charset="utf-8" src="cordova.js"></script>
+		
+	</head>
+
+	<body ng-init="getEvent(); getMemberProfile(); getEvents(); getPastors(); getMinistry(); getChurches(); getTransferChurch();">
+		<div class="mainContainer">
+			<div id="header">
+				<div id="logo">
+					<img src="images/icon/event-icon.png">
+				</div>
+				<p>Home</p>
+				<span class="count-notification" id="count-notification"></span>
+				<div id="profile">
+					<img ng-src="uploadImages/{{userImage}}">
+				</div>
+			</div>
+			<br><br>
+			<div id="bodyContainer">
+				<div id="searchWrapper">
+					<input type="text" placeholder="Search profile here...">
+					<img ng-src="images/icon/search2.png">
+				</div> <br><br>
+
+				<div id="postEvent">
+					<p>Ongoing Event</p>
+					<div id="eventWrapper" ng-repeat="x in activeEvent">
+						<div id="coordinatorImg">
+							<img ng-src="http://localhost/thesisAppProcess/uploadImages/{{x.coordinatorImage}}">
+						</div>
+						<div id="about">
+							<p id="name">{{x.coordinatorName}}</p>
+							<p id="position">{{x.coordinatorPosition}}</p>
+						</div>
+
+						<center><br>
+							<div id="img">
+								<img ng-src="http://localhost/thesisAppProcess/uploadImages/{{x.image}}">
+							</div><br>
+							<p id="theme">Theme: &nbsp; <b style="color: #000;margin-left: 6px">{{x.theme}}</b></p>
+							<p id="speaker">Speaker: &nbsp; <b style="color: #000">{{x.speaker}}</b></p>
+							<p id="date">Date: &nbsp; <b style="color: #000;margin-left: 18px">{{x.dated}}</b></p>
+							<h6>412 delegates registered..</h6>
+							<u>View more</u>
+						</center>
+					</div>
+
+					<center>
+						<h5 class="no" id="noActive">No active Event..</h5>
+					</center>
+					<hr> <br>
+
+					<p>Upcoming Events</p>
+					<div id="eventWrapper" ng-repeat="x in upcomingEvent">
+						<div id="coordinatorImg">
+							<img ng-src="http://localhost/thesisAppProcess/uploadImages/{{x.coordinatorImage}}">
+						</div>
+						<div id="about">
+							<p id="name">{{x.coordinatorName}}</p>
+							<p id="position">{{x.coordinatorPosition}}</p>
+						</div>
+
+						<center><br>
+							<div id="img">
+								<img ng-src="http://localhost/thesisAppProcess/uploadImages/{{x.image}}">
+							</div><br>
+							<p id="theme">Theme: &nbsp; <b style="color: #000;margin-left: 6px">{{x.theme}}</b></p>
+							<p id="speaker">Speaker: &nbsp; <b style="color: #000">{{x.speaker}}</b></p>
+							<p id="date">Date: &nbsp; <b style="color: #000;margin-left: 18px">{{x.dated}}</b></p>
+							<h6>412 delegates registered..</h6>
+							<u>View more</u>
+						</center>
+					</div>
+
+					<center>
+						<h5 class="no" id="noUpcoming">No active Event..</h5>
+					</center>
+					<hr> <br>
+
+					<p>Previous Events</p>
+					<div id="eventWrapper" ng-repeat="x in previousEvent">
+						<div id="coordinatorImg">
+							<img ng-src="http://localhost/thesisAppProcess/uploadImages/{{x.coordinatorImage}}">
+						</div>
+						<div id="about">
+							<p id="name">{{x.coordinatorName}}</p>
+							<p id="position">{{x.coordinatorPosition}}</p>
+						</div>
+
+						<center><br>
+							<div id="img">
+								<img ng-src="http://localhost/thesisAppProcess/uploadImages/{{x.image}}">
+							</div><br>
+							<p id="theme">Theme: &nbsp; <b style="color: #000;margin-left: 6px">{{x.theme}}</b></p>
+							<p id="speaker">Speaker: &nbsp; <b style="color: #000">{{x.speaker}}</b></p>
+							<p id="date">Date: &nbsp; <b style="color: #000;margin-left: 18px">{{x.dated}}</b></p>
+							<h6>412 delegates registered..</h6>
+							<u>View more</u>
+						</center>
+					</div>
+
+					<center>
+						<h5 class="no" id="noPrevious">No active Event..</h5>
+					</center>
+					<br>
+				</div>
+			</div>
+
+			<!-- Footer -->
+			<div id="footer">
+				<div id="ministry" ng-click="getMinistry()">
+					<img src="images/icon/ministry.png">
+					<p>Ministry</p>
+				</div>
+
+				<div id="church" ng-clcik="getChurches()">
+					<img src="images/icon/church.png">
+					<p>Church</p>
+				</div>
+
+			
+				<div id="homeWrapper">
+					<center>
+						<div id="home" ng-click="getEvent()">
+							<img src="images/icon/home.png">
+							<p>HOME</p>
+						</div>
+					</center>
+				</div>
+
+				<div id="event" ng-click="getEvents()">
+					<img src="images/icon/download.png">
+					<p>Event</p>
+				</div>
+
+				<div id="pastor" ng-click="getPastors()">
+					<img src="images/icon/users.png">
+					<p>Pastor</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- MINISTRY -->
+		<div class="ministryContainer">
+			<div id="header">
+				<div id="logo">
+					<img src="images/icon/event-icon.png">
+				</div>
+				<p>Ministry</p>
+				<span class="count-notification" id="count-notification3"></span>
+				<div id="profile">
+					<img ng-src="uploadImages/{{userImage}}">
+				</div>
+			</div>
+			<br><br>
+			<div id="bodyContainer"> <br>
+				<p>List of Ministry</p>
+				<div id="ministryList" ng-repeat="x in ministry">
+					<div id="img">
+						<img src="images/logo/logo-ag.png">
+					</div>
+					<h3>{{x.name}} Ministry</h3>
+					<label><b>{{x.coordinator}} - Coordinator</b></label>
+					<hr>
+					<h6>582 members</h6>
+				</div><br><br>
+			</div>
+
+			<!-- Footer -->
+			<div id="footer">
+				<div id="ministry">
+					<img src="images/icon/ministry.png">
+					<p>Ministry</p>
+				</div>
+
+				<div id="church">
+					<img src="images/icon/church.png">
+					<p>Church</p>
+				</div>
+
+			
+				<div id="homeWrapper">
+					<center>
+						<div id="home">
+							<img src="images/icon/home.png">
+							<p>HOME</p>
+						</div>
+					</center>
+				</div>
+
+				<div id="event">
+					<img src="images/icon/download.png">
+					<p>Event</p>
+				</div>
+
+				<div id="pastor">
+					<img src="images/icon/users.png">
+					<p>Pastor</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Church -->
+		<div class="churchContainer">
+			<div id="header">
+				<div id="logo">
+					<img src="images/icon/event-icon.png">
+				</div>
+				<p>Church</p>
+				<span class="count-notification" id="count-notification4"></span>
+				<div id="profile">
+					<img ng-src="uploadImages/{{userImage}}">
+				</div>
+			</div>
+			<br><br>
+			<div id="bodyContainer"><br>
+				<p>List of Churches</p>
+				<center>
+
+					<table>
+						<thead>
+							<th width="15%">No.</th>
+							<th>Name</th>
+							<th width="25%">Action</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in churches">
+								<td>{{$index+1}}</td>
+								<td>{{x.name}}</td>
+								<td>
+									<button>VIEW</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</center> <br><br>
+			</div>
+
+			<!-- Footer -->
+			<div id="footer">
+				<div id="ministry">
+					<img src="images/icon/ministry.png">
+					<p>Ministry</p>
+				</div>
+
+				<div id="church">
+					<img src="images/icon/church.png">
+					<p>Church</p>
+				</div>
+
+			
+				<div id="homeWrapper">
+					<center>
+						<div id="home">
+							<img src="images/icon/home.png">
+							<p>HOME</p>
+						</div>
+					</center>
+				</div>
+
+				<div id="event">
+					<img src="images/icon/download.png">
+					<p>Event</p>
+				</div>
+
+				<div id="pastor">
+					<img src="images/icon/users.png">
+					<p>Pastor</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Pastor -->
+		<div class="pastorContainer">
+			<div id="header">
+				<div id="logo">
+					<img src="images/icon/event-icon.png">
+				</div>
+				<p>Pastor</p>
+				<span class="count-notification" id="count-notification5"></span>
+				<div id="profile">
+					<img ng-src="uploadImages/{{userImage}}">
+				</div>
+			</div>
+			<br><br>
+			<div id="bodyContainer"><br>
+				<p>List of Pastors</p>
+				<center>
+					<table>
+						<thead>
+							<th width="15%">No.</th>
+							<th>Fullname</th>
+							<th width="25%">Action</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in pastors">
+								<td>{{$index+1}}</td>
+								<td>{{x.firstname}} {{x.lastname}}</td>
+								<td>
+									<button>VIEW PROFILE</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</center> <br><br>
+			</div>
+
+			<!-- Footer -->
+			<div id="footer">
+				<div id="ministry">
+					<img src="images/icon/ministry.png">
+					<p>Ministry</p>
+				</div>
+
+				<div id="church">
+					<img src="images/icon/church.png">
+					<p>Church</p>
+				</div>
+
+			
+				<div id="homeWrapper">
+					<center>
+						<div id="home">
+							<img src="images/icon/home.png">
+							<p>HOME</p>
+						</div>
+					</center>
+				</div>
+
+				<div id="event">
+					<img src="images/icon/download.png">
+					<p>Event</p>
+				</div>
+
+				<div id="pastor">
+					<img src="images/icon/users.png">
+					<p>Pastor</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Event -->
+		<div class="eventContainer">
+			<div id="header">
+				<div id="logo">
+					<img src="images/icon/event-icon.png">
+				</div>
+				<p>Event</p>
+				<span class="count-notification" id="count-notification6"></span>
+				<div id="profile">
+					<img ng-src="uploadImages/{{userImage}}">
+				</div>
+			</div>
+			<br><br>
+			<div id="bodyContainer"> <br>
+				<p>List of Events</p>
+				<center>
+					<table>
+						<thead>
+							<th width="15%">No.</th>
+							<th>Theme</th>
+							<th width="20%">Action</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in events">
+								<td>{{$index+1}}</td>
+								<td>{{x.theme}}</td>
+								<td>
+									<button>VIEW</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</center> <br><br>
+			</div>
+
+			<!-- Footer -->
+			<div id="footer">
+				<div id="ministry">
+					<img src="images/icon/ministry.png">
+					<p>Ministry</p>
+				</div>
+
+				<div id="church">
+					<img src="images/icon/church.png">
+					<p>Church</p>
+				</div>
+
+			
+				<div id="homeWrapper">
+					<center>
+						<div id="home">
+							<img src="images/icon/home.png">
+							<p>HOME</p>
+						</div>
+					</center>
+				</div>
+
+				<div id="event">
+					<img src="images/icon/download.png">
+					<p>Event</p>
+				</div>
+
+				<div id="pastor">
+					<img src="images/icon/users.png">
+					<p>Pastor</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Pastor's profile page... -->
+		<div class="pastorsContainer">
+			<div id="header">
+				<div id="back">
+					<img src="images/icon/back.png">
+				</div>
+				<p>Settings</p>
+			</div>
+
+			<div id="body"><br><br><br>
+				<center>
+					<div id="imgWrapper">
+						<div id="image">
+							<img ng-src="uploadImages/{{userImage}}">
+						</div>
+						<p>{{userFullname}}</p>
+					</div>
+
+					<div id="update">
+						<div id="icon"><img src="images/icon/person.png"></div>
+						<p>My Profile</p>
+					</div>
+
+					<div id="transfer" ng-click="getTransferChurch();">
+						<div id="icon"><img src="images/icon/church-icon.png"></div>
+						<p>Transfer Request</p>
+					</div>
+
+					<div id="logout" ng-click="logoutProcessMember()">
+						<div id="icon"><img src="images/icon/logout.png"></div>
+						<p>Logout</p>
+					</div>
+				</center>
+			</div>
+		</div>
+
+		<!-- Update Pastor's profile page... -->
+		<div class="pastorsUpdateContainer">
+			<div id="header">
+				<div id="back">
+					<img src="images/icon/back.png">
+				</div>
+				<p>Update Profile/Paswword</p>
+			</div>
+
+			<div id="body"><br><br><br><br>
+				<center>
+					<div id="updateImg">
+						<img src="images/icon/profile-img.jpg">
+					</div>
+					<input id="file" type="file">
+					<hr>
+					<input id="text" type="text" placeholder="Firstname..">
+					<input id="text" type="text" placeholder="Middlename..">
+					<input id="text" type="text" placeholder="Lastname..">
+					<input id="text" type="text" placeholder="Contact No..">
+					<input id="text" type="text" placeholder="Address..">
+					<input id="text" type="text" placeholder="Status..">
+					<input id="text" type="text" placeholder="Birth date..">
+					<input id="text" type="text" placeholder="Gender..">
+					<button>Update Profile</button>
+					<hr><br>
+					<label>Change password:</label>
+					<input id="text" type="text" placeholder="New password..">
+					<input id="text" type="text" placeholder="Re-type password">
+					<button>Change Password</button>
+					<br><br><br>
+				</center>
+			</div>
+		</div>
+
+		<!-- Request for transfer page... -->
+		<div class="transferContainer">
+			<div id="header">
+				<div id="back">
+					<img src="images/icon/back.png">
+				</div>
+				<p>Transfer Request</p>
+			</div>
+
+			<div id="body"><br><br><br><br>
+				<div class="transfer-wrapper">
+					<label>Select church to transfer:</label><br>
+					<center>
+						<select class="tc" ng-model="transferChurches">
+							<option ng-repeat="x in transferChurch" value="{{x.id}}">{{x.name}}</option>
+						</select>
+					</center>
+
+					<label>Reason:</label><br>
+					<center>
+						<textarea class="tr" ng-model="transferReason" placeholder="Write something here.."></textarea>
+					</center>
+					<button ng-click="requestTransfer()">Submit</button>
+					<img id="request-loader" src="images/icon/ajax_loading.gif">
+					<p id="request-submitted">Request has been submitted<strong>&check;</strong></p>
+				</div>
+			</div>
+		</div>
+
+		<!--  MODALS  -->
+
+		<div class="registrationModal">
+			<div style="width: 100%; height: 25vh"></div>
+			<div id="registrationWrapper">
+				<center><br>
+					<select>
+						<option>Select church</option>
+						<option>Molave</option>
+						<option>Mahayag</option>
+					</select>
+					<select onchange="ifVisitor(this.value)">
+						<option>Select delegate</option>
+						<option value="Visitor">Visitor</option>
+						<option value="name 1">Delegate 1</option>
+						<option value="name 2">Delegate 2</option>
+					</select>
+					<input type="text" placeholder="Enter your fullname..">
+					<button id="register">Register</button>
+					<button id="cancel">Cancel</button>
+				</center>			
+			</div>
+		</div>
+		
+		<div class="viewRegistered">
+			<div style="width: 100%; height: 15vh"></div>
+
+			<div id="registeredWrapper">
+				<p>Registered delegates <b>x</b></p>
+				<div id="list">
+					<div id="profile">
+						<div id="img">
+							<img src="images/icon/profile-img.jpg">
+						</div>
+						<label>Biboy Langomez</label>
+						<button>View profile</button>
+					</div>
+
+					<div id="profile">
+						<div id="img">
+							<img src="images/icon/profile-img.jpg">
+						</div>
+						<label>Biboy Langomez</label>
+						<button>View profile</button>
+					</div>
+
+					<div id="profile">
+						<div id="img">
+							<img src="images/icon/profile-img.jpg">
+						</div>
+						<label>Biboy Langomez</label>
+						<button>View profile</button>
+					</div>
+
+					<div id="profile">
+						<div id="img">
+							<img src="images/icon/profile-img.jpg">
+						</div>
+						<label>Biboy Langomez</label>
+						<button>View profile</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- SCRIPT -->
+		<script>
+			function ifVisitor(val) {
+				if (val == "Visitor") {
+					$('.registrationModal #registrationWrapper input').toggle();
+					$('.registrationModal #registrationWrapper').css({"height": "200px"});
+				} else {
+					$('.registrationModal #registrationWrapper input').hide();
+					$('.registrationModal #registrationWrapper').css({"height": "160px"});
+				}
+			}
+		</script>
+	</body>
+</html>

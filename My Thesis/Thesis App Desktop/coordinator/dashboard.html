@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html id="myCtrl" ng-app="myApp" ng-controller="myCtrl">
+	<head>
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/coordinator.css">
+		<script src="../lib/jquery-3.1.1.min.js"></script>
+		<script src="../framework/my-route.js"></script>
+		<script src="../framework/angular.js"></script>
+		<script src="../js/animateAdmin.js"></script>
+		<script src="../js/func.js"></script>
+		<script src="../js/app.js"></script>
+
+	</head>
+
+	<body onload="myRoute('http://localhost/thesisAppProcess/coordinator/home.php'); getNumbersOfData(); getApprovedEvent(); getActiveEvent(); getExpenses();" ng-init="getUserProfile(); notificationInterval2();" style="background: url(../images/background/loginBackground2.jpg) no-repeat; background-size: 100%;">
+		<div class="main-container">
+			<div class="header-nav">
+				<div class="logo-container">
+					<div id="logo-wrapper">
+						<img src="../images/logo/logo-ag.png">
+					</div>
+					<p>SWMDC - Section 2</p>
+				</div>
+
+				<ul id="navigation">
+					<li class="active" onclick="myRoute('http://localhost/thesisAppProcess/coordinator/home.php'); getNumbersOfData(); getApprovedEvent(); getActiveEvent(); getExpenses();" ng-click="getUserProfile();">Dashboard</li>
+					<li onclick="myRoute('http://localhost/thesisAppProcess/coordinator/event.php');" ng-click="getEvents(); getMinistryForEvent(); getChurchesForEvent();">Events</li>
+					<li onclick="myRoute('http://localhost/thesisAppProcess/coordinator/ministry.php'); getExpenses();" ng-click="getMinistryCoordinatorPage();">Ministries</li>
+					<li onclick="myRoute('http://localhost/thesisAppProcess/coordinator/church.php'); getExpenses();" ng-click="getChurchesCoordinatorPage(); getPastor();">Churches</li>
+					<li onclick="myRoute('http://localhost/thesisAppProcess/coordinator/pastor.php'); getExpenses();" ng-click="displayPastorCoordinatorPage();">Pastors</li>
+				</ul>
+
+				<div class="user-profile">
+					<div id="pic-wrapper">
+						<img ng-src="http://localhost/thesisAppProcess/uploadImages/{{userImage}}">
+					</div>
+					<p ng-model="userFullName">{{userFullName}}<i class="arrow down"></i></p>
+				</div>
+
+				<div class="notify">
+					<div id="wrapper">
+						<span id="total-unseen-message"></span>
+						<img id="message-img" ng-click="otherProfile()" src="../images/icon/msg-white.png">
+					</div>
+
+					<div id="wrapper" ng-click="notificationSeen2();">
+						<span id="countNotification"></span>
+						<img id="notify-img" src="../images/icon/notify-white.png">
+					</div>
+				</div><br><br>
+
+				<div class="setting"> 
+					<ul>
+						<li onclick="myRoute3('http://localhost/thesisAppProcess/coordinator/myProfile.php'); getMyProfileCoordinator(); getExpenses();" ng-click="getSelectChurches();">
+							<div>
+								<img src="../images/icon/profile.png">
+							</div>
+							<p>My Profile</p>
+						</li>
+						<li onclick="myRoute3('http://localhost/thesisAppProcess/coordinator/reports.php'); getExpenses(); getYears();" ng-click="getSelectChurches();">
+							<div>
+								<img src="../images/icon/users.png">
+							</div>
+							<p>Annual Reports</p>
+						</li>
+						<li ng-click="logoutProcess()">
+							<div>
+								<img src="../images/icon/off.png">
+							</div>
+							<p>Logout</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="body-container">
+				<div id="view-route"></div>
+			</div>
+		</div>
+		
+
+
+		<!--  MODALS  -->
+		<div class="profile-modal">
+			<div class="profile-space"></div>
+			<div class="profile-modal-container">
+				<div id="close">
+					<img src="../images/icon/close.png">
+				</div>
+				<h5>Update your profile</h5> <br>
+
+				<label>Choose cover photo:</label><br>
+				<input type="file" id="fileInput" onchange="angular.element(this).scope().fileSelected(this)"> <br>
+
+				<label>Choose profile pic:</label><br>
+				<input type="file" id="fileInput2" onchange="angular.element(this).scope().fileSelected2(this)"> <br>
+
+				<input type="hidden" id="profile_cover">
+				<input type="hidden" id="profile_pic">
+
+				<label>Firstname:</label><br>
+				<input type="text" id="profile_firstname"> <br>
+
+				<label>Middlename:</label><br>
+				<input type="text" id="profile_middlename"> <br>
+
+				<label>Lastname:</label><br>
+				<input type="text" id="profile_lastname"> <br>
+
+				<label>Contact:</label><br>
+				<input type="text" id="profile_contact"> <br>
+
+				<label>Gender:</label><br>
+				<select id="profile_gender">
+					<option value="Male">Male</option>
+					<option value="Female">Female</option>
+				</select> <br>
+
+				<label>Birthday:</label><br>
+				<input type="date" id="profile_bday"> <br>
+
+				<label>Adress:</label><br>
+				<input type="text" id="profile_address"> <br>
+
+				<label>Password:</label><br>
+				<input type="password" id="profile_password"> <br>
+
+				<button ng-click="updateProfileCoordinator()">Update</button>
+				<img id="profile-loading" src="../images/icon/ajax_loading.gif">
+				<i id="profile-updated">Updated Succesfully! <strong>&check;</strong></i>
+			</div>
+		</div>
+
+		<div class="message-modal">
+			<div class="message-space"></div>
+			<div class="message-modal-container">
+				<div id="close" ng-click="clearSeenInterval()">
+					<img src="../images/icon/close.png">
+				</div>
+
+				<br>
+				<p class="title-msg">Messages</p>
+
+				<div class="coordinator-list-msg">
+					<div id="profile" ng-repeat="x in coordinatorMsg" ng-click="getClientMessage(x.id) || hideSeenNumber($index)">
+						<div id="iWrapper">
+							<img ng-src="http://localhost/thesisAppProcess/uploadImages/{{x.image}}">
+						</div>
+
+						<div id="name-status">
+							<p>{{x.firstname}}  {{x.lastname}}</p>
+							<!-- <span ng-if="x.status == 0"  style="display: none;"></span>
+							<span ng-if="x.status == 1" style="display:block;"></span> -->
+							<br>
+							<label ng-if="x.status == 0" style="color:rgba(0,0,0,.5)">Offline</label>
+							<label ng-if="x.status == 1" style="color:rgba(44,190,124,.8)">Online</label>
+						</div>
+						<p class="number-msg" id="number-msg{{$index}}" ng-if="unseenMessage[$index].unseen == 0" style="display:none">{{unseenMessage[$index].unseen}}</p>
+						<p class="number-msg" id="number-msg{{$index}}" ng-if="unseenMessage[$index].unseen != 0" style="display:block">{{unseenMessage[$index].unseen}}</p>
+					</div>
+				</div>
+
+				<div class="coordinator-message-wrapper">
+					<div id="message-space">
+						<p id="friend-name" ng-model="friendFullname">{{friendFullname}}</p>
+						<div id="friend-status"></div>
+					</div>
+					<div id="message-space2"></div>
+					<div id="client-messages-wrapper">
+						<p id="conversation-here">Conversation here...</p>
+
+						<div class="chat friend" id="friend-typing" style="display: none">
+							<div class="user-image-wrapper">
+								<img ng-src="http://localhost/thesisAppProcess/uploadImages/{{friendImage}}">
+							</div>
+
+							<div class="message-wrapper">
+								<img src="../images/icon/loader.gif">
+							</div>
+						</div> 
+
+						<label class="seen" id="seen">Seen</label>
+
+						<div ng-repeat="x in batch">
+							<div ng-if="x.userID == selfID" class="chat self">
+								<div class="user-image-wrapper">
+									<img ng-src="http://localhost/thesisAppProcess/uploadImages/{{userImage}}">
+								</div>
+
+								<div class="message-wrapper">
+									<div ng-repeat="y in message" class="reverse">
+										<div ng-if="messageTypeFinal[$index] == 'fl'">
+											<p ng-if="y.userID == selfID; x.batchNumber == y.batchID;" class="message first last">{{y.message}}</p>
+										</div>
+										<div ng-if="messageTypeFinal[$index] == 'f'">
+											<p ng-if="y.userID == selfID; x.batchNumber == y.batchID;" class="message first">{{y.message}}</p>
+										</div>
+										<div ng-if="messageTypeFinal[$index] == 'l'">
+											<p ng-if="y.userID == selfID; x.batchNumber == y.batchID;" class="message last">{{y.message}}</p>
+										</div>
+										<div ng-if="messageTypeFinal[$index] == 'm'">
+											<p ng-if="y.userID == selfID; x.batchNumber == y.batchID;" class="message">{{y.message}}</p>
+										</div>
+									</div>
+	    						<!-- 	<span>7:30 PM</span> -->
+								</div> 
+							</div>
+
+							<div ng-if="x.userID != selfID" class="chat friend">
+								<div class="user-image-wrapper">
+									<img ng-src="http://localhost/thesisAppProcess/uploadImages/{{friendImage}}">
+								</div>
+
+								<div class="message-wrapper">
+									<div ng-repeat="y in message">
+										<div ng-if="messageTypeFinal[$index] == 'fl'">
+											<p ng-if="y.userID != selfID; x.batchNumber == y.batchID" class="message first last">{{y.message}}</p>
+										</div>
+										<div ng-if="messageTypeFinal[$index] == 'f'">
+											<p ng-if="y.userID != selfID; x.batchNumber == y.batchID" class="message first">{{y.message}}</p>
+										</div>
+										<div ng-if="messageTypeFinal[$index] == 'l'">
+											<p ng-if="y.userID != selfID; x.batchNumber == y.batchID" class="message last">{{y.message}}</p>
+										</div>
+										<div ng-if="messageTypeFinal[$index] == 'm'">
+											<p ng-if="y.userID != selfID; x.batchNumber == y.batchID" class="message">{{y.message}}</p>
+										</div>
+									</div>
+								<!-- 	<span>Yesterday</span> -->
+								</div>
+							</div> 
+						</div>
+					</div>
+
+					<div id="client-input-wrapper">
+						<input type="hidden" ng-model="friendID">
+						<textarea class="input-message" ng-model="userMessage" placeholder="Write something here..." ng-focus="updateTypingStatus(1)" ng-blur="updateTypingStatus(0)"></textarea>
+						<div id="sendButton" ng-click="addBatchNumber()">
+							<img src="../images/icon/icon_Airplane.png">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="view-selected-event-modal">
+			<div class="view-selected-event-space"></div>
+			<div class="view-selected-event-modal-container">
+				<div id="close">
+					<img src="../images/icon/close.png">
+				</div>
+
+				<br><br>
+				<center>
+					<h3 id="event-theme">shjdg</h3>
+				</center>
+			</div>
+		</div>
+
+		<div class="view-notification-modal">
+			<div class="view-notification-modal-container">
+				<p id="title">Notification List</p>
+
+				<div id="notification-container" class="notification-container"></div>
+			</div>
+		</div>
+
+		<div class="add-program-modal">
+			<div class="add-program-modal-space"></div>
+			<div class="add-program-modal-container">
+				<div id="close">
+					<img src="../images/icon/close.png">
+				</div>
+
+				<p id="themeDate"></p>
+
+				<div class="addProgram-container">
+					<br>
+					<label>Choose day:</label> <br>
+					<center>
+						<select ng-model="programDay">
+							<option ng-repeat="x in eventDays" value="{{x.id}}">Day {{x.day}}</option>
+						</select>
+					</center> <br>
+
+					<i style="display: none;" ng-repeat="x in eventDays" id="daysID{{$index+1}}">{{x.id}}</i>
+
+					<label>Time start:</label><br>
+					<center>
+						<input type="time" ng-model="programStart">
+					</center> <br>
+
+					<label>Time end:</label><br>
+					<center>
+						<input type="time" ng-model="programEnd">
+					</center> <br>
+
+					<label>Description:</label><br>
+					<center>
+						<input type="text" ng-model="programDesc">
+					</center> <br>
+
+					<label>In-charge:</label><br>
+					<center>
+						<input type="text" ng-model="programIncharge">
+					</center> <br>
+
+					<button ng-click="addActivities()">ADD</button>
+					<img id="addProgram-loader" src="../images/icon/loading.gif">
+					<i id="program-success">SUCCESS! Activity added <strong>&check;</strong></i>
+				</div>
+
+				<div class="display-programmer-container">
+					<p id="prog"><u>PROGRAMME</u></p>
+
+					<center>
+						<img id="display-loader" src="../images/icon/loading.gif">
+					</center>
+
+					<div id="daysWrapper" ng-repeat="x in daysActivity">
+						<p>Day {{$index+1}}</p><br>
+						<center>
+							<div id="div1">
+								<div ng-repeat="x in daysActivity[$index]">
+									<label>{{x.startTime}} - {{x.endTime}}&nbsp;&nbsp;&nbsp;&nbsp;...............................</label>
+								</div>
+							</div>
+
+							<div id="div2">
+								<div ng-repeat="x in daysActivity[$index]">
+									<label>{{x.description}} ({{x.inCharge}})</label><br>
+								</div>
+							</div>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="view-event-modal">
+			<div class="view-event-space"></div>
+			<div class="view-event-modal-container">
+				<div id="close">
+					<img src="../images/icon/close.png">
+				</div> <br>
+
+				<div id="eventTarp">
+					<img id="imageTarp"> <br><br>
+					<center>
+						<div id="descTitle">
+							<p>Theme:</p>
+							<p>Speaker:</p>
+							<p>Venue:</p>
+							<p>Date:</p>
+							<p>Host Church:</p>
+							<p>Ministry:</p>
+							<p>Registration Fee:</p>
+						</div>
+
+						<div id="desc">
+							<p id="descTheme"></p>
+							<p id="descSpeaker"></p>
+							<p id="descAddress"></p>
+							<p id="descDate"></p>
+							<p id="descHost"></p>
+							<p id="descMinistry"></p>
+							<p id="descFee"></p>
+						</div>
+					</center>
+				</div>
+			</div>
+		</div>
+
+		<div class="report-event-modal">
+			<div class="report-event-space"></div>
+			<div class="report-event-modal-container">
+				<div id="close">
+					<img src="../images/icon/close.png">
+				</div> <br>
+
+				<center>
+					<h4>Sectional Fellowship Reports</h4>
+					<p>(Youth Alive Ministry)</p>
+
+					<div class="individual-reports-info">
+						<p>No. of Delegates: <b>237</b></p>
+						<p>Registration Fee: <b>100.00</b></p>
+						<p>Total Gross:&nbsp;&nbsp;..............................................
+							<b style="float: right; margin-left: 0">23,700.00</b>
+						</p>
+						<p>Expenses:&nbsp;&nbsp;.................................................
+							<b style="float: right; margin-left: 0">15,000.00</b>
+						</p>
+						<p id="expensesInfo"> - Speaker: ...... <b>10,000.00</b></p>
+						<p id="expensesInfo"> - Speaker: ...... <b>2,500.00</b></p>
+						<p id="expensesInfo"> - Speaker: ...... <b>2,500.00</b></p>
+						<hr>
+					</div>
+				</center>
+			</div>
+		</div>
+
+
+		<div class="view-ministry-modal"> <br><br>
+			<div class="view-ministry-space"></div>
+			<div class="view-ministry-modal-container">
+				<div id="close">
+					<img src="../images/icon/close.png">
+				</div> <br><br>
+
+				<p id="ministry-name"></p>
+				<div id="ministry-description"></div>
+			</div>
+		</div>
+
+		<div class="view-church-modal">
+			<div class="view-church-space"></div>
+			<div class="view-church-modal-container">
+				<div id="close">
+					<img src="../images/icon/close.png">
+				</div> <br><br>
+
+				<div id="church-image-wrapper">
+					<img id="church-image">
+				</div>
+
+				<div id="church-info-wrapper">
+					<h3 id="church-name">Molave AG</h3>
+					<p id="church-address">Molave, ZDS</p>
+					<p id="church-pastor">Ptr. wakoko wakokok</p>
+					<p id="church-status">Establish church</p>
+					<p id="church-members">382 Members</p>
+				</div>
+				<label>Mission:</label>
+				<div id="mission-content"></div>
+
+				<label>Vision:</label>
+				<div id="vision-content"></div>
+			</div>
+		</div>
+
+		<div class="view-pastor-modal">
+			<div class="view-pastor-space"></div>
+			<div class="view-pastor-modal-container">
+				<div id="close">
+					<img src="../images/icon/close.png">
+				</div> <br>
+
+				<div id="imageDiv">
+					<div id="imageWrapper">
+						<img id="pastor-image">
+					</div>
+				</div>
+				<div id="infoDiv">
+					<p id="pastor-fullname"></p><hr><br>
+					<label>SWMDC Assembly of God - Section 2 Pastor</label> <br>
+
+					<div id="div1">
+						<label>Address</label><br>
+						<label>Gender</label><br>
+						<label>Contact No.</label><br>
+						<label>Birth date</label>
+					</div>
+					<div id="div2">
+						<label id="pastor-address"></label><br>
+						<label id="pastor-gender"></label><br>
+						<label id="pastor-contact"></label><br>
+						<label id="pastor-bday"></label><br>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="response-event-modal">
+			<div class="response-event-space"></div>
+			<div class="response-event-modal-container">
+				
+				<div id="check-mark">
+					<img src="../images/icon/check.gif">
+				</div>
+				<p id="response-data"></p>
+			</div>
+		</div>
+
+		<div class="delete-event-modal">
+			<div class="delete-event-space"></div>
+			<div class="delete-event-modal-container">
+				<br><br>
+				<div id="check-mark">
+					<img src="../images/icon/info.jpg">
+				</div> <br><br>
+				<p id="delete-data">Confirm Delete</p>
+				<br>
+				<button id="del" onclick="execDeleteProposedEvent()">Delete</button>
+				<button id="can">Cancel</button>
+			</div>
+		</div>
+
+
+		<div id="ministry-number" style="display:none"></div>
+		<div id="church-number" style="display:none"></div>
+		<div id="event-number" style="display:none"></div>
+		<div id="pastor-number" style="display:none"></div>
+	</body>
+</html>

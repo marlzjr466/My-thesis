@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html  id="myCtrl" ng-app="myApp" ng-controller="myCtrl">
+	<head>
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/admin.css">
+		<script src="../lib/jquery-3.1.1.min.js"></script>
+		<script src="../framework/my-route.js"></script>
+		<script src="../framework/angular.js"></script>
+		<script src="../js/animateAdmin.js"></script>
+		<script src="../js/func.js"></script>
+		<script src="../js/app.js"></script>
+
+	</head>
+
+	<body onload="myRoute('http://localhost/thesisAppProcess/admin/home.php'); getNumbersOfData(); getApprovedEvent(); getActiveEvent();" ng-init="getUserProfile(); coordinatorInterval(); notificationInterval();" style="background: url(../images/background/loginBackground2.jpg) no-repeat; background-size: 100%;">
+		<div class="main-container">
+			<div class="header-nav">
+				<div class="logo-container">
+					<div id="logo-wrapper">
+						<img src="../images/logo/logo-ag.png">
+					</div>
+					<p>SWMDC - Section 2</p>
+				</div>
+
+				<ul id="navigation">
+					<li class="active" onclick="myRoute('http://localhost/thesisAppProcess/admin/home.php'); getNumbersOfData(); getApprovedEvent(); getActiveEvent();" ng-click="getUserProfile(); coordinatorInterval();">Dashboard</li>
+					<li onclick="myRoute('http://localhost/thesisAppProcess/admin/event.php')" ng-click="getEvents();">Events</li>
+					<li onclick="myRoute('http://localhost/thesisAppProcess/admin/ministry.php')" ng-click="getMinistry();">Ministries</li>
+					<li onclick="myRoute('http://localhost/thesisAppProcess/admin/church.php')" ng-click="getChurches(); getPastor();">Churches</li>
+					<li onclick="myRoute('http://localhost/thesisAppProcess/admin/pastor.php')" ng-click="displayPastor();">Pastors</li>
+				</ul>
+
+				<div class="user-profile">
+					<div id="pic-wrapper">
+						<img ng-src="http://localhost/thesisAppProcess/uploadImages/{{userImage}}">
+					</div>
+					<p ng-model="userFullName">{{userFullName}}<i class="arrow down"></i></p>
+				</div>
+
+				<div class="notify">
+					<div id="wrapper">
+						<span id="total-unseen-message"></span>
+						<img id="message-img" ng-click="adminMessages()" src="../images/icon/msg-white.png">
+					</div>
+
+					<div id="wrapper" ng-click="notificationSeen();">
+						<span id="countNotification"></span>
+						<img id="notify-img" src="../images/icon/notify-white.png">
+					</div>
+				</div><br><br>
+
+				<div class="setting"> 
+					<ul>
+						<li onclick="myRoute2('http://localhost/thesisAppProcess/admin/myProfile.php'); getMyProfile(); getApprovedEvent(); getActiveEvent();coordinatorInterval();">
+							<div>
+								<img src="../images/icon/profile.png">
+							</div>
+							<p>My Profile</p>
+						</li>
+						<li onclick="myRoute2('http://localhost/thesisAppProcess/admin/reports.php'); getApprovedEvent(); getActiveEvent();coordinatorInterval();">
+							<div>
+								<img src="../images/icon/users.png">
+							</div>
+							<p>Annual Reports</p>
+						</li>
+						<li ng-click="logoutProcess()">
+							<div>
+								<img src="../images/icon/off.png">
+							</div>
+							<p>Logout</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="body-container">
+				<div id="view-route"></div>
+			</div>
+		</div>
+		
+
+
+		<!--  MODALS  -->
+
+		<div class="profile-modal">
+			<div class="profile-space"></div>
+			<div class="profile-modal-container">
+				<div id="close">
+					<img src="../images/icon/close.png">
+				</div>
+				<h5>Update your profile</h5> <br>
+
+				<label>Choose cover photo:</label><br>
+				<input type="file" id="fileInput" onchange="angular.element(this).scope().fileSelected(this)"> <br>
+
+				<label>Choose profile pic:</label><br>
+				<input type="file" id="fileInput2" onchange="angular.element(this).scope().fileSelected2(this)"> <br>
+
+				<input type="hidden" id="profile_cover">
+				<input type="hidden" id="profile_pic">
+
+				<label>Firstname:</label><br>
+				<input type="text" id="profile_firstname"> <br>
+
+				<label>Middlename:</label><br>
+				<input type="text" id="profile_middlename"> <br>
+
+				<label>Lastname:</label><br>
+				<input type="text" id="profile_lastname"> <br>
+
+				<label>Contact:</label><br>
+				<input type="text" id="profile_contact"> <br>
+
+				<label>Gender:</label><br>
+				<select id="profile_gender">
+					<option value="Male">Male</option>
+					<option value="Female">Female</option>
+				</select> <br>
+
+				<label>Birthday:</label><br>
+				<input type="date" id="profile_bday"> <br>
+
+				<label>Adress:</label><br>
+				<input type="text" id="profile_address"> <br>
+
+				<label>Username:</label><br>
+				<input type="text" id="profile_username"> <br>
+
+				<label>Password:</label><br>
+				<input type="password" id="profile_password"> <br>
+
+				<button ng-click="updateProfile()">Update</button>
+				<img id="profile-loading" src="../images/icon/ajax_loading.gif">
+				<i id="profile-updated">Updated Succesfully! <strong>&check;</strong></i>
+			</div>
+		</div>
+
+		<div class="message-modal">
+			<div class="message-space"></div>
+			<div class="message-modal-container">
+				<div id="close" ng-click="clearSeenInterval()">
+					<img src="../images/icon/close.png">
+				</div>
+
+				<br>
+				<p class="title-msg">Messages</p>
+
+				<div class="coordinator-list-msg">
+					<div id="profile" ng-repeat="x in coordinatorMsg" ng-click="getClientMessage(x.id) || hideSeenNumber($index)">
+						<div id="iWrapper">
+							<img ng-src="http://localhost/thesisAppProcess/uploadImages/{{x.image}}">
+						</div>
+
+						<div id="name-status">
+							<p>{{x.firstname}}  {{x.lastname}}</p>
+							<!-- <span ng-if="x.status == 0"  style="display: none;"></span>
+							<span ng-if="x.status == 1" style="display:block;"></span> -->
+							<br>
+							<label ng-if="x.status == 0" style="color:rgba(0,0,0,.5)">Offline</label>
+							<label ng-if="x.status == 1" style="color:rgba(44,190,124,.8)">Online</label>
+						</div>
+						<p class="number-msg" id="number-msg{{$index}}" ng-if="unseenMessage[$index].unseen == 0" style="display:none">{{unseenMessage[$index].unseen}}</p>
+						<p class="number-msg" id="number-msg{{$index}}" ng-if="unseenMessage[$index].unseen != 0" style="display:block">{{unseenMessage[$index].unseen}}</p>
+					</div>
+				</div>
+
+				<div class="coordinator-message-wrapper">
+					<div id="message-space">
+						<p id="friend-name" ng-model="friendFullname">{{friendFullname}}</p>
+						<div id="friend-status"></div>
+					</div>
+					<div id="message-space2"></div>
+					<div id="client-messages-wrapper">
+						<p id="conversation-here">Conversation here...</p>
+
+						<div class="chat friend" id="friend-typing" style="display: none">
+							<div class="user-image-wrapper">
+								<img ng-src="http://localhost/thesisAppProcess/uploadImages/{{friendImage}}">
+							</div>
+
+							<div class="message-wrapper">
+								<img src="../images/icon/loader.gif">
+							</div>
+						</div> 
+
+						<label class="seen" id="seen">Seen</label>
+
+						<div ng-repeat="x in batch">
+							<div ng-if="x.userID == selfID" class="chat self">
+								<div class="user-image-wrapper">
+									<img ng-src="http://localhost/thesisAppProcess/uploadImages/{{userImage}}">
+								</div>
+
+								<div class="message-wrapper">
+									<div ng-repeat="y in message" class="reverse">
+										<div ng-if="messageTypeFinal[$index] == 'fl'">
+											<p ng-if="y.userID == selfID; x.batchNumber == y.batchID;" class="message first last">{{y.message}}</p>
+										</div>
+										<div ng-if="messageTypeFinal[$index] == 'f'">
+											<p ng-if="y.userID == selfID; x.batchNumber == y.batchID;" class="message first">{{y.message}}</p>
+										</div>
+										<div ng-if="messageTypeFinal[$index] == 'l'">
+											<p ng-if="y.userID == selfID; x.batchNumber == y.batchID;" class="message last">{{y.message}}</p>
+										</div>
+										<div ng-if="messageTypeFinal[$index] == 'm'">
+											<p ng-if="y.userID == selfID; x.batchNumber == y.batchID;" class="message">{{y.message}}</p>
+										</div>
+									</div>
+	    						<!-- 	<span>7:30 PM</span> -->
+								</div> 
+							</div>
+
+							<div ng-if="x.userID != selfID" class="chat friend">
+								<div class="user-image-wrapper">
+									<img ng-src="http://localhost/thesisAppProcess/uploadImages/{{friendImage}}">
+								</div>
+
+								<div class="message-wrapper">
+									<div ng-repeat="y in message">
+										<div ng-if="messageTypeFinal[$index] == 'fl'">
+											<p ng-if="y.userID != selfID; x.batchNumber == y.batchID" class="message first last">{{y.message}}</p>
+										</div>
+										<div ng-if="messageTypeFinal[$index] == 'f'">
+											<p ng-if="y.userID != selfID; x.batchNumber == y.batchID" class="message first">{{y.message}}</p>
+										</div>
+										<div ng-if="messageTypeFinal[$index] == 'l'">
+											<p ng-if="y.userID != selfID; x.batchNumber == y.batchID" class="message last">{{y.message}}</p>
+										</div>
+										<div ng-if="messageTypeFinal[$index] == 'm'">
+											<p ng-if="y.userID != selfID; x.batchNumber == y.batchID" class="message">{{y.message}}</p>
+										</div>
+									</div>
+								<!-- 	<span>Yesterday</span> -->
+								</div>
+							</div> 
+						</div>
+					</div>
+
+					<div id="client-input-wrapper">
+						<input type="hidden" ng-model="friendID">
+						<textarea class="input-message" ng-model="userMessage" placeholder="Write something here..." ng-focus="updateTypingStatus(1)" ng-blur="updateTypingStatus(0)"></textarea>
+						<div id="sendButton" ng-click="addBatchNumber()">
+							<img src="../images/icon/icon_Airplane.png">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="view-selected-event-modal">
+			<div class="view-selected-event-space"></div>
+			<div class="view-selected-event-modal-container">
+				<div id="close">
+					<img src="../images/icon/close.png">
+				</div>
+
+				<br><br>
+				<center>
+					<h3 id="event-theme">shjdg</h3>
+				</center>
+			</div>
+		</div>
+
+		<div class="view-notification-modal">
+			<div class="view-notification-modal-container">
+				<p id="title">Notification List</p>
+
+				<div id="notification-container" class="notification-container"></div>
+
+					<!-- <center>
+						<p id="del">Delete all notifications</p>
+					</center> -->
+			</div>
+		</div>
+
+		<div class="add-coordinator-modal">
+			<div class="add-coordinator-space"></div>
+			<div class="add-coordinator-modal-container">
+				<div id="close">
+				 	<img src="../images/icon/close.png">
+				</div>
+
+				<p>Add Coordinator Account</p> <br>
+				<div id="coordinator-info">
+					<label>Firstname:</label> <br>
+					<input type="text" id="coordinator-firstname"> <br>
+					<label>Middlename:</label> <br>
+					<input type="text" id="coordinator-middlename"> <br>
+					<label>Lastname:</label> <br>
+					<input type="text" id="coordinator-lastname">
+				</div>
+				<div id="coordinator-img-wrapper">
+					<center id="upload-photo-msg">Upload photo</center>
+					<img id="coordinator-image">
+				</div>
+				<button id="generate" onclick="generatePassword()">Generate password</button>
+				<input id="coordinator-img" type="file" onchange="loadFileCoordinator(event) || angular.element(this).scope().fileSelected(this)">
+				<input type="text" id="coordinator-password" placeholder="Generated password here..."> <br>
+				<label id="label">Contact No.:</label> <br>
+				<input type="text" id="coordinator-number"> <br>
+				<label id="label">Assign Ministry:</label><br>
+				<select id="coordinator-select-ministry"></select>
+				<button id="add-btn" onclick="addCoordinator()">Submit</button>
+				<img id="add-coordinator-loading" src="../images/icon/loading.gif">
+				<label id="label2"><b>SUCCESS!</b> Coordinator added..</label>
+			</div>
+		</div>
+
+		<div class="view-event-modal">
+			<div class="view-event-space"></div>
+			<div class="view-event-modal-container">
+				<div id="close">
+					<img src="../images/icon/close.png">
+				</div> <br>
+
+				<div id="eventTarp">
+					<img id="imageTarp"> <br><br>
+					<center>
+						<div id="descTitle">
+							<p>Theme:</p>
+							<p>Speaker:</p>
+							<p>Venue:</p>
+							<p>Date:</p>
+							<p>Host Church:</p>
+							<p>Ministry:</p>
+							<p>Registration Fee:</p>
+						</div>
+
+						<div id="desc">
+							<p id="descTheme"></p>
+							<p id="descSpeaker"></p>
+							<p id="descAddress"></p>
+							<p id="descDate"></p>
+							<p id="descHost"></p>
+							<p id="descMinistry"></p>
+							<p id="descFee"></p>
+						</div>
+					</center>
+				</div>
+			</div>
+		</div>
+
+		<div class="report-event-modal">
+			<div class="report-event-space"></div>
+			<div class="report-event-modal-container">
+				<div id="close">
+					<img src="../images/icon/close.png">
+				</div> <br>
+
+				<center>
+					<p>REPORT MODAL</p> 
+				</center>
+			</div>
+		</div>
+
+		<div class="request-event-modal">
+			<div class="request-event-space"></div>
+			<div class="request-event-modal-container">
+				<div id="close">
+					<img src="../images/icon/close.png">
+				</div> <br>
+
+				<div id="eventTarp">
+					<img id="imageTarp2"> <br><br>
+					<center>
+						<div id="descTitle">
+							<p>Theme:</p>
+							<p>Speaker:</p>
+							<p>Venue:</p>
+							<p>Date:</p>
+							<p>Host Church:</p>
+							<p>Ministry:</p>
+							<p>Registration Fee:</p>
+						</div>
+
+						<div id="desc">
+							<p id="descTheme2"></p>
+							<p id="descSpeaker2"></p>
+							<p id="descAddress2"></p>
+							<p id="descDate2"></p>
+							<p id="descHost2"></p>
+							<p id="descMinistry2"></p>
+							<p id="descFee2"></p>
+						</div>
+					</center>
+				</div>
+			</div>
+		</div>
+
+		<div class="approve-event-modal">
+			<div class="approve-event-space"></div>
+			<div class="approve-event-modal-container">
+				<div id="check">
+					<img src="../images/icon/approved.png">
+				</div>
+				<p>The event has been approved.</p>
+			</div>
+		</div>
+
+
+		<div class="view-ministry-modal"> <br><br>
+			<div class="view-ministry-space"></div>
+			<div class="view-ministry-modal-container">
+				<div id="close">
+					<img src="../images/icon/close.png">
+				</div> <br><br>
+
+				<p id="ministry-name"></p>
+				<div id="ministry-description"></div>
+			</div>
+		</div>
+
+		<div class="response-ministry-modal">
+			<div class="response-ministry-space"></div>
+			<div class="response-ministry-modal-container">
+				
+				<div id="check-mark">
+					<img src="../images/icon/check.gif">
+				</div>
+				<p id="response-data"></p>
+			</div>
+		</div>
+
+		<div class="error-ministry-modal">
+			<div class="error-ministry-space"></div>
+			<div class="error-ministry-modal-container">
+				<br><br><br>
+				<div id="error-mark">
+					<img src="../images/icon/error.png">
+				</div> <br><br>
+				<p id="error-data">Oops! Something error.</p>
+			</div>
+		</div>
+
+		<div class="delete-ministry-modal">
+			<div class="delete-ministry-space"></div>
+			<div class="delete-ministry-modal-container">
+				<br><br>
+				<div id="check-mark">
+					<img src="../images/icon/info.jpg">
+				</div> <br><br>
+				<p id="delete-data">Confirm Delete</p>
+				<br>
+				<button id="del" onclick="ecxecDeleteMinistry()">Delete</button>
+				<button id="can">Cancel</button>
+			</div>
+		</div>
+
+		<div class="delete-church-modal">
+			<div class="delete-church-space"></div>
+			<div class="delete-church-modal-container">
+				<br><br>
+				<div id="check-mark">
+					<img src="../images/icon/info.jpg">
+				</div> <br><br>
+				<p id="delete-data">Confirm Delete</p>
+				<br>
+				<button id="del" onclick="execDeleteChurch()">Delete</button>
+				<button id="can">Cancel</button>
+			</div>
+		</div>
+
+		<div class="view-church-modal">
+			<div class="view-church-space"></div>
+			<div class="view-church-modal-container">
+				<div id="close">
+					<img src="../images/icon/close.png">
+				</div> <br><br>
+
+				<div id="church-image-wrapper">
+					<img id="church-image">
+				</div>
+
+				<div id="church-info-wrapper">
+					<h3 id="church-name">Molave AG</h3>
+					<p id="church-address">Molave, ZDS</p>
+					<p id="church-pastor">Ptr. wakoko wakokok</p>
+					<p id="church-status">Establish church</p>
+					<p id="church-members">382 Members</p>
+				</div>
+				<label>Mission:</label>
+				<div id="mission-content"></div>
+
+				<label>Vision:</label>
+				<div id="vision-content"></div>
+			</div>
+		</div>
+
+		<div class="view-pastor-modal">
+			<div class="view-pastor-space"></div>
+			<div class="view-pastor-modal-container">
+				<div id="close">
+					<img src="../images/icon/close.png">
+				</div> <br>
+
+				<div id="imageDiv">
+					<div id="imageWrapper">
+						<img id="pastor-image">
+					</div>
+				</div>
+				<div id="infoDiv">
+					<p id="pastor-fullname"></p><hr><br>
+					<label>SWMDC Assembly of God - Section 2 Pastor</label> <br>
+
+					<div id="div1">
+						<label>Address</label><br>
+						<label>Gender</label><br>
+						<label>Contact No.</label><br>
+						<label>Birth date</label>
+					</div>
+					<div id="div2">
+						<label id="pastor-address"></label><br>
+						<label id="pastor-gender"></label><br>
+						<label id="pastor-contact"></label><br>
+						<label id="pastor-bday"></label><br>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="delete-pastor-modal">
+			<div class="delete-pastor-space"></div>
+			<div class="delete-pastor-modal-container">
+				<br><br>
+				<div id="check-mark">
+					<img src="../images/icon/info.jpg">
+				</div> <br><br>
+				<p id="delete-data">Confirm Delete</p>
+				<br>
+				<button id="del" onclick="execDeletePastor()">Delete</button>
+				<button id="can">Cancel</button>
+			</div>
+		</div>
+
+		<div id="register-church-delegate" style="display:none;"></div>
+		<div id="register-church-delegate2" style="display:none;"></div>
+		<div id="count-pending-delegates" style="display:none;"></div>
+		<div id="pending-delegates" style="display:none;"></div>
+	</body>
+</html>

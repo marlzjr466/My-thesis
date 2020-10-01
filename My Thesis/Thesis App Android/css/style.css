@@ -1,0 +1,1378 @@
+ @font-face {
+   font-family: "myFont";
+   src: url("../fonts/ITC.otf") format("opentype");
+} @font-face {
+   font-family: "myFont2";
+   src: url("../fonts/ERASMD.TTF") format("truetype");
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+.shakeObject {
+	animation: shake .5s;
+}
+
+
+* {
+	margin: 0; padding: 0;  font-family: "myFont2";-webkit-tap-highlight-color: transparent; outline: none;
+} .introWrapper {
+	width: 100%; height: 100vh; position: absolute; z-index: -1;/* display: none;*/
+} .introWrapper #logoWrapper {
+	margin: 0 auto; width: 250px; height: 250px;
+} .introWrapper #logoWrapper #imgWrapper {
+	margin: 0 auto; width: 130px; height: 120px;
+} .introWrapper #logoWrapper #imgWrapper img {
+	width: 100%; height: 100%; -webkit-filter: drop-shadow(3px 3px 5px rgba(0,0,0,.9));
+} .introWrapper #logoWrapper p {
+	width: 100%; font-family: "myFont"; color: rgba(255,255,255,.8); text-align: center; font-size: 30px; padding: 5px;
+	text-shadow: 3px 3px 3px rgba(0,0,0,1);
+} .introWrapper #logoWrapper h5 {
+	font-size: 13px; font-family: arial; margin-top: -5px; letter-spacing: 25px; color: rgba(255,255,255,.8);
+	text-indent: 32px; animation: logoEffect 2s; animation-iteration-count: 3; animation-delay: 1s;
+}
+
+.space {
+	width: 100%; height: 30vh; /*height: 12vh;*/
+}
+
+ .introWrapper {
+	width: 100%; height: 100vh; position: absolute; z-index: -1;/* display: none;*/
+} .introWrapper #logoWrapper2 {
+	margin: 0 auto; width: 250px; height: 250px;
+} .introWrapper #logoWrapper2 #imgWrapper2 {
+	margin: 0 auto; width: 130px; height: 120px;
+} .introWrapper #logoWrapper2 #imgWrapper2 img {
+	width: 100%; height: 100%; -webkit-filter: drop-shadow(3px 3px 5px rgba(0,0,0,.9));
+} .introWrapper #logoWrapper2 p {
+	width: 100%; font-family: "myFont"; color: rgba(255,255,255,.8); text-align: center; font-size: 30px; padding: 5px;
+	text-shadow: 3px 3px 3px rgba(0,0,0,1);
+} .introWrapper #logoWrapper2 h5 {
+	font-size: 13px; font-family: arial; margin-top: -5px; letter-spacing: 25px; color: rgba(255,255,255,.8);
+	text-indent: 32px; animation: logoEffect 2s; animation-iteration-count: 3; animation-delay: 1s;
+}
+
+.space2 {
+	width: 100%; height: 30vh; height: 14vh;
+}
+
+.choose-user {
+	width: 260px; margin: -40px auto; padding: 10px; border: 1px solid rgba(255,255,255,.2); background: rgba(0,0,0,.3);
+	box-shadow: 3px 3px 5px rgba(0,0,0,.5); display:none;
+} .choose-user #loginAs {
+	color: rgba(255,255,255,.8); width: 100%; font-size: 14px; padding-bottom: 10px;
+}
+
+.button {
+	width: 48%; height: 30px; margin: 0 auto; margin-bottom: 30px; border-radius: 3px; cursor: default;
+	background: -webkit-linear-gradient(top, rgb(224,173,32), rgb(231,158,11), rgb(195,85,5)); color: #fff;
+	border: 1px solid rgb(200,137,10); font-size: 12px; display: inline-block; opacity: .7;
+} .button p {
+	padding-top: 7px; margin-left: 5px; float: left;
+} .button img {
+	width: 15px; height: 15px; float: right; margin: 8px 5px 0px 0px; opacity: .8;
+} .button:last-child img {
+	width: 18px; height: 18px;
+} .button:hover {
+	opacity: .9;
+} .active {
+	transform: scaleY(1.2); opacity: 1;
+}  .active:hover {
+	opacity: 1;
+}
+
+.login-form-pastor {
+	width: 100%; 
+}
+
+.login-form-member {
+	width: 100%; display: none;
+}
+
+.input-wrapper {
+	margin: 0px auto; width: 90%; height: 35px; border-bottom: 1px solid rgba(255,255,255,.4); margin-bottom: 10px;
+} .input-wrapper img {
+	width: 25px; height: 20px; float: right; opacity: .4; margin-top: 5px; margin-right: 10px;
+}  .input-wrapper input {
+	border: none; background: transparent; float: left; height: 35px; text-indent: 10px; font-size: 15px; width: 80%;
+	color: rgba(255,255,255,1);
+}
+
+.login-button {
+	width: 80px; height: 30px; margin-left: 15px; margin-bottom: 20px; text-align: center;
+	color: #fff; font-size: 13px; background: -webkit-linear-gradient(top, rgb(50,207,51), rgb(43,179,56), rgb(23,93,30));
+	border: 1px solid rgb(43,179,56);
+} .login-button p {
+	padding-top: 7px; cursor: default;
+} .login-button:active {
+	transform: scale(.95);
+}
+
+.incorrect-pass {
+	color: red; margin-top: -15px; font-size: 13px; float: left; margin-left: 15px; display: none;
+}
+
+.forgot-code {
+	float: right; color: rgba(255,255,255,.6); font-size: 12px; margin-top: -50px; margin-right: 15px;
+} .forgot-code:hover {
+	text-decoration: underline;
+}
+
+.no-account {
+	float: left; color: rgba(255,255,255,.8); font-size: 14px; margin-top: -30px; margin-left: 15px;
+	text-decoration: underline;
+} .no-account:hover {
+	color: rgba(255,255,255,.6);
+}
+
+.signup-wrapper {
+	width: 100%; height: 100vh; position: absolute; z-index: -1; display: none;
+}
+
+.signup-space {
+	width: 100%; height: 0vh;
+} .signup-space img {
+	float: left; margin: 10px 0px 0px 10px; width: 25px; height: 15px; opacity: .7;
+}  .signup-space img:active {
+	transform: scale(.95);
+}
+
+.form-wrapper {
+	width: 280px; padding-bottom: 20px; background: rgba(0,0,0,.3); border: 1px solid rgba(255,255,255,.2);
+	box-shadow: 3px 3px 5px rgba(0,0,0,.5); margin: 0 auto;
+} .create-account-title {
+	color: #fff; width: 100%; padding: 10px 0px 10px 0px;/* text-transform: uppercase;*/ font-size: 18px;
+	text-align: center; background: -webkit-linear-gradient(top, rgb(224,173,32), rgb(231,158,11), rgb(195,85,5));
+	border: 1px solid rgb(200,137,10); margin: -1px 0px 0px -1px;
+}
+
+.form-wrapper label {
+	color: rgba(255,255,255,.5); font-size: 12px; margin-left: 20px;
+} .form-wrapper input, select {
+	width: 230px; height: 25px; margin-top: 5px; text-indent: 15px; border: none; outline: none;
+	border-bottom: 1px solid rgba(255,255,255,.1); background: rgba(0,0,0,.5); color: rgba(255,255,255,.8);
+	margin-bottom: 5px;
+} .form-wrapper input:focus, select:focus {
+	border: 1px solid rgba(200,137,10,.8);
+} .form-wrapper select {
+	text-indent: 10px;
+}
+
+.submit-btn {
+	width: 80px; height: 25px; color: #fff; font-size: 13px; margin-top: 5px; border: 1px solid rgb(232,14,45);
+	background: -webkit-linear-gradient(top, rgb(243,57,84), rgb(232,14,45), rgb(153,9,30)); margin-left: 26px;
+} .submit-btn p {
+	padding-top: 5px; cursor: default; width: 100%; text-align: center;
+} .submit-btn:active {
+	transform: scale(.98);
+}
+
+.signup-loader {
+	width: 18px; height: 18px; float: left; margin-left: 115px; margin-top: -22px; display: none;
+} 
+
+.success {
+	float: left; margin-left: 115px; margin-top: -25px; font-size: 12px; color: rgba(255,255,255,.7 ); display: none;
+}
+
+
+@keyframes logoEffect {
+	0% { opacity: 1; } 10% { opacity: .9; } 20% { opacity: .7; } 30% { opacity: .5; } 40% { opacity: .3; }
+	50% { opacity: .1; } 60% { opacity: 3; } 70% { opacity: .5; } 80% { opacity: .7; } 90% { opacity: .9; }
+	100% { opacity: 1; }
+}
+
+.mainContainer {
+	width: 100%; height: 100vh; position: absolute; z-index: -1; /*display: none;	*/
+} .mainContainer #header {
+	width: 100%; height: 50px; background: rgb(50,50,50); box-shadow: 0px 3px 6px rgba(0,0,0,.6); position: fixed;
+	border-bottom: 1px solid rgba(255,255,255,.7);
+} .mainContainer #header #logo {
+	width: 25px; width: 25px; margin: 13px 0px 0px 10px; float: left;
+} .mainContainer #header #logo img {
+	width: 100%; height: 100%;
+} .mainContainer #header p {
+	float: left; color: #fff; font-size: 16px; padding: 15px 0px 0px 10px;
+} .mainContainer #header #profile {
+	width: 22px; width: 22px; margin: 15px -7px 0px 10px; float: right; border-radius: 50%;
+} .mainContainer #header #profile img {
+	width: 100%; height: 100%; border-radius: 50%;
+} .mainContainer #header #profile:active {
+	transform: scale(.9);
+}.mainContainer #bodyContainer {
+	width: 100%; height: 86vh; overflow-y: scroll; margin-top: 20px;
+}.mainContainer #bodyContainer::-webkit-scrollbar {
+    width: 0px;
+}.mainContainer #bodyContainer::-webkit-scrollbar-track {
+   background: transparent;
+}.mainContainer #bodyContainer::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.4);
+  outline: 1px solid slategrey;
+}.mainContainer #bodyContainer::-webkit-scrollbar-button {
+	height: 3px;
+}
+
+.count-notification {
+	width: 18px; height: 15px; text-align: center; color: #fff; background: red; border-radius: 50%; float:right;
+	font-size: 10px; padding-top: 3px; margin: 5px 10px 0px 0px; position: relative; opacity: 0;
+}
+
+.count-notification2 {
+	width: 18px; height: 15px;color: #fff; background: red; border-radius: 50%; float: right; text-align: center;
+	font-size: 10px; padding-top: 3px; margin: 0px 10px 0px 0px; text-indent: 0px; opacity: 0;
+}
+
+.mainContainer #searchWrapper {
+	width: 90%; height: 40px; margin: 0 auto; border-bottom: 1px solid rgba(0,0,0,.2); margin-bottom: 10px;
+}.mainContainer #searchWrapper input {
+	float: left; height: 35px; width: 85%; font-size: 14px; text-indent: 10px; border: none; margin-top: 5px;
+}.mainContainer #searchWrapper img {
+	width: 25px; height: 25px; float: right; margin-top: 8px; margin-right: 10px;
+}.mainContainer #searchWrapper img:active {
+	transform: scale(.9);
+}
+
+.mainContainer #bodyContainer #postEvent {
+	width: 95%; padding: 5px 0px 10px 0px; margin: -20px auto;
+}.mainContainer #bodyContainer #postEvent p {
+	font-size: 15px; text-indent: 10px; padding-bottom: 3px; margin: 0 auto; width: 95%; font-weight: bold;
+	border-bottom: 1px solid rgba(0,0,0,.4); color: rgba(0,0,0,.8); margin-bottom: 5px;
+}.mainContainer #bodyContainer #postEvent #eventWrapper {
+	margin: 0 auto; width: 95%; height: 310px; background: #EBEEEE; margin-bottom: 20px; padding-top: 5px;
+}.mainContainer #bodyContainer #postEvent #eventWrapper #img {
+	width: 95%; height: 180px; margin-bottom: 10px;
+}.mainContainer #bodyContainer #postEvent #eventWrapper #img:active {
+	transform: scale(.98);
+}.mainContainer #bodyContainer #postEvent #eventWrapper #img img {
+	width: 100%; height: 100%;
+}.mainContainer #bodyContainer #postEvent #eventWrapper #coordinatorImg {
+	width: 35px; height: 38px; margin: 0px 0px 0px 5px; border: 1px solid #ACB1AB; float: left; margin-bottom: 5px;
+}.mainContainer #bodyContainer #postEvent #eventWrapper #coordinatorImg img {
+	width: 100%; height: 100%;
+}.mainContainer #bodyContainer #postEvent #eventWrapper #about {
+	float: left; width: 85%; height: 40px;
+}.mainContainer #bodyContainer #postEvent #eventWrapper #about #name {
+	width: 100%; text-indent: 5px; font-size: 14px; font-weight: bold; border: none;
+}.mainContainer #bodyContainer #postEvent #eventWrapper #about #position {
+	width: 100%; text-indent: 6px; font-size: 10px; border: none; margin-top: -5px; color: rgba(0,0,0,.6);
+}.mainContainer #bodyContainer #postEvent #eventWrapper button {
+	float: right; margin-top: -40px; margin-right: 5px;
+}.mainContainer #bodyContainer #postEvent #eventWrapper button p {
+	margin-top: -14px; font-size: 12px; border: none; color: #1669CC; font-weight: bold; float: right; padding: 0;
+}.mainContainer #bodyContainer #postEvent #eventWrapper button img {
+	width: 15px; height: 15px; padding: 2px 0px 0px 3px; float: left;
+}.mainContainer #bodyContainer #postEvent #eventWrapper #theme {
+	width: 95%; text-align: left; text-indent: 5px; font-size: 13px; border: none; color: rgba(0,0,0,.6);
+	padding-top: 7px;
+}.mainContainer #bodyContainer #postEvent #eventWrapper #speaker {
+	width: 95%; text-align: left; text-indent: 5px; font-size: 13px; border: none; margin-top: -7px; color: rgba(0,0,0,.6);
+}.mainContainer #bodyContainer #postEvent #eventWrapper #date {
+	width: 95%; text-align: left; text-indent: 5px; font-size: 13px; margin-top: -7px; color: rgba(0,0,0,.6);
+}.mainContainer #bodyContainer #postEvent #eventWrapper h6 {
+	float: left; text-indent: 15px; color: #2785B0; cursor: default;
+}.mainContainer #bodyContainer #postEvent #eventWrapper h6:hover {
+	color: #35A9DF;
+}.mainContainer #bodyContainer #postEvent #eventWrapper h6:active {
+	transform: scale(1.1);
+}.mainContainer #bodyContainer #postEvent #eventWrapper u {
+	float: right; padding-right: 10px; color: #E4432F; cursor: default; font-size: 11px;
+}.mainContainer #bodyContainer #postEvent #eventWrapper u:hover {
+	color: #D43926;
+}.mainContainer #bodyContainer #postEvent #eventWrapper u:active {
+	transform: scale(1.1);
+} hr {
+	border: 1px dashed rgba(0,0,0,.2); width: 100%;
+}
+
+.no {
+	width: 95%; padding: 10px 0px 10px 0px; background: #EBEEEE; color: rgba(0,0,0,.3); margin-bottom: 20px;
+	display: none;
+}
+
+
+/* filter: opacity(.6) drop-shadow(0 0 0 black);*/
+.mainContainer #footer {
+	width: 100%; height: 55px; position: absolute; bottom: 0; border-top: 1px solid rgba(0,0,0,.2);
+	background: rgb(50,50,50); z-index: 100;
+}.mainContainer #footer #ministry {
+	height: 45px; width: 21%; float: left; margin-top: 5px; font-size: 9px; color: #fff;
+	border-right: 1px dashed rgba(255,255,255,1); background: #DC3F2F;
+}.mainContainer #footer #ministry:active {
+	background: #ED6759;
+}.mainContainer #footer #ministry p {
+	padding-top: 17px; 
+}.mainContainer #footer #ministry img {
+	width: 25px; height: 25px; float: left; margin: 2px; margin-left: 3px;transform: scale(1.1); margin-top: 10px;
+}.mainContainer #footer #church {
+	height: 45px; width: 21%; float: left; margin-top: 5px; font-size: 9px; color: #fff;
+	 background: #26C2B4;
+}.mainContainer #footer #church:active {
+	background: #46DBCE;
+}.mainContainer #footer #church p {
+	padding-top: 17px;
+}.mainContainer #footer #church img {
+	width: 30px; height: 30px; float: left; margin-left: 0px; transform: scale(.6); margin-top: 8px;
+}.mainContainer #footer #event {
+	height: 45px; width: 21%; float: right; margin-top: 5px; font-size: 9px; color: #fff;
+	border-left: 1px dashed rgba(255,255,255,1); background: #45E02F;
+}.mainContainer #footer #event:active {
+	background: #67E755;
+}.mainContainer #footer #event p {
+	padding-top: 17px;
+}.mainContainer #footer #event img {
+	width: 30px; height: 30px; float: left; margin-left: 5px; transform: scale(.7); margin-top: 8px;
+}.mainContainer #footer #pastor {
+	height: 45px; width: 21%; float: right; margin-top: 5px; font-size: 9px; color: #fff;
+	 background: #2F73DC;
+}.mainContainer #footer #pastor:active {
+	background: #5691EE;
+}.mainContainer #footer #pastor p {
+	padding-top: 17px;
+}.mainContainer #footer #pastor img {
+	width: 30px; height: 30px; float: left; margin-left: 5px; transform: scale(.7); margin-top: 8px;
+}.mainContainer #footer #homeWrapper {
+	width: 15%; height: 100%; float: left;
+}.mainContainer #footer #homeWrapper #home {
+	width: 100%; height: 60px; border-top-left-radius: 35%; border-top-right-radius: 35%; background: rgb(50,50,50);
+	margin-top: -12px; box-shadow: inset 3px 3px 5px rgba(0,0,0,.6); border: 1px solid rgba(255,255,255,.2);
+}.mainContainer #footer #homeWrapper #home:active {
+	background: rgb(100,100,100);
+}.mainContainer #footer #homeWrapper #home img {
+	width: 40%; height: 40%; margin-top: 10px;
+}.mainContainer #footer #homeWrapper #home p {
+	width: 100%; font-size: 9px; color: #fff; text-align: center;
+}
+
+.ministryContainer {
+	width: 100%; height: 100vh; position: absolute; z-index: -1; display: none;
+} .ministryContainer #header {
+	width: 100%; height: 50px; background: rgb(50,50,50); box-shadow: 0px 3px 6px rgba(0,0,0,.6); position: fixed;
+	border-bottom: 1px solid rgba(255,255,255,.7);
+} .ministryContainer #header #logo {
+	width: 25px; width: 25px; margin: 13px 0px 0px 10px; float: left;
+} .ministryContainer #header #logo img {
+	width: 100%; height: 100%;
+} .ministryContainer #header p {
+	float: left; color: #fff; font-size: 16px; padding: 15px 0px 0px 10px;
+} .ministryContainer #header #profile {
+	width: 22px; width: 22px; margin: 15px -7px 0px 10px; float: right; border-radius: 50%;
+} .ministryContainer #header #profile img {
+	width: 100%; height: 100%; border-radius: 50%;
+} .ministryContainer #header #profile:active {
+	transform: scale(.9);
+}
+
+.ministryContainer #bodyContainer {
+	width: 100%; height: 86vh; overflow-y: scroll; margin-top: 20px;
+}.ministryContainer #bodyContainer::-webkit-scrollbar {
+    width: 0px;
+}.ministryContainer #bodyContainer::-webkit-scrollbar-track {
+   background: transparent;
+}.ministryContainer #bodyContainer::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.4);
+  outline: 1px solid slategrey;
+}.ministryContainer #bodyContainer::-webkit-scrollbar-button {
+	height: 3px;
+} .ministryContainer #searchWrapper {
+	width: 90%; height: 40px; margin: 0 auto; border-bottom: 1px solid rgba(0,0,0,.2); margin-bottom: 10px;
+}.ministryContainer #searchWrapper input {
+	float: left; height: 35px; width: 85%; font-size: 14px; text-indent: 10px; border: none; margin-top: 5px;
+}.ministryContainer #searchWrapper img {
+	width: 25px; height: 25px; float: right; margin-top: 8px; margin-right: 10px;
+}.ministryContainer #searchWrapper img:active {
+	transform: scale(.9);
+} .ministryContainer #bodyContainer p {
+	font-size: 15px; text-indent: 10px; padding-bottom: 3px; margin: 0 auto; width: 90%; font-weight: bold;
+	border-bottom: 1px solid rgba(0,0,0,.4); color: rgba(0,0,0,.8); margin-bottom: 5px; padding-top: 3px;
+} .ministryContainer #bodyContainer #ministryList {
+	margin: 0 auto; width: 90%; height: 65px; background: #EBEEEE; margin-bottom: 20px; padding-top: 5px;
+} .ministryContainer #bodyContainer #ministryList h3 {
+	text-indent: 20px;
+} .ministryContainer #bodyContainer #ministryList label {
+	font-size: 12px; padding-left: 20px; color: rgba(0,0,0,.6);
+} .ministryContainer #bodyContainer #ministryList hr {
+	width: 75%; border: .5px solid rgba(0,0,0,.2); margin-top: 3px; margin-left: 15px;
+} .ministryContainer #bodyContainer #ministryList h6 {
+	float: left; text-indent: 20px; color: #35A9DF; cursor: default; padding-top: 4px;	
+} .ministryContainer #bodyContainer #ministryList #img {
+	width: 45px; height: 50px; float: right; margin-right: 5px;
+} .ministryContainer #bodyContainer #ministryList #img img {
+	width: 100%; height: 100%;
+} .ministryContainer #bodyContainer #ministryList:active {
+	transform: scale(.97);
+}
+
+ .ministryContainer #footer {
+	width: 100%; height: 55px; position: absolute; bottom: 0; border-top: 1px solid rgba(0,0,0,.2);
+	background: rgb(50,50,50); z-index: 100;
+}.ministryContainer #footer #ministry {
+	height: 45px; width: 21%; float: left; margin-top: 5px; font-size: 9px; color: #fff;
+	border-right: 1px dashed rgba(255,255,255,1); background: #DC3F2F;
+}.ministryContainer #footer #ministry:active {
+	background: #ED6759;
+}.ministryContainer #footer #ministry p {
+	padding-top: 17px; 
+}.ministryContainer #footer #ministry img {
+	width: 25px; height: 25px; float: left; margin: 2px; margin-left: 3px;transform: scale(1.1); margin-top: 10px;
+}.ministryContainer #footer #church {
+	height: 45px; width: 21%; float: left; margin-top: 5px; font-size: 9px; color: #fff;
+	 background: #26C2B4;
+}.ministryContainer #footer #church:active {
+	background: #46DBCE;
+}.ministryContainer #footer #church p {
+	padding-top: 17px;
+}.ministryContainer #footer #church img {
+	width: 30px; height: 30px; float: left; margin-left: 0px; transform: scale(.6); margin-top: 8px;
+}.ministryContainer #footer #event {
+	height: 45px; width: 21%; float: right; margin-top: 5px; font-size: 9px; color: #fff;
+	border-left: 1px dashed rgba(255,255,255,1); background: #45E02F;
+}.ministryContainer #footer #event:active {
+	background: #67E755;
+}.ministryContainer #footer #event p {
+	padding-top: 17px;
+}.ministryContainer #footer #event img {
+	width: 30px; height: 30px; float: left; margin-left: 5px; transform: scale(.7); margin-top: 8px;
+}.ministryContainer #footer #pastor {
+	height: 45px; width: 21%; float: right; margin-top: 5px; font-size: 9px; color: #fff;
+	 background: #2F73DC;
+}.ministryContainer #footer #pastor:active {
+	background: #5691EE;
+}.ministryContainer #footer #pastor p {
+	padding-top: 17px;
+}.ministryContainer #footer #pastor img {
+	width: 30px; height: 30px; float: left; margin-left: 5px; transform: scale(.7); margin-top: 8px;
+}.ministryContainer #footer #homeWrapper {
+	width: 15%; height: 100%; float: left;
+}.ministryContainer #footer #homeWrapper #home {
+	width: 100%; height: 60px; border-top-left-radius: 35%; border-top-right-radius: 35%; background: rgb(50,50,50);
+	margin-top: -12px; box-shadow: inset 3px 3px 5px rgba(0,0,0,.6); border: 1px solid rgba(255,255,255,.2);
+}.ministryContainer #footer #homeWrapper #home:active {
+	background: rgb(100,100,100);
+}.ministryContainer #footer #homeWrapper #home img {
+	width: 40%; height: 40%; margin-top: 10px;
+}.ministryContainer #footer #homeWrapper #home p {
+	width: 100%; font-size: 9px; color: #fff; text-align: center;
+}
+
+.churchContainer {
+	width: 100%; height: 100vh; position: absolute; z-index: -1; display: none;
+} .churchContainer #header {
+	width: 100%; height: 50px; background: rgb(50,50,50); box-shadow: 0px 3px 6px rgba(0,0,0,.6); position: fixed;
+	border-bottom: 1px solid rgba(255,255,255,.7);
+} .churchContainer #header #logo {
+	width: 25px; width: 25px; margin: 13px 0px 0px 10px; float: left;
+} .churchContainer #header #logo img {
+	width: 100%; height: 100%;
+} .churchContainer #header p {
+	float: left; color: #fff; font-size: 16px; padding: 15px 0px 0px 10px;
+} .churchContainer #header #profile {
+	width: 22px; width: 22px; margin: 15px -7px 0px 10px; float: right; border-radius: 50%;
+} .churchContainer #header #profile img {
+	width: 100%; height: 100%; border-radius: 50%;
+} .churchContainer #header #profile:active {
+	transform: scale(.9);
+}
+
+.churchContainer #bodyContainer {
+	width: 100%; height: 86vh; overflow: scroll; margin-top: 20px;
+}.churchContainer #bodyContainer::-webkit-scrollbar {
+    width: 0px;
+}.churchContainer #bodyContainer::-webkit-scrollbar-track {
+   background: transparent;
+}.churchContainer #bodyContainer::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.4);
+  outline: 1px solid slategrey;
+}.churchContainer #bodyContainer::-webkit-scrollbar-button {
+	height: 3px;
+} .churchContainer #searchWrapper {
+	width: 90%; height: 40px; margin: 0 auto; border-bottom: 1px solid rgba(0,0,0,.2); margin-bottom: 10px;
+}.churchContainer #searchWrapper input {
+	float: left; height: 35px; width: 85%; font-size: 14px; text-indent: 10px; border: none; margin-top: 5px;
+}.churchContainer #searchWrapper img {
+	width: 25px; height: 25px; float: right; margin-top: 8px; margin-right: 10px;
+}.churchContainer #searchWrapper img:active {
+	transform: scale(.9);
+} .churchContainer #bodyContainer p {
+	font-size: 15px; text-indent: 10px; padding-bottom: 3px; margin: 0 auto; width: 90%; font-weight: bold;
+	border-bottom: 1px solid rgba(0,0,0,.4); color: rgba(0,0,0,.8); margin-bottom: 5px; padding-top: 3px;
+} .churchContainer #bodyContainer select {
+	width: 90%; height: 40px; padding-left: 15px;
+} .churchContainer #bodyContainer table {
+	width: 91%; margin-top: 10px;
+} .churchContainer #bodyContainer table thead th {
+	border: 1px solid rgba(0,0,0,.3); color: #fff; background: rgb(150,150,150); font-size: 12px; height: 25px;
+} .churchContainer #bodyContainer table tbody tr td {
+	border: 1px solid rgba(0,0,0,.3); font-size: 12px; height: 25px; text-align: center;
+} .churchContainer #bodyContainer table tbody tr td button {
+	font-size: 9px; padding: 3px 5px 3px 5px; border-radius: 2px; background: #2379CF; color: #fff;
+	border: 1px solid rgba(0,0,0,.2);
+} .churchContainer #bodyContainer table tbody tr td button:active {
+	transform: scale(.9);
+}
+
+ .churchContainer #footer {
+	width: 100%; height: 55px; position: absolute; bottom: 0; border-top: 1px solid rgba(0,0,0,.2);
+	background: rgb(50,50,50); z-index: 100;
+}.churchContainer #footer #ministry {
+	height: 45px; width: 21%; float: left; margin-top: 5px; font-size: 9px; color: #fff;
+	border-right: 1px dashed rgba(255,255,255,1); background: #DC3F2F;
+}.churchContainer #footer #ministry:active {
+	background: #ED6759;
+}.churchContainer #footer #ministry p {
+	padding-top: 17px; 
+}.churchContainer #footer #ministry img {
+	width: 25px; height: 25px; float: left; margin: 2px; margin-left: 3px;transform: scale(1.1); margin-top: 10px;
+}.churchContainer #footer #church {
+	height: 45px; width: 21%; float: left; margin-top: 5px; font-size: 9px; color: #fff;
+	 background: #26C2B4;
+}.churchContainer #footer #church:active {
+	background: #46DBCE;
+}.churchContainer #footer #church p {
+	padding-top: 17px;
+}.churchContainer #footer #church img {
+	width: 30px; height: 30px; float: left; margin-left: 0px; transform: scale(.6); margin-top: 8px;
+}.churchContainer #footer #event {
+	height: 45px; width: 21%; float: right; margin-top: 5px; font-size: 9px; color: #fff;
+	border-left: 1px dashed rgba(255,255,255,1); background: #45E02F;
+}.churchContainer #footer #event:active {
+	background: #67E755;
+}.churchContainer #footer #event p {
+	padding-top: 17px;
+}.churchContainer #footer #event img {
+	width: 30px; height: 30px; float: left; margin-left: 5px; transform: scale(.7); margin-top: 8px;
+}.churchContainer #footer #pastor {
+	height: 45px; width: 21%; float: right; margin-top: 5px; font-size: 9px; color: #fff;
+	 background: #2F73DC;
+}.churchContainer #footer #pastor:active {
+	background: #5691EE;
+}.churchContainer #footer #pastor p {
+	padding-top: 17px;
+}.churchContainer #footer #pastor img {
+	width: 30px; height: 30px; float: left; margin-left: 5px; transform: scale(.7); margin-top: 8px;
+}.churchContainer #footer #homeWrapper {
+	width: 15%; height: 100%; float: left;
+}.churchContainer #footer #homeWrapper #home {
+	width: 100%; height: 60px; border-top-left-radius: 35%; border-top-right-radius: 35%; background: rgb(50,50,50);
+	margin-top: -12px; box-shadow: inset 3px 3px 5px rgba(0,0,0,.6); border: 1px solid rgba(255,255,255,.2);
+}.churchContainer #footer #homeWrapper #home:active {
+	background: rgb(100,100,100);
+}.churchContainer #footer #homeWrapper #home img {
+	width: 40%; height: 40%; margin-top: 10px;
+}.churchContainer #footer #homeWrapper #home p {
+	width: 100%; font-size: 9px; color: #fff; text-align: center;
+}
+
+.pastorContainer {
+	width: 100%; height: 100vh; position: absolute; z-index: -1; display: none;
+} .pastorContainer #header {
+	width: 100%; height: 50px; background: rgb(50,50,50); box-shadow: 0px 3px 6px rgba(0,0,0,.6); position: fixed;
+	border-bottom: 1px solid rgba(255,255,255,.7);
+} .pastorContainer #header #logo {
+	width: 25px; width: 25px; margin: 13px 0px 0px 10px; float: left;
+} .pastorContainer #header #logo img {
+	width: 100%; height: 100%;
+} .pastorContainer #header p {
+	float: left; color: #fff; font-size: 16px; padding: 15px 0px 0px 10px;
+} .pastorContainer #header #profile {
+	width: 22px; width: 22px; margin: 15px -7px 0px 10px; float: right; border-radius: 50%;
+} .pastorContainer #header #profile img {
+	width: 100%; height: 100%; border-radius: 50%;
+} .pastorContainer #header #profile:active {
+	transform: scale(.9);
+}
+
+.pastorContainer #bodyContainer {
+	width: 100%; height: 86vh; overflow: scroll; margin-top: 20px;
+}.pastorContainer #bodyContainer::-webkit-scrollbar {
+    width: 0px;
+}.pastorContainer #bodyContainer::-webkit-scrollbar-track {
+   background: transparent;
+}.pastorContainer #bodyContainer::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.4);
+  outline: 1px solid slategrey;
+}.pastorContainer #bodyContainer::-webkit-scrollbar-button {
+	height: 3px;
+} .pastorContainer #searchWrapper {
+	width: 90%; height: 40px; margin: 0 auto; border-bottom: 1px solid rgba(0,0,0,.2); margin-bottom: 10px;
+}.pastorContainer #searchWrapper input {
+	float: left; height: 35px; width: 85%; font-size: 14px; text-indent: 10px; border: none; margin-top: 5px;
+}.pastorContainer #searchWrapper img {
+	width: 25px; height: 25px; float: right; margin-top: 8px; margin-right: 10px;
+}.pastorContainer #searchWrapper img:active {
+	transform: scale(.9);
+} .pastorContainer #bodyContainer p {
+	font-size: 15px; text-indent: 10px; padding-bottom: 3px; margin: 0 auto; width: 90%; font-weight: bold;
+	border-bottom: 1px solid rgba(0,0,0,.4); color: rgba(0,0,0,.8); margin-bottom: 5px; padding-top: 3px;
+} .pastorContainer #bodyContainer table {
+	width: 91%; margin-top: 10px;
+} .pastorContainer #bodyContainer table thead th {
+	border: 1px solid rgba(0,0,0,.3); color: #fff; background: rgb(150,150,150); font-size: 12px; height: 25px;
+} .pastorContainer #bodyContainer table tbody tr td {
+	border: 1px solid rgba(0,0,0,.3); font-size: 12px; height: 25px; text-align: center;
+} .pastorContainer #bodyContainer table tbody tr td button {
+	font-size: 9px; padding: 3px 4px 3px 4px; border-radius: 2px; background: #2379CF; color: #fff;
+	border: 1px solid rgba(0,0,0,.2);
+} .pastorContainer #bodyContainer table tbody tr td button:active {
+	transform: scale(.9);
+}
+
+ .pastorContainer #footer {
+	width: 100%; height: 55px; position: absolute; bottom: 0; border-top: 1px solid rgba(0,0,0,.2);
+	background: rgb(50,50,50); z-index: 100;
+}.pastorContainer #footer #ministry {
+	height: 45px; width: 21%; float: left; margin-top: 5px; font-size: 9px; color: #fff;
+	border-right: 1px dashed rgba(255,255,255,1); background: #DC3F2F;
+}.pastorContainer #footer #ministry:active {
+	background: #ED6759;
+}.pastorContainer #footer #ministry p {
+	padding-top: 17px; 
+}.pastorContainer #footer #ministry img {
+	width: 25px; height: 25px; float: left; margin: 2px; margin-left: 3px;transform: scale(1.1); margin-top: 10px;
+}.pastorContainer #footer #church {
+	height: 45px; width: 21%; float: left; margin-top: 5px; font-size: 9px; color: #fff;
+	 background: #26C2B4;
+}.pastorContainer #footer #church:active {
+	background: #46DBCE;
+}.pastorContainer #footer #church p {
+	padding-top: 17px;
+}.pastorContainer #footer #church img {
+	width: 30px; height: 30px; float: left; margin-left: 0px; transform: scale(.6); margin-top: 8px;
+}.pastorContainer #footer #event {
+	height: 45px; width: 21%; float: right; margin-top: 5px; font-size: 9px; color: #fff;
+	border-left: 1px dashed rgba(255,255,255,1); background: #45E02F;
+}.pastorContainer #footer #event:active {
+	background: #67E755;
+}.pastorContainer #footer #event p {
+	padding-top: 17px;
+}.pastorContainer #footer #event img {
+	width: 30px; height: 30px; float: left; margin-left: 5px; transform: scale(.7); margin-top: 8px;
+}.pastorContainer #footer #pastor {
+	height: 45px; width: 21%; float: right; margin-top: 5px; font-size: 9px; color: #fff;
+	 background: #2F73DC;
+}.pastorContainer #footer #pastor:active {
+	background: #5691EE;
+}.pastorContainer #footer #pastor p {
+	padding-top: 17px;
+}.pastorContainer #footer #pastor img {
+	width: 30px; height: 30px; float: left; margin-left: 5px; transform: scale(.7); margin-top: 8px;
+}.pastorContainer #footer #homeWrapper {
+	width: 15%; height: 100%; float: left;
+}.pastorContainer #footer #homeWrapper #home {
+	width: 100%; height: 60px; border-top-left-radius: 35%; border-top-right-radius: 35%; background: rgb(50,50,50);
+	margin-top: -12px; box-shadow: inset 3px 3px 5px rgba(0,0,0,.6); border: 1px solid rgba(255,255,255,.2);
+}.pastorContainer #footer #homeWrapper #home:active {
+	background: rgb(100,100,100);
+}.pastorContainer #footer #homeWrapper #home img {
+	width: 40%; height: 40%; margin-top: 10px;
+}.pastorContainer #footer #homeWrapper #home p {
+	width: 100%; font-size: 9px; color: #fff; text-align: center;
+}
+
+.eventContainer {
+	width: 100%; height: 100vh; position: absolute; z-index: -1; display: none;
+} .eventContainer #header {
+	width: 100%; height: 50px; background: rgb(50,50,50); box-shadow: 0px 3px 6px rgba(0,0,0,.6); position: fixed;
+	border-bottom: 1px solid rgba(255,255,255,.7);
+} .eventContainer #header #logo {
+	width: 25px; width: 25px; margin: 13px 0px 0px 10px; float: left;
+} .eventContainer #header #logo img {
+	width: 100%; height: 100%;
+} .eventContainer #header p {
+	float: left; color: #fff; font-size: 16px; padding: 15px 0px 0px 10px;
+} .eventContainer #header #profile {
+	width: 22px; width: 22px; margin: 15px -7px 0px 10px; float: right; border-radius: 50%;
+} .eventContainer #header #profile img {
+	width: 100%; height: 100%; border-radius: 50%;
+} .eventContainer #header #profile:active {
+	transform: scale(.9);
+}
+
+.eventContainer #bodyContainer {
+	width: 100%; height: 86vh; overflow: scroll; margin-top: 20px;
+}.eventContainer #bodyContainer::-webkit-scrollbar {
+    width: 0px;
+}.eventContainer #bodyContainer::-webkit-scrollbar-track {
+   background: transparent;
+}.eventContainer #bodyContainer::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.4);
+  outline: 1px solid slategrey;
+}.eventContainer #bodyContainer::-webkit-scrollbar-button {
+	height: 3px;
+} .eventContainer #searchWrapper {
+	width: 90%; height: 40px; margin: 0 auto; border-bottom: 1px solid rgba(0,0,0,.2); margin-bottom: 10px;
+}.eventContainer #searchWrapper input {
+	float: left; height: 35px; width: 85%; font-size: 14px; text-indent: 10px; border: none; margin-top: 5px;
+}.eventContainer #searchWrapper img {
+	width: 25px; height: 25px; float: right; margin-top: 8px; margin-right: 10px;
+}.eventContainer #searchWrapper img:active {
+	transform: scale(.9);
+} .eventContainer #bodyContainer p {
+	font-size: 15px; text-indent: 10px; padding-bottom: 3px; margin: 0 auto; width: 90%; font-weight: bold;
+	border-bottom: 1px solid rgba(0,0,0,.4); color: rgba(0,0,0,.8); margin-bottom: 5px; padding-top: 3px;
+} .eventContainer #bodyContainer table {
+	width: 91%; margin-top: 10px;
+} .eventContainer #bodyContainer table thead th {
+	border: 1px solid rgba(0,0,0,.3); color: #fff; background: rgb(150,150,150); font-size: 12px; height: 25px;
+} .eventContainer #bodyContainer table tbody tr td {
+	border: 1px solid rgba(0,0,0,.3); font-size: 12px; height: 25px; text-align: center;
+} .eventContainer #bodyContainer table tbody tr td button {
+	font-size: 9px; padding: 3px 4px 3px 4px; border-radius: 2px; background: #2379CF; color: #fff;
+	border: 1px solid rgba(0,0,0,.2);
+} .eventContainer #bodyContainer table tbody tr td button:active {
+	transform: scale(.9);
+}
+
+ .eventContainer #footer {
+	width: 100%; height: 55px; position: absolute; bottom: 0; border-top: 1px solid rgba(0,0,0,.2);
+	background: rgb(50,50,50); z-index: 100;
+}.eventContainer #footer #ministry {
+	height: 45px; width: 21%; float: left; margin-top: 5px; font-size: 9px; color: #fff;
+	border-right: 1px dashed rgba(255,255,255,1); background: #DC3F2F;
+}.eventContainer #footer #ministry:active {
+	background: #ED6759;
+}.eventContainer #footer #ministry p {
+	padding-top: 17px; 
+}.eventContainer #footer #ministry img {
+	width: 25px; height: 25px; float: left; margin: 2px; margin-left: 3px;transform: scale(1.1); margin-top: 10px;
+}.eventContainer #footer #church {
+	height: 45px; width: 21%; float: left; margin-top: 5px; font-size: 9px; color: #fff;
+	 background: #26C2B4;
+}.eventContainer #footer #church:active {
+	background: #46DBCE;
+}.eventContainer #footer #church p {
+	padding-top: 17px;
+}.eventContainer #footer #church img {
+	width: 30px; height: 30px; float: left; margin-left: 0px; transform: scale(.6); margin-top: 8px;
+}.eventContainer #footer #event {
+	height: 45px; width: 21%; float: right; margin-top: 5px; font-size: 9px; color: #fff;
+	border-left: 1px dashed rgba(255,255,255,1); background: #45E02F;
+}.eventContainer #footer #event:active {
+	background: #67E755;
+}.eventContainer #footer #event p {
+	padding-top: 17px;
+}.eventContainer #footer #event img {
+	width: 30px; height: 30px; float: left; margin-left: 5px; transform: scale(.7); margin-top: 8px;
+}.eventContainer #footer #pastor {
+	height: 45px; width: 21%; float: right; margin-top: 5px; font-size: 9px; color: #fff;
+	 background: #2F73DC;
+}.eventContainer #footer #pastor:active {
+	background: #5691EE;
+}.eventContainer #footer #pastor p {
+	padding-top: 17px;
+}.eventContainer #footer #pastor img {
+	width: 30px; height: 30px; float: left; margin-left: 5px; transform: scale(.7); margin-top: 8px;
+}.eventContainer #footer #homeWrapper {
+	width: 15%; height: 100%; float: left;
+}.eventContainer #footer #homeWrapper #home {
+	width: 100%; height: 60px; border-top-left-radius: 35%; border-top-right-radius: 35%; background: rgb(50,50,50);
+	margin-top: -12px; box-shadow: inset 3px 3px 5px rgba(0,0,0,.6); border: 1px solid rgba(255,255,255,.2);
+}.eventContainer #footer #homeWrapper #home:active {
+	background: rgb(100,100,100);
+}.eventContainer #footer #homeWrapper #home img {
+	width: 40%; height: 40%; margin-top: 10px;
+}.eventContainer #footer #homeWrapper #home p {
+	width: 100%; font-size: 9px; color: #fff; text-align: center;
+}
+
+
+.pastorsContainer {
+	width: 100%; height: 100vh; display: none;
+} .pastorsContainer #header {
+	width: 100%; height: 50px; background: rgb(50,50,50); box-shadow: 0px 3px 6px rgba(0,0,0,.6); position: fixed;
+	border-bottom: 1px solid rgba(255,255,255,.7);
+} .pastorsContainer #header #back {
+	width: 25px; height: 15px; margin: 17px 0px 0px 15px; transform: scaleY(.8); float: left;
+} .pastorsContainer #header #back img {
+	width: 100%; height: 100%;
+} .pastorsContainer #header #back:active {
+	transform: scale(.9);
+} .pastorsContainer #header p {
+	color: #fff; padding: 15px 0px 0px 0px; text-align: center; width: 90%; font-size: 16px;	
+}
+
+.pastorsContainer #body {
+	width: 100%; height: 100vh; overflow-y: scroll;
+}.pastorsContainer #body::-webkit-scrollbar {
+    width: 0px;
+}.pastorsContainer #body::-webkit-scrollbar-track {
+   background: transparent;
+}.pastorsContainer #body::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.4);
+  outline: 1px solid slategrey;
+}.pastorsContainer #body::-webkit-scrollbar-button {
+	height: 3px;
+}.pastorsContainer #body #imgWrapper {
+	width: 90%; height: 150px; border-bottom: 1px solid rgba(0,0,0,.3);
+}.pastorsContainer #body #imgWrapper #image {
+	width: 110px; height: 110px; padding: 3px; border: 1px solid rgba(0,0,0,.2); border-radius: 50%;
+	margin-top: 10px;
+}.pastorsContainer #body #imgWrapper #image img {
+	border-radius: 50%; width: 100%; height: 100%;
+}.pastorsContainer #body #imgWrapper p {
+	font-size: 17px; font-weight: bold; padding-top: 5px;
+}.pastorsContainer #body #update {
+	width: 90%; padding: 20px 0px 20px 0px; border-bottom: 1px solid rgba(0,0,0,.3); margin-top: 5px;
+	text-align: left; text-indent: 10px; font-size: 15px; cursor: default;
+}.pastorsContainer #body #update:active {
+	background: #EBEEEE;
+}.pastorsContainer #body #update #icon {
+	width: 25px; height: 25px; float: left; margin-top: -5px; margin-right: 40px;
+}.pastorsContainer #body #update #icon img{
+	width: 100%; height: 100%;
+}.pastorsContainer #body #church {
+	width: 90%; padding: 20px 0px 20px 0px; border-bottom: 1px solid rgba(0,0,0,.3); margin-top: 5px;
+	text-align: left; text-indent: 10px; font-size: 15px; cursor: default;
+}.pastorsContainer #body #church:active {
+	background: #EBEEEE;
+}.pastorsContainer #body #church #icon {
+	width: 25px; height: 25px; float: left; margin-top: -5px; margin-right: 40px;
+}.pastorsContainer #body #church #icon img{
+	width: 100%; height: 100%;
+}
+
+.pastorsContainer #body #transfer {
+	width: 90%; padding: 20px 0px 20px 0px; border-bottom: 1px solid rgba(0,0,0,.3); margin-top: 5px;
+	text-align: left; text-indent: 10px; font-size: 15px; cursor: default;
+}.pastorsContainer #body #transfer:active {
+	background: #EBEEEE;
+}.pastorsContainer #body #transfer #icon {
+	width: 25px; height: 25px; float: left; margin-top: -5px; margin-right: 40px;
+}.pastorsContainer #body #transfer #icon img{
+	width: 100%; height: 100%;
+}
+
+.pastorsContainer #body #member {
+	width: 90%; padding: 20px 0px 20px 0px; border-bottom: 1px solid rgba(0,0,0,.3); margin-top: 5px;
+	text-align: left; text-indent: 10px; font-size: 15px; cursor: default;
+}.pastorsContainer #body #member:active {
+	background: #EBEEEE;
+}.pastorsContainer #body #member #icon {
+	width: 25px; height: 25px; float: left; margin-top: -5px; margin-right: 40px;
+}.pastorsContainer #body #member #icon img{
+	width: 100%; height: 100%;
+}.pastorsContainer #body #transfer-request {
+	width: 90%; padding: 20px 0px 20px 0px; border-bottom: 1px solid rgba(0,0,0,.3); margin-top: 5px;
+	text-align: left; text-indent: 10px; font-size: 15px; cursor: default;
+}.pastorsContainer #body #transfer-request:active {
+	background: #EBEEEE;
+}.pastorsContainer #body #transfer-request #icon {
+	width: 25px; height: 25px; float: left; margin-top: -5px; margin-right: 40px;
+}.pastorsContainer #body #transfer-request #icon img{
+	width: 100%; height: 100%;
+}.pastorsContainer #body #logout {
+	width: 90%; padding: 20px 0px 20px 0px; border-bottom: 1px solid rgba(0,0,0,.3); margin-top: 5px;
+	text-align: left; text-indent: 10px; font-size: 15px; cursor: default;
+}.pastorsContainer #body #logout:active {
+	background: #EBEEEE;
+}.pastorsContainer #body #logout #icon {
+	width: 25px; height: 25px; float: left; margin-top: -5px; margin-right: 40px;
+}.pastorsContainer #body #logout #icon img{
+	width: 100%; height: 100%;
+}.pastorsContainer #body #post {
+	width: 90%; padding: 20px 0px 20px 0px; border-bottom: 1px solid rgba(0,0,0,.3); margin-top: 5px;
+	text-align: left; text-indent: 10px; font-size: 15px; cursor: default;
+}.pastorsContainer #body #post:active {
+	background: #EBEEEE;
+}.pastorsContainer #body #post #icon {
+	width: 25px; height: 25px; float: left; margin-top: -5px; margin-right: 40px;
+}.pastorsContainer #body #post #icon img{
+	width: 100%; height: 100%;
+}
+
+.memberTransferRequest {
+	width: 100%; height: 100vh; display: none;
+} .memberTransferRequest #header {
+	width: 100%; height: 50px; background: rgb(50,50,50); box-shadow: 0px 3px 6px rgba(0,0,0,.6); position: fixed;
+	border-bottom: 1px solid rgba(255,255,255,.7);
+} .memberTransferRequest #header #back {
+	width: 25px; height: 15px; margin: 17px 0px 0px 15px; transform: scaleY(.8); float: left;
+} .memberTransferRequest #header #back img {
+	width: 100%; height: 100%;
+} .memberTransferRequest #header #back:active {
+	transform: scale(.9);
+} .memberTransferRequest #header p {
+	color: #fff; padding: 15px 0px 0px 0px; text-align: center; width: 90%; font-size: 16px;	
+}
+
+.memberTransferRequest #body {
+	width: 100%; height: 100vh; overflow-y: scroll;
+}.memberTransferRequest #body::-webkit-scrollbar {
+    width: 0px;
+}.memberTransferRequest #body::-webkit-scrollbar-track {
+   background: transparent;
+}.memberTransferRequest #body::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.4);
+  outline: 1px solid slategrey;
+}.memberTransferRequest #body::-webkit-scrollbar-button {
+	height: 3px;
+}.memberTransferRequest #body h4 {
+	color: rgba(0,0,0,.5); display:none;
+}
+
+.transfer-request-wrapper {
+	width: 95%; padding-bottom: 40px; background: #fff; margin: 0 auto; border: 1px solid rgba(0,0,0,.2);
+	box-shadow: 3px 3px 3px rgba(0,0,0,.1); margin-bottom: 10px;
+} .transfer-request-wrapper #img-wrapper {
+	float: left; width: 20px; height: 20px; border: 1px solid rgba(0,0,0,.2); margin: 5px; border-radius: 50%;
+}.transfer-request-wrapper #img-wrapper img {
+	width: 100%; height: 100%; border-radius: 50%;
+}.transfer-request-wrapper #request-name {
+	font-size: 13px;  padding-top: 7px;
+} .transfer-request-wrapper #request-name i {
+	color: rgb(74,167,214); font-size: 12px; padding-top: 2px;
+}.transfer-request-wrapper hr {
+	width: 98%; border: .5px solid rgba(0,0,0,.1); margin: 0 auto;
+}.transfer-request-wrapper label {
+	font-size: 12px; margin-left: 10px;
+}.transfer-request-wrapper #church-name {
+	text-indent: 15px; font-size: 17px; font-weight: bold;
+}.transfer-request-wrapper #reason {
+	width: 92%; padding: 0px 0px 10px 0px; margin: 0 auto; font-size: 13px; font-weight: bold;
+}.transfer-request-wrapper button {
+	width: 60px; height: 25px; color: #fff; border: 1px solid rgb(41,132,177); background: rgb(46,149,200);
+	margin: 5px 0px 0px 10px; float: left;
+}.transfer-request-wrapper button:hover {
+	background: rgb(78,169,214);
+}.transfer-request-wrapper button:active {
+	transform: scale(.9);
+}.transfer-request-wrapper #pic {
+	width: 20px; height: 20px; margin-top: 7px; float: left; margin-left: 7px; display: none;
+}.transfer-request-wrapper #approved {
+	float: left; color: rgb(61,161,211); font-size: 13px; margin-left: 7px; display: none;
+}.transfer-request-wrapper #approved strong {
+	font-size: 20px;
+}
+
+
+.pastorsUpdateContainer {
+	width: 100%; height: 100vh; display: none;
+} .pastorsUpdateContainer #header {
+	width: 100%; height: 50px; background: rgb(50,50,50); box-shadow: 0px 3px 6px rgba(0,0,0,.6); position: fixed;
+	border-bottom: 1px solid rgba(255,255,255,.7);
+} .pastorsUpdateContainer #header #back {
+	width: 25px; height: 15px; margin: 17px 0px 0px 15px; transform: scaleY(.8); float: left;
+} .pastorsUpdateContainer #header #back img {
+	width: 100%; height: 100%;
+} .pastorsUpdateContainer #header #back:active {
+	transform: scale(.9);
+} .pastorsUpdateContainer #header p {
+	color: #fff; padding: 15px 0px 0px 0px; text-align: center; width: 90%; font-size: 16px;	
+}
+
+.pastorsUpdateContainer #body {
+	width: 100%; height: 100vh; overflow-y: scroll;
+}.pastorsUpdateContainer #body::-webkit-scrollbar {
+    width: 0px;
+}.pastorsUpdateContainer #body::-webkit-scrollbar-track {
+   background: transparent;
+}.pastorsUpdateContainer #body::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.4);
+  outline: 1px solid slategrey;
+}.pastorsUpdateContainer #body::-webkit-scrollbar-button {
+	height: 3px;
+}.pastorsUpdateContainer #body #updateImg {
+	width: 120px; height: 120px;
+}.pastorsUpdateContainer #body #updateImg img {
+	width: 100%; height: 100%;
+}.pastorsUpdateContainer #body #file {
+	width: 100px; color: transparent; margin-top: 5px; margin-left: 10px;
+}.pastorsUpdateContainer #body hr {
+	width: 90%; border: .5px solid rgba(0,0,0,.8); margin-top: 10px;
+}.pastorsUpdateContainer #body #text {
+	width: 80%; border: none; border-bottom: 1px solid rgba(0,0,0,.2); height: 40px; font-size: 14px; text-align: center;
+	margin-top: 10px;
+}.pastorsUpdateContainer #body label {
+	font-weight: bold; font-size: 13px; float: left; margin-left: 9%;
+}.pastorsUpdateContainer #body button {
+	width: 80%; height: 30px; margin-top: 15px; margin-bottom: 10px;
+}
+
+.churchUpdateContainer {
+	width: 100%; height: 100vh; display: none;
+} .churchUpdateContainer #header {
+	width: 100%; height: 50px; background: rgb(50,50,50); box-shadow: 0px 3px 6px rgba(0,0,0,.6); position: fixed;
+	border-bottom: 1px solid rgba(255,255,255,.7);
+} .churchUpdateContainer #header #back {
+	width: 25px; height: 15px; margin: 17px 0px 0px 15px; transform: scaleY(.8); float: left;
+} .churchUpdateContainer #header #back img {
+	width: 100%; height: 100%;
+} .churchUpdateContainer #header #back:active {
+	transform: scale(.9);
+} .churchUpdateContainer #header p {
+	color: #fff; padding: 15px 0px 0px 0px; text-align: center; width: 90%; font-size: 16px;	
+}
+
+.churchUpdateContainer #body {
+	width: 100%; height: 100vh; overflow-y: scroll;
+}.churchUpdateContainer #body::-webkit-scrollbar {
+    width: 0px;
+}.churchUpdateContainer #body::-webkit-scrollbar-track {
+   background: transparent;
+}.churchUpdateContainer #body::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.4);
+  outline: 1px solid slategrey;
+}.churchUpdateContainer #body::-webkit-scrollbar-button {
+	height: 3px;
+}.churchUpdateContainer #body #updateImg {
+	width: 230px; height: 150px;
+}.churchUpdateContainer #body #updateImg img {
+	width: 100%; height: 100%;
+}.churchUpdateContainer #body #file {
+	width: 100px; color: transparent; margin-top: 5px; margin-left: 10px;
+}.churchUpdateContainer #body hr {
+	width: 90%; border: .5px solid rgba(0,0,0,.8); margin-top: 10px;
+}.churchUpdateContainer #body #text {
+	width: 80%; border: none; border-bottom: 1px solid rgba(0,0,0,.2); height: 40px; font-size: 14px; text-align: center;
+	margin-top: 10px;
+}.churchUpdateContainer #body label {
+	font-weight: bold; font-size: 13px; float: left; margin-left: 9%;
+}.churchUpdateContainer #body button {
+	width: 80%; height: 30px; margin-top: 15px; margin-bottom: 10px;
+}
+
+.transferContainer {
+	width: 100%; height: 100vh; display: none;
+} .transferContainer #header {
+	width: 100%; height: 50px; background: rgb(50,50,50); box-shadow: 0px 3px 6px rgba(0,0,0,.6); position: fixed;
+	border-bottom: 1px solid rgba(255,255,255,.7);
+} .transferContainer #header #back {
+	width: 25px; height: 15px; margin: 17px 0px 0px 15px; transform: scaleY(.8); float: left;
+} .transferContainer #header #back img {
+	width: 100%; height: 100%;
+} .transferContainer #header #back:active {
+	transform: scale(.9);
+} .transferContainer #header p {
+	color: #fff; padding: 15px 0px 0px 0px; text-align: center; width: 90%; font-size: 16px;	
+}
+
+.transferContainer #body {
+	width: 100%; height: 100vh; overflow-y: scroll;
+}.transferContainer #body::-webkit-scrollbar {
+    width: 0px;
+}.transferContainer #body::-webkit-scrollbar-track {
+   background: transparent;
+}.transferContainer #body::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.4);
+  outline: 1px solid slategrey;
+}.transferContainer #body::-webkit-scrollbar-button {
+	height: 3px;
+}
+
+.transfer-wrapper {
+	width: 95%; height: 300px; background: rgb(232,232,232); margin: 0 auto;
+} .transfer-wrapper label {
+	font-size: 13px; margin-left: 15px; margin-top: 5px; float: left;
+} .transfer-wrapper select {
+	width: 95%; height: 40px; background: #fff; border: 1px solid rgba(0,0,0,.2); color: #000; text-indent: 0px;
+	padding-left: 5px;
+} .transfer-wrapper textarea {
+	resize: none; width: 91%; height: 150px; margin-top: 5px; padding: 5px; border: 1px solid rgba(0,0,0,.2); overflow-y: scroll;
+} .transfer-wrapper textarea::-webkit-scrollbar {
+    width: 0px;
+} .transfer-wrapper textarea::-webkit-scrollbar-track {
+   background: transparent;
+} .transfer-wrapper textarea::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.4);
+  outline: 1px solid slategrey;
+} .transfer-wrapper textarea::-webkit-scrollbar-button {
+	height: 3px;
+}  .transfer-wrapper button {
+	float: left; width: 70px; height: 25px; margin: 5px 0px 0px 10px; font-size: 12px; color: #fff;
+	background: rgb(44,144,194); border: 1px solid rgb(68,164,212);
+} .transfer-wrapper button:hover {
+	background: rgb(68,164,212);;
+} .transfer-wrapper button:active {
+	transform: scale(.9);
+} .transfer-wrapper img {
+	float: left; margin-left: 10px; width: 20px; height: 20px; margin-top: 7px; display: none;
+} .transfer-wrapper p {
+	float: left; color: rgb(47,151,203); font-size: 12px; margin-top: 0px; margin-left: 10px; display: none;
+} .transfer-wrapper p strong {
+	font-size: 20px; margin-left: 5px;
+}
+
+.addMemberContainer {
+	width: 100%; height: 100vh; display: none;
+} .addMemberContainer #header {
+	width: 100%; height: 50px; background: rgb(50,50,50); box-shadow: 0px 3px 6px rgba(0,0,0,.6); position: fixed;
+	border-bottom: 1px solid rgba(255,255,255,.7);
+} .addMemberContainer #header #back {
+	width: 25px; height: 15px; margin: 17px 0px 0px 15px; transform: scaleY(.8); float: left;
+} .addMemberContainer #header #back img {
+	width: 100%; height: 100%;
+} .addMemberContainer #header #back:active {
+	transform: scale(.9);
+} .addMemberContainer #header p {
+	color: #fff; padding: 15px 0px 0px 0px; text-align: center; width: 90%; font-size: 16px;	
+}
+
+.churchMemberContainer {
+	width: 100%; height: 100vh; display: none;
+} .churchMemberContainer #header {
+	width: 100%; height: 50px; background: rgb(50,50,50); box-shadow: 0px 3px 6px rgba(0,0,0,.6); position: fixed;
+	border-bottom: 1px solid rgba(255,255,255,.7);
+} .churchMemberContainer #header #back {
+	width: 25px; height: 15px; margin: 17px 0px 0px 15px; transform: scaleY(.8); float: left;
+} .churchMemberContainer #header #back img {
+	width: 100%; height: 100%;
+} .churchMemberContainer #header #back:active {
+	transform: scale(.9);
+} .churchMemberContainer #header p {
+	color: #fff; padding: 15px 0px 0px 0px; text-align: center; width: 90%; font-size: 16px;	
+}
+
+.churchMemberContainer #body {
+	width: 100%; height: 100vh; overflow-y: scroll;
+}.churchMemberContainer #body::-webkit-scrollbar {
+    width: 0px;
+}.churchMemberContainer #body::-webkit-scrollbar-track {
+   background: transparent;
+}.churchMemberContainer #body::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.4);
+  outline: 1px solid slategrey;
+}.churchMemberContainer #body::-webkit-scrollbar-button {
+	height: 3px;
+} .churchMemberContainer #body ul {
+	padding: 0; margin: 0; width: 100%; height: 30px; margin-top: 17px;position: fixed; background: #fff;
+	padding-bottom: 5px;
+} .churchMemberContainer #body ul li {
+	list-style: none; float: left; width: 50%; text-indent: 10px; font-size: 12px; height: 100%;
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,.3), rgba(0,0,0,.5));
+} .churchMemberContainer #body ul li:active {
+	opacity: .9;
+} .churchMemberContainer #body ul li p {
+	float: left; padding-top: 7px;
+} .churchMemberContainer #body ul li span {
+	padding: 1px 5px 2px 5px; color: rgba(255,255,255,.8); font-size: 10px; float: left; border-radius: 6px;
+	border: 1px solid rgba(255,255,255,.9); background: rgba(0,0,0,.3); text-indent: 0px; margin: 6px 0px 0px 10px;
+} .churchMemberContainer #body ul .activeLI {
+	box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,1); transform: scaleY(1.1);
+} .churchMemberContainer #body #official-member-container {
+	width: 100%; padding-top: 20px; padding-bottom: 30px;
+}  .churchMemberContainer #body #official-member-container label {
+	font-size: 13px; margin-left: 15px; font-weight: bold;
+} .churchMemberContainer #body #official-member-container hr {
+	border: .5px solid rgba(0,0,0,.3); width: 96%; margin: 3px auto;
+} .churchMemberContainer #body #official-member-container h4 {
+	width: 100%; text-align: center; padding: 15px 0px 0px 0px; color: rgba(0,0,0,.3); display:none;
+}
+
+.all-container {
+	border: 1px solid rgba(0,0,0,.2); width: 95%; margin: 0 auto; padding-top: 10px; padding-bottom: 20px;
+	margin-bottom: 10px; box-shadow: 2px 2px 3px rgba(0,0,0,.1);
+}
+
+.noRequest {
+	width: 90%; padding: 10px 0px 10px 0px; color: rgba(0,0,0,.3); display: none;
+}
+
+.member-profile-container {
+	width: 95%; margin: 5px auto;
+}
+
+.member-profile {
+	width: 23%; height: 100px; display: inline-block; background: #fff; box-shadow: 2px 2px 3px rgba(0,0,0,.1);
+	border: 1px solid rgba(0,0,0,.2); margin-bottom: 10px; margin-right: 3px;
+} .member-profile p {
+	width: 95%; margin: 0 auto; font-size: 12px; text-align: center;
+}
+
+.member-image {
+	width: 93%; margin: 0 auto; height: 80%;
+} .member-image img {
+	width: 100%; height: 100%;
+}
+
+
+ .churchMemberContainer #body #member-request-container {
+	width: 100%; padding-top: 20px; padding-bottom: 30px; display: none;
+}
+
+.request-profile {
+	width: 97%; height: 50px; margin: 0 auto; border-bottom: 1px solid rgba(0,0,0,.1); background: rgba(0,0,0,.1);
+	margin-bottom: 5px;
+} .request-profile #picture {
+	float: left; width: 45px; height: 45px; margin-left: 5px; margin-right: 5px;
+} .request-profile #picture img {
+	width: 100%; height: 100%;
+} .request-profile #nameAction {
+	float: left; height: 100%; margin-top: 2px;
+} .request-profile #nameAction #memberName {
+	font-size: 14px; font-weight: bold; color: rgba(0,0,0,.8);
+} .request-profile #nameAction #request-action {
+	width: 200px; height: 30px;
+} .request-profile #nameAction #request-action button {
+	float: left; width: 80px; margin-top: 5px; margin-right: 5px; height: 22px; font-size: 12px;
+} .request-profile #nameAction #request-action button:first-child {
+	background: rgba(35,127,203,1); color: #fff; border: 1px solid rgba(31,112,179,1);
+} .request-profile #nameAction #request-action button:last-child {
+	background: rgba(184,181,180,1); color: #fff; border: 1px solid rgba(154,148,148,1);
+} .request-profile #nameAction #request-action button:active {
+	opacity: .8;
+} .request-profile #nameAction #request-action p {
+	font-size: 13px; padding: 0px 0px 0px 3px; color: rgb(44,144,212); margin-top: -5px; display: none;
+} .request-profile #nameAction #request-action p strong {
+	font-size: 20px;
+} .request-profile #nameAction #request-action img {
+	width: 20px; height: 20px; margin-top: 5px; display: none;
+}
+
+.postEventContainer {
+	width: 100%; height: 100vh; display: none;
+} .postEventContainer #header {
+	width: 100%; height: 50px; background: rgb(50,50,50); box-shadow: 0px 3px 6px rgba(0,0,0,.6); position: fixed;
+	border-bottom: 1px solid rgba(255,255,255,.7);
+} .postEventContainer #header #back {
+	width: 25px; height: 15px; margin: 17px 0px 0px 15px; transform: scaleY(.8); float: left;
+} .postEventContainer #header #back img {
+	width: 100%; height: 100%;
+} .postEventContainer #header #back:active {
+	transform: scale(.9);
+} .postEventContainer #header p {
+	color: #fff; padding: 15px 0px 0px 0px; text-align: center; width: 90%; font-size: 16px;	
+}
+
+.postEventContainer #body {
+	width: 100%; height: 100vh; overflow-y: scroll;
+}.postEventContainer #body::-webkit-scrollbar {
+    width: 0px;
+}.postEventContainer #body::-webkit-scrollbar-track {
+   background: transparent;
+}.postEventContainer #body::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.4);
+  outline: 1px solid slategrey;
+}.postEventContainer #body::-webkit-scrollbar-button {
+	height: 3px;
+}.postEventContainer #body #updateImg {
+	width: 230px; height: 150px;
+}.postEventContainer #body #updateImg img {
+	width: 100%; height: 100%;
+}.postEventContainer #body #file {
+	width: 100px; color: transparent; margin-top: 5px; margin-left: 10px;
+}.postEventContainer #body hr {
+	width: 90%; border: .5px solid rgba(0,0,0,.8); margin-top: 10px;
+}.postEventContainer #body #text {
+	width: 80%; border: none; border-bottom: 1px solid rgba(0,0,0,.2); height: 40px; font-size: 14px; text-align: center;
+	margin-top: 10px;
+}.postEventContainer #body label {
+	font-weight: bold; font-size: 13px; float: left; margin-left: 9%;
+}.postEventContainer #body button {
+	width: 80%; height: 30px; margin-top: 15px; margin-bottom: 10px;
+}
+
+/*---- MODAL -----*/
+
+@keyframes register {
+	0% { transform: scale(.2); } 20% { transform: scale(.4); } 30% { transform: scale(.6); } 40% { transform: scale(.8); }
+	50% { transform: scale(1); } 60% { transform: scale(1.2); } 70% { transform: scale(1.3); } 80% { transform: scale(1.3); }
+	90% { transform: scale(1.2); } 100% { transform: scale(1); }
+}
+
+@keyframes register {
+	0% { transform: scale(.2); } 20% { transform: scale(.4); } 30% { transform: scale(.6); } 40% { transform: scale(.8); }
+	50% { transform: scale(1); } 60% { transform: scale(1.2); } 70% { transform: scale(1.2); } 80% { transform: scale(1.1); }
+	90% { transform: scale(1.1); } 100% { transform: scale(1); }
+}
+
+.loginModal {
+	width: 100%; height: 100vh; background: rgba(0,0,0,.4); z-index: 1; display: none;
+}.loginModal #loginWrapper {
+	width: 230px; height: 170px; background: #fff; border-radius: 8px; animation: register .4s; margin: 0 auto;
+	box-shadow: 3px 3px 5px rgba(0,0,0,.5); border: 1px solid rgba(255,255,255,.2);
+}.loginModal #loginWrapper p {
+	width: 100%; color: #fff; font-weight: bold; font-size: 13px; background: rgb(50,50,50);
+	border-top-left-radius: 8px; border-top-right-radius: 8px; padding: 10px 0px 10px 0px; text-align: center;
+}.loginModal #loginWrapper label {
+	padding-left: 10px; font-size: 12px;
+}.loginModal #loginWrapper input {
+	margin-top: 5px; width: 90%; height: 30px; text-indent: 10px; font-size: 13px; margin-bottom: 15px;
+}.loginModal #loginWrapper #login {
+	width: 40%; height: 25px; font-weight: bold; border: 1px solid rgba(0,0,0,.2); background: #2876E0; color: #fff;
+}.loginModal #loginWrapper #login:active {
+	transform: scale(.95);
+}.loginModal #loginWrapper #cancel {
+	width: 40%; height: 25px; font-weight: bold; border: 1px solid rgba(0,0,0,.2); background: #23CF6E; color: #fff;
+}.loginModal #loginWrapper #cancel:active {
+	transform: scale(.95);
+}
+
+.registrationModal {
+	width: 100%; height: 100vh; background: rgba(0,0,0,.4); z-index: 1; overflow-y: scroll; display: none;
+}.registrationModal::-webkit-scrollbar {
+    width: 0px;
+}.registrationModal::-webkit-scrollbar-track {
+   background: transparent;
+}.registrationModal::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.4);
+  outline: 1px solid slategrey;
+}.registrationModal::-webkit-scrollbar-button {
+	height: 3px;
+}
+
+.registrationModal #registrationWrapper {
+	width: 250px; height: 160px; background: #fff; border-radius: 8px; animation: register .4s; margin: 0 auto;
+	box-shadow: 3px 3px 5px rgba(0,0,0,.5); border: 1px solid rgba(255,255,255,.2);
+}.registrationModal #registrationWrapper select {
+	width: 90%; height: 40px; padding-left: 10px; font-size: 12px; margin-bottom: 10px;
+}.registrationModal #registrationWrapper input {
+	width: 85%; height: 30px; padding-left: 10px; font-size: 11px; margin-bottom: 10px; display: none;
+}.registrationModal #registrationWrapper #register {
+	width: 40%; height: 25px; font-weight: bold; border: 1px solid rgba(0,0,0,.2); background: #2876E0; color: #fff;
+}.registrationModal #registrationWrapper #register:active {
+	transform: scale(.95);
+}.registrationModal #registrationWrapper #cancel {
+	width: 40%; height: 25px; font-weight: bold; border: 1px solid rgba(0,0,0,.2); background: #23CF6E; color: #fff;
+}.registrationModal #registrationWrapper #cancel:active {
+	transform: scale(.95);
+}
+
+.viewRegistered {
+	width: 100%; height: 100vh; background: rgba(0,0,0,.4); z-index: 1; display: none; 
+} .viewRegistered #registeredWrapper {
+	width: 70%; height: 70vh; background: #fff; box-shadow: 3px 3px 5px rgba(0,0,0,.5); border-top-right-radius: 8px;
+	border-top-left-radius: 8px; margin: 0 auto; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;
+	animation: register .4s;
+} .viewRegistered #registeredWrapper p {
+	width: 100%; padding: 10px 0px 10px 0px; font-weight: bold; border-top-right-radius: 6px; border-top-left-radius: 6px;
+	box-shadow: 0px 3px 5px rgba(0,0,0,.4); color: rgba(255,255,255,.8); font-size: 12px; text-align: center;
+	background: rgb(84,110,238); border-bottom: 1px solid rgba(255,255,255,.6);
+} .viewRegistered #registeredWrapper p b {
+	float: right; color: #fff; margin-top: -10px; padding-right: 5px; font-size: 14px; color: rgba(255,255,255,.7);
+	cursor: default;
+} .viewRegistered #registeredWrapper p b:active {
+	transform: scale(1.2);
+} .viewRegistered #registeredWrapper #list {
+	width: 100%; height: 90%; margin-top: 3px; overflow-y: scroll;
+} .viewRegistered #registeredWrapper #list::-webkit-scrollbar {
+    width: 0px;
+} .viewRegistered #registeredWrapper #list::-webkit-scrollbar-track {
+   background: transparent;
+} .viewRegistered #registeredWrapper #list::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.4);
+  outline: 1px solid slategrey;
+} .viewRegistered #registeredWrapper #list::-webkit-scrollbar-button {
+	height: 3px;
+} .viewRegistered #registeredWrapper #list #profile {
+	width: 95%; height: 30px; margin: 10px auto; border-bottom: 1px solid rgba(0,0,0,.2);
+} .viewRegistered #registeredWrapper #list #profile #img {
+	width: 25px; height: 25px; margin-left: 5px; float: left;
+} .viewRegistered #registeredWrapper #list #profile #img img {
+	width: 100%; height: 100%; border-radius: 50%;
+} .viewRegistered #registeredWrapper #list #profile label {
+	float: left; font-size: 13px; padding: 8px 0px 0px 5px; font-weight: bold; color: rgba(0,0,0,.8);
+} .viewRegistered #registeredWrapper #list #profile button {
+	float: right; margin-right: 5px; font-size: 10px; margin-top: 8px; color: #fff; background: #23CF6E; border: none;
+	padding: 3px; border-radius: 2px; box-shadow: 2px 2px 3px rgba(0,0,0,.2);
+} .viewRegistered #registeredWrapper #list #profile button:active {
+	transform: scale(.95);
+}

@@ -1,0 +1,8 @@
+body { margin: 0; padding: 0; }
+.mainContainer {
+	background: red;
+}
+.mainContainer button {
+	width: 12%; height: 10%; font-size: calc(1vw + 1vh); 
+}
+

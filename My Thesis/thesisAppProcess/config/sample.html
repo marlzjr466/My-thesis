@@ -1,0 +1,82 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+    <meta http-equiv="content-language" content="en-US" />
+    <title>Click Through a DIV to Underlying Elements</title>
+
+    <style type="text/css">
+
+      .sample {
+        position:absolute;
+        top:100px;
+        left:100px;
+        height:600px;
+        width:600px;  
+        border: 5px #000 solid;       
+        pointer-events:none;          /* THIS IS THE TRICK YOU SEEK */
+        background:rgba(0,0,0,.3);
+      }
+
+    </style>
+
+    <!-- Include he following conditional to get click-throughs to work with IE -->
+    
+    <!--[if IE]>
+      <style type="text/css">
+
+        .sample {
+          filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='sample_600x600.png', sizingMethod='scale');
+          background:none !important;
+        }
+
+        </style>
+    <![endif]-->
+
+  </head>
+  <body>
+  <div>
+    <!-- Below is the "BACKGROUND DIV" -->
+    <div id="BACKGROUND_DIV" style="position:relative;top:200px;left:200px;width:348px;height:348px;overflow:hidden;border: 1px #900 dashed; background:#ff0;padding:20px;">
+ 
+      <span id="SOME_CONTENT">
+        Here is a div with some links back to SearchLawrence.com 
+        on top of this div a transparent PNG has been placed using 
+        absolute positioning over the top. You can click on links 
+        through the transparent parts of the PNG.  This method 
+        requires using CSS conditional statements for IE.  Should 
+        be cross browser compatable (tested with IE, Firefox and Chrome).
+      </span>
+
+      <!-- Page Validates as HTML 4.01 -->
+      <p id="VALID_HTML" style="float:right;"><a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-html401"alt="Valid HTML 4.01 Strict" height="31" width="88"></a></p>
+
+      <!-- Here are some sample links -->
+      <ul id="VARIOUS_LINKS">
+        <li><a href="http://www.searchlawrence.com/lawrence-ks-homes-for-sale/" title="Homes for sale in Lawrence, KS">Homes for sale in Lawrence, KS</a></li>
+        <li><a href="http://www.searchlawrence.com/Lawrence_KS_Open_Homes.php" title="Lawrence, KS Open Houses">Lawrence, KS Open Houses</a></li>
+        <li><a href="http://www.searchlawrence.com/Homes_For_Sale_In_Lawrence_KS_Map_Search.php" title="Real estate listings in Lawrence, KS">Real estate listings in Lawrence, KS</a></li>
+        <li><a href="http://www.searchlawrence.com/" title="Lawrence, KS Real Estate">Lawrence, KS Real Estate</a></li>
+      </ul>
+      
+      <span id="SOME_MORE_CONTENT" onclick="alert()">
+        The behavior is slightly differnt for IE, only areas where 
+        there is transparency in the image can be "clicked through" 
+        however in other browsers, the "pointer-events:none;" passes 
+        clicks regardless of image/div content.
+      </span>
+	  <button>asdhgas</button>
+	  
+ 
+    </div> <!-- END OF THE BACKGROUND DIV -->
+
+    <!-- Below is the "FOREGROUND DIV" -->
+    <div id="FOREGROUND_DIV" class="sample">
+      <span>This DIV is overlayed on top of the yellow DIV and has a transparent png loaded into it.</span>
+    </div> <!-- END OF THE FORGROUND DIV -->
+    
+  </div>
+  <!-- click-through-a-div-to-underlying-elements.html -->
+  </body>
+</html>

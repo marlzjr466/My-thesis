@@ -1,0 +1,1818 @@
+ @font-face {
+   font-family: "myFont";
+   src: url("../fonts/ITC.otf") format("opentype");
+} @font-face {
+   font-family: "myFont2";
+   src: url("../fonts/ERASMD.TTF") format("truetype");
+}
+
+body {
+	margin: 0; padding: 0; cursor: default; outline: none; user-select: none;
+}
+
+body::-webkit-scrollbar {
+    width: 0; height: 0;
+}body::-webkit-scrollbar-track {
+   
+}body::-webkit-scrollbar-thumb {
+	opacity: 0;
+}body::-webkit-scrollbar-button {
+	height: 0px;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+.shakeObject {
+	animation: shake .5s;
+}
+
+::-webkit-scrollbar {
+    width: 1em;
+}::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+}::-webkit-scrollbar-thumb {
+  background-color: rgb(255,255,255);
+  -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,.3);
+  outline: 1px solid slategrey;
+}::-webkit-scrollbar-button {
+	height: 0px;
+}
+
+.main-container {
+	width: 1366px; height: 768px; position: absolute;/* transform: scale(.95);*/ z-index: -1;
+}
+
+.header-nav {
+	width: 100%; height: 50px; position: relative; background: -webkit-linear-gradient(top, #565555, #3F4040, #191919);
+	box-shadow: 3px 3px 5px rgba(0,0,0,.4); border-bottom: 1px solid gold; border-top: 1px solid gold;
+}
+
+.header-nav #navigation {
+	 float: left; padding: 0; margin: 10px 0px 0px 140px;
+} .header-nav #navigation li {
+	width: 100px; padding: 5px 0px 5px 0px; background: rgba(255,255,255,.1); float: left; list-style: none;
+	margin-left: 10px; border-radius: 20px; text-align: center; box-shadow: inset 3px 3px 5px rgba(0,0,0,.4);
+	font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-size: 14px; border: 1px solid rgba(255,255,255,.2);
+	color: white;
+} .header-nav #navigation li:hover {
+	border: 1px solid rgba(255,255,255,.5); cursor: pointer;
+} .header-nav #navigation li.active {
+	background: rgba(255,255,255,.8); color: black;
+}
+
+.logo-container {
+	float: left; height: 100%;
+}.logo-container #logo-wrapper {
+	width: 55px; height: 45px; margin-top: 0px; float: left; transform: scale(.8);
+}.logo-container #logo-wrapper img {
+	width: 100%; height: 100%;
+}.logo-container p {
+	float: left; font-size: 20px;font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; margin-top: 10px;
+	color: #fff;
+}
+
+.user-profile {
+	float: right; height: 100%; margin-right: 30px;
+} .user-profile #pic-wrapper {
+	float: right; width: 30px; height: 30px; margin-top: 10px; border-radius: 50%;
+} .user-profile #pic-wrapper img {
+	width: 100%; height: 100%; border-radius: 50%;
+} .user-profile p {
+	float: left; font-size: 15px; font-family: calibri; padding-top: 3px; margin-right: 10px;
+	color: #C1BEBE;
+}
+
+.notify {
+	float: right; height: 60%; padding-right: 20px; border-right: 1px dashed rgba(255,255,255,.3); margin-right: 20px;
+	margin-top: 10px;
+} .notify #wrapper {
+	float: left; height: 100%; width: 45px;
+} .notify #wrapper span {
+	float: right; font-size: 8px; text-align: center; background: red; color: #fff; border-radius: 50%; position: relative;
+	width: 15px; height: 13px; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; padding-top: 2px;
+} .notify #wrapper img {
+	width: 22px; height: 22px; margin: 5px 0px 0px 16px; opacity: .8; position: fixed;
+} .notify #wrapper:first-child img {
+	margin-left: 15px; transform: scale(1.1);
+} .notify #wrapper:last-child img {
+	transform: scale(.92);
+} .notify #wrapper img:hover {
+	cursor: pointer; opacity: 1;
+}
+
+.setting {
+	width: 150px; height: 150px; right: 0; margin-top: 7px; right: 70px; position: absolute;	
+	box-shadow: 3px 3px 5px rgba(0,0,0,.2); border: 1px solid rgba(255,255,255,.2); display: none;
+	/*background: url(../images/background/gray3.jpeg) no-repeat; background-size: 100%;*/
+	background: -webkit-linear-gradient(top, #A2A4A4, #646262, #3D3E3E);
+} .setting ul {
+	padding: 0; margin: 5px 0px 0px 0px;
+} .setting ul li {
+	list-style: none; width: 100%; height: 25px; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+	font-size: 14px; padding-top: 5px; color: #fff; opacity: .8;
+} .setting ul li div {
+	height: 20px; width: 20px;float: left; margin-left: 5px;
+} .setting ul li div img {
+	width: 100%; height: 100%;
+}.setting ul li p {
+	float: left; width: 75%; margin: 0px; padding-left: 10px; padding-top: 2px;
+} .setting ul li:hover {
+	cursor: pointer; background: rgba(0,0,0,.5); opacity: 1;
+} .setting ul li:first-child div {
+	transform: scale(.8);
+}
+
+.body-container {
+	width: 95%; height: 690px;  margin: 0px auto; border: 1px solid rgba(0,0,0,.2); border-top: none;
+	/*background: url(../images/background/gray3.jpeg) no-repeat; background-size: 100%;*/
+}
+
+.greetings {
+	width: 100%; height: 40px; background: -webkit-linear-gradient(top, #F4F8F8, #EDF0F0, #DBDFDF);
+	border-bottom: 1px solid rgba(0,0,0,.6); 
+} .greetings #img-greet {
+	border: 4px solid #F8F5F5; float: left; width: 30px; height: 30px; border-radius: 10px; box-shadow: 1px 1px 3px rgba(0,0,0,.2);
+	margin: 20px 0px 0px 25px;
+} .greetings #img-greet img {
+	width: 100%; height: 100%; border-radius: 10px;
+}.greetings p {
+	float: left; font-family: calibri; color: rgba(0,0,0,1); margin: 5px 0px 0px 0px; width: 99.5%; text-align: center;
+	font-size: 14px; font-weight: bold; text-transform: uppercase; padding: 7px 0px 7px 0px; border-right: 1px solid rgba(0,0,0,.2);
+}
+
+.body-container #view-route {
+	width: 100%; height: 100%; background: rgba(0,0,0,.8); float: right; border: 1px solid rgba(255,255,255,.8);
+}
+
+.arrow {
+    border: solid #C1BEBE; border-width: 0 2px 2px 0; display: inline-block;  padding: 3px; margin-left: 5px;
+}.arrow:hover {
+	cursor: pointer; opacity: .5;
+} .right {
+    transform: rotate(-45deg); -webkit-transform: rotate(-45deg);
+} .left {
+    transform: rotate(135deg); -webkit-transform: rotate(135deg);
+} .up {
+    transform: rotate(-135deg); -webkit-transform: rotate(-135deg);
+} .down {
+    transform: rotate(45deg); -webkit-transform: rotate(45deg);
+}
+
+/*-------------------------------------------------- MY PROFILE ----------------------------------------------------*/
+.profile-left-container {
+	width: 60%; height: 100%; margin-left: 20px; background: #fff; border-right: 1px solid rgba(0,0,0,.2);
+	border-left: 1px solid rgba(0,0,0,.2); float: left; overflow-y: scroll; 
+}
+
+.myprofile-content {
+	width: 100%; height: 100%;
+}
+
+.profile-container {
+	width: 100%; height: 100%; background: #F5F3F3;
+}
+
+.cover-photo {
+	width: 100%; height: 250px;
+} .cover-photo img {
+	width: 100%; height: 100%;
+}
+
+/*.menu-icon {
+	float: right; width: 35px; height: 25px; position: relative; margin-top: -245px;
+}.menu-icon:hover {
+	cursor: pointer; transform: scale(1.35,1.15);
+}*/
+
+.profile-nav {
+	width: 100%; height: 90px; background: #fff;
+}
+
+.profile-pic-wrapper {
+	width: 130px; height: 130px; border-radius: 50%; border: 3px solid #f5f3f3; float: left; margin: -60px 0px 0px 50px;
+	position: relative;
+} .profile-pic-wrapper img {
+	width: 100%; height: 100%; border-radius: 50%;
+}
+
+.info {
+	position: relative; float: left;
+}
+
+.myname {
+	font-family: myFont2; font-size: 27px; color: #fff; padding: 0; margin: -50px 0px 0px 20px;
+	text-shadow: 3px 3px 3px black; float: left;
+} .myname span {
+	text-shadow: none; color: rgba(0,0,0,.5); margin: 0px 15px;
+}
+
+.edit-profile {
+	font-size: 12px; background: rgba(255,255,255,.5); border: 1px solid #fff; padding: 3px 5px;
+	color: #000; margin: -43px 0px 0px 0px; font-family: arial; float: right; border-radius: 2px;
+} .edit-profile:hover {
+	background: rgba(255,255,255,.7); cursor: pointer;
+}
+
+.info-two {
+	float: left; height: 100%; padding: 3px 0px; text-align: center; margin-left: 10px;
+} .info-two p {
+	float: left; padding: 0px 40px 0px 20px;
+} .info-two p b {
+	font-size: 17px; font-family: myFont2; float: left; width: 100%;
+} .info-two p span {
+	font-size: 11px; font-family: arial; float: left; width: 100%; margin-bottom: 10px;
+}
+
+.profile-body {
+	margin: 0 auto; width: 550px;
+}
+
+.info-wrapper {
+	width: 100%; padding-top: 20px;
+} .info-wrapper p {
+	width: 100%; font-size: 14px; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 5px;
+	text-indent: 10px; font-family: arial; margin-bottom: 2px;
+} .info-wrapper p span {
+	float: right; width: 25px; height: 25px; margin: -7px 13px 0px 0px;
+} .info-wrapper p span img {
+	width: 100%; height: 100%;
+} .title {
+	font-size: 12px; float: left; margin-left: 10px; font-family: arial; color: #4DC6F0;
+}
+
+.profile-modal {
+	z-index: 1; width: 100%; height: 100vh; background: rgba(0,0,0,.3); 
+	display: none;
+}
+
+.profile-space {
+	width: 100%; height: 70px; animation: modalSlideProfile .5s;
+}
+
+.profile-modal-container {
+	width: 450px; height: 650px; margin-left: 230px; border: 1px solid rgba(0,0,0,.4); border-radius: 10px;
+	box-shadow: 3px 3px 10px rgba(0,0,0,.3); background: #fff;
+} .profile-modal-container #close {
+	width: 25px; height: 25px; float: right;
+} .profile-modal-container #close img {
+	width: 100%; height: 100%; opacity: .5;
+} .profile-modal-container #close:hover {
+	opacity: .8; cursor: pointer;
+} .profile-modal-container #close:active {
+	transform: scale(.9);
+} .profile-modal-container h5 {
+	float: left; margin-top: -15px; font-family: myFont2; width: 100%; border-bottom: 1px solid rgba(0,0,0,.2);
+	text-indent: 10px; padding-bottom: 7px;
+} .profile-modal-container label {
+	font-size: 12px; font-family: arial; padding-left: 27px;
+} .profile-modal-container input {
+	margin-left: 25px; margin-bottom: 5px;
+} .profile-modal-container input[type=text], input[type=date], input[type=password] {
+	width: 82%; height: 20px; outline: none; padding-left: 10px;
+} .profile-modal-container select {
+	width: 85.5%; height: 27px; outline: none; padding-left: 10px;margin-left: 25px; margin-bottom: 5px;
+} .profile-modal-container button {
+	width: 100px; margin-left: 25px; margin-top: 10px; height: 25px; outline: none; float: left;
+} .profile-modal-container #profile-loading {
+	width: 20px; height: 20px; margin: 12px 10px; float: left; display: none;
+}  .profile-modal-container i {
+	float: left; font-size: 13px; color: #6EDE4D; font-family: myFont2; margin-top: 15px; display: none;
+	margin-left: 10px;
+} .profile-modal-container i strong {
+	float: right; font-size: 20px; margin-top: -8px; margin-left: 5px;
+}
+
+
+
+/*----------------------------------------------------- HOME -------------------------------------------------------*/
+.home-content {
+	width: 100%; height: 100%;
+}
+
+.home-nav {
+	width: 100%; height: 40px;background: -webkit-linear-gradient(top, #F4F8F8, #EDF0F0, #DBDFDF);
+	border-bottom: 1px solid rgba(0,0,0,.2);
+} .home-nav p {
+	margin: 0; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; padding: 10px 0px 0px 20px;
+	color: rgba(0,0,0,.5);
+}.home-nav p strong {
+	color: rgb(23,137,231);
+}
+
+.left-container {
+	width: 60%; height: 100%; margin-left: 20px; background: #fff; border-right: 1px solid rgba(0,0,0,.2);
+	border-left: 1px solid rgba(0,0,0,.2); float: left; overflow-y: scroll; 
+} .left-container label {
+	font-family: "myFont2"; margin-top: 30px; float: left; padding-left: 40px; font-size: 13px; font-weight: bold;
+	color: rgba(0,0,0,.8);
+} .left-container hr {
+	float: left; width: 94%; margin-left: 3%;
+}
+
+.data-overview-wrapper {
+	width: 100%; height: auto; padding:20px 0px 20px 0px;
+}
+
+.data-container {
+	width: 160px; height: 80px; margin-top: 15px; float: left; margin-left: 20px; box-shadow: 3px 3px 5px rgba(0,0,0,.1);
+    background: url(../images/background/logoBackground.jpg) no-repeat; background-size: 100%; border: 1px solid rgba(0,0,0,.2);
+    border-radius: 5px; 
+} .data-container:first-child {
+	margin-left: 30px;
+} .data-container #data-logo {
+	width: 60px; height: 80%; float: left; margin: -15px 0px 0px 10px; border: 1px solid rgba(0,0,0,.2);
+} .data-container:first-child #data-logo {
+	background: #45DF5C;
+} .data-container:nth-child(2) #data-logo {
+	background: #F36655;
+} .data-container:nth-child(3) #data-logo {
+	background: #F3CA5D;
+} .data-container:last-child #data-logo {
+	background: #52AEE7;
+} .data-container #data-logo img {
+	width: 100%; height: 100%;
+} .data-container:first-child #data-logo img {
+	transform: scale(.8);
+} .data-container:nth-child(2) #data-logo img {
+	transform: scale(.56);
+} .data-container:nth-child(3) #data-logo img {
+	transform: scale(.65);
+} .data-container:last-child #data-logo img {
+	transform: scale(.6);
+}.data-container h2 {
+	float: right; margin: 15px 0px 0px 0px; width: 88px; text-align: center; font-family: calibri;
+	color: rgba(0,0,0,.7);
+}.data-container p {
+	font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-size: 13px; float: left; width: 88px; text-align: center;
+	margin-top: 5px; color: rgba(0,0,0,.7);
+} .data-container:hover {
+	transform: scale(1.02);
+}
+
+.active-event-wrapper {
+	width: 94%; background: #EBEDED; float: left; margin-left: 3%; padding-bottom: 20px;
+}
+
+.posted-by {
+	width: 100%; height: 50px;
+}.posted-by #img-wrap {
+	float: left; height: 45px; width: 40px; border: 1px solid rgba(0,0,0,.6); margin: 5px 0px 0px 10px; background: #fff;
+}.posted-by #img-wrap img {
+	width: 100%; height: 100%;
+}.posted-by #coordinator-name {
+	float: left; font-family: "myFont2"; font-size: 15px; font-weight: bold; margin:0;
+	padding: 10px 0px 0px 10px; color: rgba(0,0,0,.8);
+}.posted-by #coordinator-position {
+	font-family: "myFont2"; font-size: 10px; font-weight: bold; margin:3px 0px 0px 0px; text-indent: 10px;
+	padding: 10px 0px 0px 0px; color: rgba(0,0,0,.6);
+}
+
+.tarp-wrapper {
+	width: 97%; height: 350px; float: left; margin-left: 1.5%; margin-top: 5px;
+} .tarp-wrapper  img {
+	width: 100%; height: 100%;
+}
+
+.about-event-wrapper {
+	width: 100%; float: left; padding-top: 10px;
+}.about-event-wrapper #about-title {
+	width: 70px; padding-left: 20px; float: left;
+}.about-event-wrapper #about-title p {
+	font-size: 13px; width: 100%; font-family: "myFont2"; margin: 0px 0px 5px 0px; font-weight: bold; color: rgba(0,0,0,.6);
+}.about-event-wrapper #about-value {
+	float: left;
+}.about-event-wrapper #about-value p {
+	font-size: 13px; width: 100%; font-family: "myFont2"; margin: 0px 0px 5px 0px; font-weight: bold; color: rgba(0,0,0,.9);
+}.about-event-wrapper hr {
+	width: 96%; margin-left: 2%; margin-top: 2px;
+}.about-event-wrapper h6 {
+	float: left; color: #2785B0; font-family: "myFont2"; text-indent: 20px; cursor: pointer; margin: 0;
+}.about-event-wrapper h6:hover {
+	color: #35A9DF; 
+}.about-event-wrapper u {
+	float: right;  padding-right: 20px; color: #E4432F; cursor: pointer; font-size: 12px; font-family: "myFont2";
+}.about-event-wrapper u:hover {
+	color: #2785B0;
+}
+
+.active-event-program-wrapper {
+	width: 94%; background: #EBEDED; float: left; margin-left: 3%; padding-bottom: 30px; display: none;
+} .active-event-program-wrapper p {
+	width: 100%; text-align: center; font-family: "myFont"; font-size: 22px; color: rgba(0,0,0,.8);
+}
+
+.program-wrap {
+	width: 90%; padding-bottom: 10px; background: #fff; margin: 0 auto; border: 1px solid rgba(0,0,0,.2);
+	margin-bottom: 10px;
+} .program-wrap #day {
+	padding: 5px 20px 5px 20px; text-align: center; background: rgba(0,0,0,.4); color: #fff; margin: 0; font-family: arial;
+	font-size: 12px;
+} .program-wrap #div1,#div2 {
+	width: 45%; display: inline-block;
+} .program-wrap #div1 label {
+	margin: 0;
+} .program-wrap #div2 label {
+	margin: 0; padding: 0;
+}
+
+.previous-event-wrapper {
+	width: 94%; background: #EBEDED; float: left; margin-left: 3%; padding-bottom: 10px; margin-bottom: 50px;
+	font-family: "myFont2";
+}
+
+.previous-wrapper {
+	width: 31.5%; height: 280px; background: #fff; float: left; margin: 10px 0px 0px 10px;
+} .previous-wrapper #previous-img-wrapper {
+	width: 95%; height: 150px; background: red; margin: 5px auto;
+} .previous-wrapper #previous-img-wrapper img {
+	width: 100%; height: 100%;
+} .previous-wrapper p {
+	width: 100%; text-align: left; text-indent: 10px; font-family: "myFont2"; font-size: 12px; margin: 0;
+	margin-top: 5px;
+} .previous-wrapper:hover {
+	transform: scale(1.02);
+}
+
+.right-container {
+	width: 35%; height: 100%; margin-left: 20px; background: #fff; border-right: 1px solid rgba(0,0,0,.2);
+	border-left: 1px solid rgba(0,0,0,.2); float: right; margin-right: 20px; overflow-y: scroll;
+} .right-container label {
+	font-family: "myFont2"; margin-top: 30px; float: left; padding-left: 20px; font-size: 13px; font-weight: bold;
+	color: rgba(0,0,0,.8);
+} .right-container hr {
+	float: left; width: 94%; margin-left: 3%;
+} 
+.registration-wrapper {
+	width: 92%; float: left; margin-left: 4%; padding-bottom: 25px; border: 1px solid rgba(0,0,0,.2);
+	box-shadow: 3px 3px 5px rgba(0,0,0,.1);
+} .registration-wrapper ul {
+	padding: 0; margin: 0; width: 100%; height: 35px; background: -webkit-linear-gradient(top, #F4F8F8, #EDF0F0, #DBDFDF);
+	border-bottom: 1px solid rgba(0,0,0,.2); margin-bottom: 10px;
+} .registration-wrapper ul li {
+	list-style: none; width: 100px; height: 20px; margin-top: 10px; float: left; text-align: center; font-family: "myFont2";
+	padding-top: 5px; font-size: 12px; border-top-left-radius: 5px; border-top-right-radius: 5px; border: 1px solid rgba(0,0,0,.2);
+	border-bottom: none; background: -webkit-linear-gradient(top, #F4F8F8, #EDF0F0, #DBDFDF); cursor: pointer;
+	font-weight: bold;
+} .registration-wrapper ul li:first-child {
+	margin-left: 15px; margin-right: 5px; 
+} .registration-wrapper ul li.active {
+	background: #fff;
+} .registration-wrapper ul li:hover {
+	opacity: .8;
+}
+
+.member-registration-container {
+	margin: 0 auto; width: 95%;/* display: none;*/
+} .member-registration-container p {
+	font-size: 13px; width: 100%; text-indent: 10px; font-family: "myFont2"; float: left;
+} .member-registration-container select {
+	width: 96%; height: 35px; float: left; margin-left: 2%; margin-top: -10px; outline: none;
+	background: rgb(254,246,240); border: 1px solid rgba(0,0,0,.3); padding-left: 10px;
+} .member-registration-container table {
+	float: left; width: 96%; margin-left: 2%; margin-top: -10px; border-collapse: collapse;
+} .member-registration-container table thead {
+	background: rgb(254,246,240);
+} .member-registration-container table thead tr th {
+	border: 1px solid rgba(0,0,0,.3); height: 25px; font-family: "myFont2"; font-size: 13px;
+} .member-registration-container table tbody tr td {
+	border: 1px solid rgba(0,0,0,.1); height: 20px; font-family: "myFont2"; font-size: 12px; text-align: center;
+} .member-registration-container table tbody tr td input {
+	outline: none;
+} .member-registration-container table tbody tr:hover {
+	background: rgba(0,0,0,.1);
+} .member-registration-container button {
+	margin-top: 10px; float: left; width: 100px; height: 25px; font-size: 13px; margin-left: 2%; outline: none; margin-right: 10px;
+} .member-registration-container img {
+	width: 20px; height: 20px; float: left; margin-top: 12px; display: none;
+} .member-registration-container i {
+	font-family: "myFont2"; float: left; font-size: 13px; margin-top: 6px; color: rgb(49,189,122); display: none;
+}  .member-registration-container i strong {
+	font-size: 20px;
+}
+
+.visitor-registration-container {
+	margin: 0 auto; width: 95%; display: none;
+} .visitor-registration-container p {
+	font-size: 13px; width: 100%; text-indent: 10px; font-family: "myFont2"; float: left;
+} .visitor-registration-container select {
+	width: 96%; height: 35px; float: left; margin-left: 2%; margin-top: -10px; outline: none;
+	background: rgb(254,246,240); border: 1px solid rgba(0,0,0,.3); padding-left: 10px;
+} .visitor-registration-container input {
+	width: 95%; height: 30px; float: left; margin-left: 2%; margin-top: -10px; outline: none; text-indent: 10px;
+	background: rgb(254,246,240); border: 1px solid rgba(0,0,0,.3);
+} .visitor-registration-container button {
+	margin-top: 10px; float: left; width: 100px; height: 25px; font-size: 13px; margin-left: 2%; outline: none; margin-right: 10px;
+} .visitor-registration-container img {
+	width: 20px; height: 20px; float: left; margin-top: 12px; display: none;
+} .visitor-registration-container i {
+	font-family: "myFont2"; float: left; font-size: 13px; margin-top: 6px; color: rgb(49,189,122); display: none;
+}  .visitor-registration-container i strong {
+	font-size: 20px;
+}
+
+.right-container span {
+	float: left; margin-top: 28px; padding: 3px; background: rgb(44,170,92); color: #fff; font-size: 10px; border-radius: 3px;
+	margin-left: 5px;
+}
+
+.pending-registration-container {
+	width: 92%; float: left; margin-left: 4%; padding-bottom: 25px; border: 1px solid rgba(0,0,0,.2);
+	box-shadow: 3px 3px 5px rgba(0,0,0,.1);
+} .pending-registration-container p {
+	font-size: 13px; width: 100%; text-indent: 20px; font-family: "myFont2"; float: left;
+} .pending-registration-container select {
+	width: 92%; height: 35px; float: left; margin-left: 4%; margin-top: -10px; outline: none;
+	background: rgb(254,246,240); border: 1px solid rgba(0,0,0,.3); padding-left: 10px;
+} .pending-registration-container table {
+	float: left; width: 92%; margin-left: 4%; margin-top: -10px; border-collapse: collapse;
+} .pending-registration-container table thead {
+	background: rgb(254,246,240);
+} .pending-registration-container table thead tr th {
+	border: 1px solid rgba(0,0,0,.3); height: 25px; font-family: "myFont2"; font-size: 13px;
+} .pending-registration-container table tbody tr td {
+	border: 1px solid rgba(0,0,0,.1); height: 20px; font-family: "myFont2"; font-size: 12px; text-align: center;
+} .pending-registration-container table tbody tr td input {
+	outline: none;
+} .pending-registration-container table tbody tr:hover {
+	background: rgba(0,0,0,.1);
+} .pending-registration-container button {
+	margin-top: 10px; float: left; width: 100px; height: 25px; font-size: 13px; margin-left: 4%; outline: none; margin-right: 10px;
+} .pending-registration-container img {
+	width: 20px; height: 20px; float: left; margin-top: 12px; display: none;
+} .pending-registration-container i {
+	font-family: "myFont2"; float: left; font-size: 13px; margin-top: 6px; color: rgb(49,189,122); display: none;
+} .pending-registration-container i strong {
+	font-size: 20px;
+}
+
+.add-expenses-container {
+	width: 92%; float: left; margin-left: 4%; padding-bottom: 25px; border: 1px solid rgba(0,0,0,.2);
+	box-shadow: 3px 3px 5px rgba(0,0,0,.1); margin-bottom: 30px;
+} .add-expenses-container p {
+	font-size: 13px; width: 100%; text-indent: 20px; font-family: "myFont2"; float: left;
+} .add-expenses-container input {
+	width: 91%; height: 30px; float: left; margin-left: 4%; margin-top: -10px; outline: none;
+	background: rgb(254,246,240); border: 1px solid rgba(0,0,0,.3); text-indent: 10px;
+} .add-expenses-container button {
+	margin-top: 10px; float: left; width: 100px; height: 25px; font-size: 13px; margin-left: 4%; outline: none; margin-right: 10px;
+} .add-expenses-container img {
+	width: 20px; height: 20px; float: left; margin-top: 12px; display: none;
+} .add-expenses-container i {
+	font-family: "myFont2"; float: left; font-size: 13px; margin-top: 6px; color: rgb(49,189,122); display: none;
+} .add-expenses-container i strong {
+	font-size: 20px;
+} .add-expenses-container table {
+	float: left; width: 92%; margin-left: 4%; margin-top: -10px; border-collapse: collapse;
+} .add-expenses-container table thead {
+	background: rgb(254,246,240);
+} .add-expenses-container table thead tr th {
+	border: 1px solid rgba(0,0,0,.3); height: 25px; font-family: "myFont2"; font-size: 13px;
+} .add-expenses-container table tbody tr td {
+	border: 1px solid rgba(0,0,0,.1); height: 20px; font-family: "myFont2"; font-size: 12px; text-align: center;
+} .add-expenses-container table tbody tr td input {
+	outline: none;
+} .add-expenses-container table tbody tr:hover {
+	background: rgba(0,0,0,.1);
+}
+
+
+/*----------------------------------------------- REPORTS --------------------------------------------*/
+.reports-content {
+	width: 100%; height: 100%;
+}
+
+.reports-left-container {
+	width: 60%; height: 100%; margin-left: 20px; background: #fff; border-right: 1px solid rgba(0,0,0,.2);
+	border-left: 1px solid rgba(0,0,0,.2); float: left; overflow-y: scroll; 
+} .reports-left-container label {
+	font-family: "myFont2"; padding-left: 40px; font-size: 13px; font-weight: bold; color: rgba(0,0,0,.8);
+} .reports-left-container hr {
+	width: 94%; margin-left: 3%;
+} .reports-left-container p {
+	font-family: myFont2; font-size: 14px; text-indent: 30px; float: left;
+} .reports-left-container select {
+	float: left; margin-top: 7px; width: 200px; outline: none; padding-left: 5px; height: 25px;
+	margin-left: 10px;
+} .reports-left-container button {
+	float: right; margin-top: 10px; outline: none; margin-right: 30px; width: 60px; height: 25px;
+	margin-top: 5px;
+}
+
+.display-reports {
+	width: 95%; margin: 0 auto;
+} .report-title {
+	width: 100%; padding: 10px 0px; text-align: center;
+} .reports-table {
+	float: left; width: 92%; margin-left: 4%; margin-top: -10px; border-collapse: collapse;
+} .reports-table thead tr th {
+	border: 1px solid rgba(0,0,0,.3); height: 30px; font-family: "myFont2"; font-size: 12px;
+} .reports-table tbody tr td {
+	border: 1px solid rgba(0,0,0,.1); height: 25px; font-family: "myFont2"; font-size: 12px;
+	text-align: left; text-indent: 5px;
+} .reports-table tbody tr td input {
+	outline: none;
+} .reports-table tbody tr:hover {
+	background: rgba(0,0,0,.1);
+}
+
+.reports-right-container {
+	width: 35%; height: 100%; margin-left: 20px; background: #fff; border-right: 1px solid rgba(0,0,0,.2);
+	border-left: 1px solid rgba(0,0,0,.2); float: right; margin-right: 20px; overflow-y: scroll;
+} .reports-right-container label {
+	font-family: "myFont2"; margin-top: 30px; float: left; padding-left: 20px; font-size: 13px; font-weight: bold;
+	color: rgba(0,0,0,.8);
+} .reports-right-container hr {
+	float: left; width: 94%; margin-left: 3%;
+}
+
+
+.report-header {
+	width: 90%; height: 120px; border-bottom: 2px dashed gray; padding-bottom: 15px; margin: 30px auto;
+} .report-logo-container {
+	float: left; width: 25%; height: 100%;
+} .report-logo-container img {
+	height: 100%; width: 100%;
+} .report-info-container {
+	float: left; width: 50%; height: 100%;
+} .report-info-container p {
+	width: 100%; text-align: center; padding: 0; margin: 0; font-weight: bold;
+} .report-footer {
+	width: 80%; float: left; margin-left: 10%; margin-top: 80px;
+} .prys-signature {
+	float: left; width: 35%; text-align: center;
+} .prys-signature p {
+	width: 100%; border-top: 1px solid #000; text-align: center; margin: 0;
+} .coor-signature {
+	float: right; width: 35%; text-align: center;
+} .coor-signature p {
+	width: 100%; border-top: 1px solid #000; text-align: center; margin: 0;
+}
+
+
+
+
+/* -------------- MY CALENDAR EVENT CSS -------------- */
+
+.event-calendar-wrapper {
+	width: 92%; height: 500px; margin: 45px auto; border: 1px solid rgba(0,0,0,.4); box-shadow: 3px 3px 5px rgba(0,0,0,.2);
+}
+
+.event-calendar-month-year {
+	width: 100%; height: 50px;
+}
+
+.event-calendar-month-year #prev-img {
+	float: left; height: 80%; margin-top: 5px; width: 10%; opacity: .5;
+} .event-calendar-month-year #prev-img img {
+	width: 100%; height: 100%; transform: scale(.3); 
+}.event-calendar-month-year #prev-img:hover {
+	opacity: 1;
+}
+
+.event-calendar-month-year #center {
+	float: left; width: 80%; text-align: center; font-family: "myFont2"; font-size: 18px; padding-top: 15px;
+	color: rgba(0,0,0,.7);
+} .event-calendar-month-year #center b {
+	display: inline-block;
+}  .event-calendar-month-year #center #sep {
+	width: 10px; height: 10px; border-radius: 50%; background: -webkit-linear-gradient(top, rgba(61,207,96,1), rgba(36,148,63,1));
+	display: inline-block;
+}
+
+.event-calendar-month-year #next-img {
+	float: right; height: 80%; margin-top: 5px; width: 10%; opacity: .5;
+} .event-calendar-month-year #next-img img {
+	width: 100%; height: 100%; transform: scale(.3);
+}.event-calendar-month-year #next-img:hover {
+	opacity: 1;
+}
+
+.event-calendar-wrapper table {
+	width: 95%; font-family: "myFont"; border-collapse: collapse; margin: -5px auto;
+	background: url(../images/background/logoBackground.jpg) no-repeat; background-size: 100%;
+} .event-calendar-wrapper table thead tr th {
+	text-align: center; padding: 10px 0px 10px 0px; font-size: 13px; width: 14.30%;
+	color: rgba(255,255,255,.9); background: -webkit-linear-gradient(top, #565555, #3F4040, #191919);
+	/*border: 1px dashed rgba(0,0,0,.2);*/
+} .event-calendar-wrapper table thead tr {
+	border: 1px solid rgba(0,0,0,.8); border-bottom: none;
+} .event-calendar-wrapper table thead tr th:first-child {
+	color: rgb(252,108,108);
+} .event-calendar-wrapper table tbody tr td {
+	font-family: "myFont2"; font-size: 12px; border: 1px solid rgba(0,0,0,.4);
+	width: 14.29%; height: 60px;
+}  .event-calendar-wrapper table tbody tr td p {
+	height: 17px; width: 20px; text-align: center; float: right; border-radius: 50%; padding-top: 3px;
+	margin-top: -10px; margin-right: 2px; font-weight: bold;
+} .event-calendar-wrapper table tbody tr td:first-child {
+	color: rgb(252,90,90);
+}
+
+.wrap-event {
+	width: 94.7%; margin: -350px auto; position: relative;
+} .wrap-event table {
+	width: 100.3%; height: 100%; background: none;
+} .wrap-event table tbody tr td {
+	border: none;
+} .wrap-event table tbody tr td p {
+	width: 95%; float: left; text-align: left; height: 20px;border-radius: 0; color: #fff; border-radius: 3px;
+	font-size: 11px; font-family: arial; text-indent: 7px; margin-left: 2.5%; cursor: pointer; display: none;
+	white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+} .wrap-event table tbody tr td p:hover {
+	border: 1px solid rgba(0,0,0,.5);
+}
+
+.event-indicator-wrapper {
+	width: 85%; margin: -75px auto;
+} .event-indicator-wrapper #indicator {
+	width: 33.3%; float: left; 
+} .event-indicator-wrapper #indicator #previous {
+	width: 10px; height: 10px; border-radius: 3px; background: rgba(9,191,83,.8); float: left; margin-top: 1px;
+} .event-indicator-wrapper #indicator #ongoing {
+	width: 10px; height: 10px; border-radius: 3px; background: rgba(105,99,219,.8); float: left; margin-top: 1px;
+} .event-indicator-wrapper #indicator #upcoming {
+	width: 10px; height: 10px; border-radius: 3px; background: rgba(241,112,61,.8); float: left; margin-top: 1px;
+} .event-indicator-wrapper #indicator p {
+	float: left; margin: 0; font-family: "myFont2"; font-size: 11px; padding: 0; margin-left: 3px;
+}
+
+
+.addCoordinator {
+	float: right; margin-top: 20px; margin-right: 20px; background: #32A1F2; border: 1px solid #32A1F2; color: #fff;
+	padding: 3px 7px 4px 7px; border-radius: 3px;
+} .addCoordinator:hover {
+	background: #4FB1F9; cursor: pointer; outline: none;
+}
+
+.coordinator-wrapper {
+	width: 15%; height: 90px; float: left; margin-left: 3%; margin-bottom: 15px;
+	border: 1px solid rgba(0,0,0,.2);
+} .coordinator-wrapper img {
+	width: 95%; height: 83%; float: left;
+} .coordinator-wrapper p {
+	float: left; margin: 0; font-family: "myFont2"; width: 100%; text-align: center; font-size: 12px;
+}.coordinator-wrapper:first-child, .coordinator-wrapper:nth-child(6){
+	margin-left: 5%;
+}.coordinator-wrapper:hover {
+	transform: scale(1.12); cursor: pointer;
+}
+
+.add-coordinator-modal {
+	z-index: 1; width: 100%; height: 100vh; background: rgba(0,0,0,.3); display: none;
+}
+
+.add-coordinator-space {
+	width: 100%; height: 100px; animation: modalSlide .5s;
+}
+
+.add-coordinator-modal-container {
+	width: 400px; height: 450px; margin: 0 auto; border: 1px solid rgba(0,0,0,.4); border-radius: 10px;
+	box-shadow: 3px 3px 10px rgba(0,0,0,.3); background: #fff;
+} .add-coordinator-modal-container #close {
+	width: 25px; height: 25px; float: right;
+} .add-coordinator-modal-container #close img {
+	width: 100%; height: 100%; opacity: .5;
+} .add-coordinator-modal-container #close:hover {
+	opacity: .8; cursor: pointer;
+} .add-coordinator-modal-container #close:active {
+	transform: scale(.9);
+} .add-coordinator-modal-container p {
+	width: 100%; padding: 10px 0px 15px 0px; text-align: left; font-family: "myFont2"; font-weight: bold; color: rgba(0,0,0,.7);
+	text-shadow: 3px 3px 5px rgba(0,0,0,.1); font-size: 16px; text-indent: 30px; margin: 0; margin-top: 10px;
+	border-bottom: 1px solid rgba(0,0,0,.3);
+} .add-coordinator-modal-container #coordinator-info {
+	float: left; margin-left: 15px;
+} .add-coordinator-modal-container #coordinator-info label {
+	font-family: "myFont2"; margin-left: 5px; color: rgba(0,0,0,.8); font-size: 12px;
+} .add-coordinator-modal-container #coordinator-info input {
+	height: 25px; text-indent: 10px; width: 200px; outline: none; border: 1px solid rgba(0,0,0,.3); color: rgba(0,0,0,.9);
+	font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-size: 13px;
+} .add-coordinator-modal-container #coordinator-img-wrapper {
+	float: right; width: 150px; height: 142px; background: #DEDEDF; margin-right: 15px;
+} .add-coordinator-modal-container #coordinator-img-wrapper #upload-photo-msg {
+	font-size: 12px; font-weight: bold; color: rgba(0,0,0,.4); font-family: "myfont2"; margin-top: 50px;
+} .add-coordinator-modal-container #coordinator-img-wrapper img {
+	width: 100%; height: 100%; display:none;
+} .add-coordinator-modal-container #generate {
+	margin: 10px 0px 0px 15px;  float: left;
+} .add-coordinator-modal-container #coordinator-img {
+	float: right; width: 135px; color: transparent; margin-top: 10px; outline: none;
+} .add-coordinator-modal-container #coordinator-password {
+	height: 25px; text-indent: 10px; width: 360px; outline: none; border: 1px solid rgba(0,0,0,.3); color: rgba(0,0,0,.9);
+	font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-size: 13px; margin: 10px 0px 5px 15px;
+}  .add-coordinator-modal-container #label {
+	font-family: "myFont2"; margin-left: 20px; color: rgba(0,0,0,.8); font-size: 12px;
+} .add-coordinator-modal-container #coordinator-number {
+	height: 25px; text-indent: 10px; width: 360px; outline: none; border: 1px solid rgba(0,0,0,.3); color: rgba(0,0,0,.9);
+	font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-size: 13px; margin: 0px 0px 0px 15px;
+} .add-coordinator-modal-container select {
+	outline: none; height: 30px; font-size: 13px; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; color: rgba(0,0,0,.9);
+	border: 1px solid rgba(0,0,0,.3); width: 362px; padding-left: 7px; margin: 0px 0px 0px 15px;
+} .add-coordinator-modal-container #add-btn {
+	width: 100px; margin-left: 20px; height: 25px; color: #fff; border: none; outline: none; background: #32A1F2;
+	margin-top: 10px; border-radius: 3px; float: left;
+} .add-coordinator-modal-container #add-btn:hover {
+	background: #4FB1F9; cursor: pointer; outline: none;
+} .add-coordinator-modal-container #add-coordinator-loading {
+	float: left; margin: 10px; width: 25px; height: 25px; display: none;
+} .add-coordinator-modal-container #label2 {
+	font-family: "myFont2";color: #31CF95; font-size: 12px; margin: 0; margin-left: 10px; float: left; margin-top: 15px;
+	display: none;
+}
+
+
+/*----------------------------------------------------- EVENT -------------------------------------------------------*/
+.event-content {
+	width: 100%; height: 100%;
+}
+
+.event-nav {
+	width: 100%; height: 40px;background: -webkit-linear-gradient(top, #F4F8F8, #EDF0F0, #DBDFDF);
+	border-bottom: 1px solid rgba(0,0,0,.2);
+} .event-nav #all-event-title {
+	float: left; background: #fff; padding: 5px 10px 5px 10px; font-size: 13px; border: 1px solid rgba(0,0,0,.2);
+	margin: 14px 0px 0px 50px; border-bottom: 1px solid #fff; border-top-right-radius: 5px; border-top-left-radius: 5px;
+	font-family: calibri; font-weight: bold;
+}.event-nav #request-event-title {
+	float: right; background: #fff; padding: 5px 10px 5px 10px; font-size: 13px; border: 1px solid rgba(0,0,0,.2);
+	margin: 14px 342px 0px 0px; border-bottom: 1px solid #fff; border-top-right-radius: 5px; border-top-left-radius: 5px;
+	font-family: calibri; font-weight: bold;
+}
+
+.all-event-container {
+	width: 60%; height: 94%; margin-left: 20px; background: #fff; border-right: 1px solid rgba(0,0,0,.2);
+	border-left: 1px solid rgba(0,0,0,.2); float: left; overflow-y: scroll;
+} .all-event-container #select-event-type {
+	float: right; width: 250px; padding-left: 10px; font-family: "myFont2"; font-size: 13px; outline: none;
+	 border: 1px solid rgba(0,0,0,.3);box-shadow: 3px 3px 5px rgba(0,0,0,.1);
+	height: 35px; margin-right: 20px; margin-bottom: 15px;
+}
+
+ .all-event-container table {
+	width: 95%; margin: 10px auto; border-collapse: collapse; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+} .all-event-container table thead {
+	border: 3px solid rgba(0,0,0,.2); background: rgb(150,150,150); color: #fff;
+	padding: 2px 0px 2px 0px;
+} .all-event-container table thead tr th {
+	height: 25px; font-size: 12px; border-right: 3px solid rgba(0,0,0,.1);
+} .all-event-container table tbody tr {
+	background: rgb(250,250,250);
+} .all-event-container table tbody tr td {
+	height: 25px; font-size: 12px; border: 1px solid rgba(0,0,0,.1); text-align: center;
+} .all-event-container table tbody tr:last-child td {
+	height: 10px;
+} .all-event-container table tbody tr:hover {
+	background: rgba(0,0,0,.1);
+} .all-event-container table tbody tr td label {
+	padding: 2px 5px 2px 5px; background: rgb(23,137,231); border-radius: 3px; color: #fff;
+} .all-event-container table tbody tr td label:last-child {
+	background: rgb(245,77,81);
+} .all-event-container table tbody tr td label:nth-child(2) {
+	background: rgb(239,139,57);
+} .all-event-container table tbody tr td label:hover {
+	cursor: pointer; color: #000;
+} .all-event-container table tbody tr:last-child:hover {
+	background: rgb(250,250,250);
+}
+
+.add-event-container {
+	width: 35%; height: 94%; margin-left: 20px; background: #fff; border-right: 1px solid rgba(0,0,0,.2);
+	border-left: 1px solid rgba(0,0,0,.2); float: right; margin-right: 20px; overflow-y: scroll;
+}.add-event-container input {
+	width: 93%; height: 35px; font-family: "myFont2"; font-size: 13px; outline: none; margin-bottom: 7px;
+	text-indent: 5px; background: rgb(254,246,240); border: 1px solid rgba(0,0,0,.3);box-shadow: 3px 3px 5px rgba(0,0,0,.1);
+	margin-left: 15px; text-indent: 10px;
+} .add-event-container label {
+	margin-left: 20px; font-family: "myFont2"; font-size: 12px; color: rgba(0,0,0,.7);
+}  .add-event-container input[type="file"] {
+	margin: 5px 0px 0px 10px; background: none; border: none; box-shadow: none; margin-bottom: -5px;
+	color: transparent; width: 100px;
+} .add-event-container select {
+	width: 93.5%; height: 35px; font-family: "myFont2"; font-size: 13px; outline: none; margin-bottom: 7px;
+	padding-left: 5px; background: rgb(254,246,240); border: 1px solid rgba(0,0,0,.3);box-shadow: 3px 3px 5px rgba(0,0,0,.1);
+	margin-left: 15px; text-indent: 10px;
+} .add-event-container button {
+	margin-left: 15px; width: 93.5%; height: 30px; margin-top: 5px; cursor: pointer;
+}
+
+.add-event-image-wrapper {
+	width: 45%; height: 118px; float: left; margin-left: 15px; background: url('../images/background/plus.png') no-repeat;
+	background-size: 100%; border: 1px solid rgba(0,0,0,.2);
+} .add-event-image-wrapper img {
+	width: 100%; height: 100%;
+}
+
+.add-event-date-wrapper {
+	width: 46%; height: 120px; margin-right: 15px; float: right;
+} .add-event-date-wrapper label {
+	margin-left: 5px; font-family: "myFont2"; font-size: 12px; color: rgba(0,0,0,.7);
+} .add-event-date-wrapper input {
+	width: 100%; height: 35px; font-family: "myFont2"; font-size: 13px; outline: none; margin-bottom: 7px;
+	text-indent: 5px; background: rgb(254,246,240); border: 1px solid rgba(0,0,0,.3);box-shadow: 3px 3px 5px rgba(0,0,0,.1);
+	margin-left: 0px;
+}
+
+
+/*---------------------------- KEYFRAMES --------------------------------*/
+@keyframes modalSlide {
+	from {
+		height: 0px;
+	} to {
+		height: 100px;
+	}
+}
+
+@keyframes modalSlideto {
+	from {
+		height: 0px;
+	} to {
+		height: 150px;
+	}
+}
+
+@keyframes approveSlide {
+	from {
+		margin-right: -490px;
+	} to {
+		margin-right: 40px;
+	}
+}
+
+
+/*------------------------------ MODALS ---------------------------------*/
+.message-modal {
+	z-index: 1; width: 100%; height: 100vh; background: rgba(0,0,0,.3); display: none;
+}
+
+.message-space {
+	width: 100%; height: 100px; animation: modalSlide .5s;
+}
+
+.message-modal-container {
+	width: 700px; height: 460px; margin: 0 auto; border: 1px solid rgba(0,0,0,.4); border-radius: 10px;
+	box-shadow: 3px 3px 10px rgba(0,0,0,.3); /*background: url(../images/background/logoBackground.jpg);
+	background-size: 110%;*/ background: #fff;
+} .message-modal-container #close {
+	width: 25px; height: 25px; float: right;
+} .message-modal-container #close img {
+	width: 100%; height: 100%; opacity: .5;
+} .message-modal-container #close:hover {
+	opacity: .8; cursor: pointer;
+} .message-modal-container #close:active {
+	transform: scale(.9);
+}
+
+.title-msg {
+	margin: 0; text-align: center; font-size: 18px; font-family: "myFont2"; font-weight: bold; width: 100%;
+	padding-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,.2); color: rgb(27,129,231); box-shadow: 0px 3px 5px rgba(0,0,0,.1);
+}
+
+.coordinator-list-msg {
+	width: 36%; height: 385px; float: right; margin: 10px 10px 0px 0px; background: rgb(244,242,242);
+} .coordinator-list-msg #profile {
+	width: 95%; margin: 5px auto; height: 40px; background: #fff; border-bottom: 1px solid rgba(0,0,0,.1);
+}.coordinator-list-msg #profile #iWrapper {
+	float: left; width: 30px; height: 34px; margin: 3px 0px 0px 3px;
+}.coordinator-list-msg #profile #iWrapper img {
+	width: 100%; height: 100%;
+}.coordinator-list-msg #profile #name-status {
+	float: left; margin-left: 5px; 
+} .coordinator-list-msg #profile #name-status p {
+	font-family: "myFont2"; font-size: 13px; margin: 5px 0px -5px 0px; float: left;
+} .coordinator-list-msg #profile #name-status span {
+	width: 8px; height: 8px; background: -webkit-linear-gradient(top, rgb(122,224,171), rgb(41,177,106)); float: left;
+	margin: 9px 0px 0px 5px; border-radius: 50%;
+} .coordinator-list-msg #profile #name-status label {
+	font-family: "myFont2"; font-size: 11px; color: rgb(29,221,120);
+}  .coordinator-list-msg #profile .number-msg {
+	float: right; border-radius: 50%; background: rgb(33,209,209); font-family: "myFont2"; font-size: 11px; margin: 5px 0px 0px 0px;
+	width: 20px; height: 17px; text-align: center; padding-top: 3px; color: #fff; margin-right: 10px; display: none;
+} .coordinator-list-msg #profile:hover {
+	cursor: pointer; border: 1px solid rgba(0,0,0,.2);
+}
+
+.coordinator-message-wrapper {
+	float: left; width: 60%; height: 385px; background: rgb(244,242,242); margin: 10px 0px 0px 10px;
+}.coordinator-message-wrapper #client-messages-wrapper {
+	width: 95%; height: 300px; margin: 0px auto; border: 1px solid rgba(0,0,0,.1); margin-bottom: 5px;
+	display: flex; flex-flow: column-reverse; align-items: flex-end; overflow-y: scroll; border-top: none;
+	background: #fff;
+} .coordinator-message-wrapper #client-messages-wrapper::-webkit-scrollbar {
+    width: 0px;
+}.coordinator-message-wrapper #client-messages-wrapper::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+}.coordinator-message-wrapper #client-messages-wrapper::-webkit-scrollbar-thumb {
+  background-color: transparent;
+ /* -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,.3);
+  outline: 1px solid slategrey;*/
+} .coordinator-message-wrapper #client-messages-wrapper::-webkit-scrollbar-button {
+	height: 0px;
+}
+
+.coordinator-message-wrapper #message-space {
+	width: 95%; height: 20px; background: #fff; margin: 5px auto; border: 1px solid rgba(0,0,0,.1); border-bottom: none;
+	margin-bottom: 0px; position: relative; box-shadow: 0px 3px 5px rgba(0,0,0,.1);
+} .coordinator-message-wrapper #message-space2 {
+	width: 95%; height: 5px; background: #fff; margin: 0 auto; border-left: 1px solid rgba(0,0,0,.1);
+	border-right: 1px solid rgba(0,0,0,.1); 
+}
+
+.coordinator-message-wrapper #message-space #friend-name {
+	font-size: 12px; font-family: myFont2; float: left; margin: 0; text-indent: 5px; margin-top: 3px;
+} .coordinator-message-wrapper #message-space #friend-status {
+	float: left; width: 6px; height: 6px; background: -webkit-linear-gradient(top, rgb(122,224,171), rgb(41,177,106));
+	border-radius: 50%; margin: 7px 5px; display: none;
+}
+
+ .coordinator-message-wrapper #client-input-wrapper {
+	width: 95%; height: 40px; margin: 0 auto; background: #fff; border: 1px solid rgba(0,0,0,.1); 
+} .coordinator-message-wrapper #client-input-wrapper textarea {
+	float: left; height: 20px; width: 85%; font-size: 13px; font-family: tahoma; outline: none; background: transparent;
+	border: none; padding-left: 10px; resize: none; padding-top: 8px; border-right: 1px solid rgba(0,0,0,.2);
+	margin-top: 5px;
+} .coordinator-message-wrapper #client-input-wrapper textarea::-webkit-scrollbar {
+    width: 0px;
+}.coordinator-message-wrapper #client-input-wrapper textarea::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+}.coordinator-message-wrapper #client-input-wrapper textarea::-webkit-scrollbar-thumb {
+  background-color: transparent;
+ /* -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,.3);
+  outline: 1px solid slategrey;*/
+} .coordinator-message-wrapper #client-input-wrapper textarea::-webkit-scrollbar-button {
+	height: 0px;
+} .coordinator-message-wrapper #client-input-wrapper #sendButton {
+	float: right; width: 10%; height: 30px; background: rgb(57,144,239); margin: 5px 5px 0px 0px;
+} .coordinator-message-wrapper #client-input-wrapper #sendButton img {
+	width: 100%; height: 100%; transform: scale(.8);
+} .coordinator-message-wrapper #client-input-wrapper #sendButton:hover {
+	background: rgb(89,161,241); cursor: pointer;
+} .coordinator-message-wrapper #client-messages-wrapper #conversation-here {
+	width: 100%; font-size: 12px; font-family: myFont2; color: rgba(0,0,0,.3); text-align: center; margin-bottom: 150px;
+	font-weight: bold;
+}
+
+.chat {
+	width: 400px; 
+} .chat span {
+	font-size: 9px; font-family: tahoma; color: rgba(0,0,0,.5);
+}
+
+.user-image-wrapper {
+	width: 25px; height: 25px; border-radius: 50%; margin-top: 3px;
+} .user-image-wrapper img {
+	border-radius: 50%; width: 100%; height: 100%;
+}
+
+.message-wrapper img {
+	margin-bottom: -10px; width: 50px; height: 45px; margin-left: -5px;
+}
+
+.message-wrapper {
+	margin-bottom: 10px;
+} .message {
+	padding: 6px 10px; color: #fff; margin: 0; margin-bottom: 2px; font-size: 12px; font-family: myFont2;
+	max-width: 230px; word-wrap: break-word; border-radius: 4px; width: max-content;
+}
+
+.friend {
+	float: left;display: flex; flex-flow: row wrap; align-items: flex-end;
+} .friend span {
+	float: left; margin-left: 5px;
+}
+
+.friend .user-image-wrapper {
+	margin-right: 5px; margin-left: 10px; margin-bottom: 12px;
+}
+
+.friend .message {
+	border-top-right-radius: 12px; border-bottom-right-radius: 12px; background: rgba(47,213,138,.7);
+}
+
+.friend .first {
+	border-top-left-radius: 12px;
+} .friend .last {
+	border-bottom-left-radius: 12px;
+} 
+
+.self {
+	display: flex; flex-flow: row-reverse; align-items: flex-end;
+} .self span {
+	float: right; margin-right: 5px;
+}
+
+.self .user-image-wrapper {
+	margin-right: 10px; margin-left: 5px; margin-bottom: 12px;
+}
+
+.self .message {
+	border-top-left-radius: 12px; border-bottom-left-radius: 12px; background: rgba(60,140,212,.7);
+	float: right;
+}
+.self .first {
+	border-top-right-radius: 12px;
+} .self .last {
+	border-bottom-right-radius: 12px;
+} 
+
+.seen {
+	font-size: 11px; font-family: tahoma; color: rgba(0,0,0,.5); margin-right: 50px; margin-top: -10px;
+	padding-bottom: 10px; display: none;
+}
+
+.reverse {
+	display: flex; flex-flow: row-reverse;
+}
+
+
+.view-selected-event-modal {
+	z-index: 1; width: 100%; height: 100vh; background: rgba(0,0,0,.3);
+	display: none;
+}
+
+.view-selected-event-space {
+	width: 100%; height: 100px; animation: modalSlide .5s;
+}
+
+.view-selected-event-modal-container {
+	width: 900px; height: 530px; margin: 0 auto; border: 1px solid rgba(0,0,0,.4); border-radius: 10px;
+	box-shadow: 3px 3px 10px rgba(0,0,0,.3); background: #fff;
+} .view-selected-event-modal-container #close {
+	width: 25px; height: 25px; float: right;
+} .view-selected-event-modal-container #close img {
+	width: 100%; height: 100%; opacity: .5;
+} .view-selected-event-modal-container #close:hover {
+	opacity: .8; cursor: pointer;
+} .view-selected-event-modal-container #close:active {
+	transform: scale(.9);
+}
+
+.view-notification-modal {
+	z-index: 1; width: 100%; margin-top: 43px; float: left; display: none;
+}
+
+.view-notification-modal-container {
+	width: 360px; padding: 0px 0px 5px 0px; border: 1px solid rgba(0,0,0,.2); border-radius: 3px;
+	box-shadow: 3px 3px 10px rgba(0,0,0,.3); float: right; background: #fff; margin-right: 245px;
+} .view-notification-modal-container p {
+	width: 100%; padding: 5px 0px 5px 0px; font-family: myFont2; margin: 0; box-shadow: 0px 3px 5px rgba(0,0,0,.1);
+	font-size: 13px; text-indent: 10px; font-weight: bold; border-bottom: 1px solid rgba(0,0,0,.2); position: relative;
+}
+
+.notification-container {
+	max-height: 400px; overflow-y: scroll;
+}.notification-container::-webkit-scrollbar {
+    width: 0px;
+}.notification-container::-webkit-scrollbar-track {
+   background: transparent;
+}.notification-container::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.4);
+  outline: 1px solid slategrey;
+}.notification-container::-webkit-scrollbar-button {
+	height: 3px;
+} .notification-container h3 {
+	font-family: myFont2; color: rgba(0,0,0,.5);
+}
+
+.notification-wrapper {
+	width: 100%; height: 50px; background: rgb(245,245,245); border-bottom: 1px solid rgba(0,0,0,.1);
+} .notification-wrapper:hover {
+	background: rgb(240,240,240);
+} .notification-wrapper img {
+	float: left; margin: 5px 5px 0px 5px; height: 30px; width: 30px;
+} .label {
+	height: 100%; float: left;
+} .label label {
+	font-family: myFont2; margin-top: 7px; font-size: 13px; float: left; max-width: 310px; word-wrap: break-word;
+} .label label strong {
+	font-size: 14px;
+}
+
+.add-program-modal {
+	z-index: 1; width: 100%; height: 100vh; background: rgba(0,0,0,.3); display: none;
+}
+
+.add-program-modal-space {
+	width: 100%; height: 100px; animation: modalSlide .5s;
+}
+
+.add-program-modal-container {
+	width: 900px; height: 530px; margin: 0 auto; border: 1px solid rgba(0,0,0,.4); border-radius: 10px;
+	box-shadow: 3px 3px 10px rgba(0,0,0,.3); /*background: url(../images/background/logoBackground.jpg);
+	background-size: 110%;*/ background: #fff;
+} .add-program-modal-container #close {
+	width: 25px; height: 25px; float: right;
+} .add-program-modal-container #close img {
+	width: 100%; height: 100%; opacity: .5;
+} .add-program-modal-container #close:hover {
+	opacity: .8; cursor: pointer;
+} .add-program-modal-container #close:active {
+	transform: scale(.9);
+} .add-program-modal-container #themeDate {
+	width: 100%; padding: 5px 0px 12px 15px; font-size: 16px; font-weight: bold; font-family: myFont2;
+	border-bottom: 1px solid rgba(0,0,0,.2); box-shadow: 0px 3px 5px rgba(0,0,0,.1); position: relative; margin-bottom: 0;
+}
+
+.addProgram-container {
+	width: 29%; height: 478px; border-right: 1px solid rgba(0,0,0,.1); float: left; margin: 0;
+} .addProgram-container label {
+	margin-left: 20px; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-size: 13px;
+} .addProgram-container select {
+	margin-top: 3px; width: 85%; height: 30px; padding-left: 10px; outline: none; background: rgb(254,246,240);
+	box-shadow: 3px 3px 5px rgba(0,0,0,.1); font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+	border: 1px solid rgba(0,0,0,.3); color: rgba(0,0,0,.9);
+}  .addProgram-container input {
+	width: 83%; height: 27px; outline: none; text-indent: 5px; background: rgb(254,246,240);
+	box-shadow: 3px 3px 5px rgba(0,0,0,.1); font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+	border: 1px solid rgba(0,0,0,.3); color: rgba(0,0,0,.9);
+} .addProgram-container input[type='text'] {
+	text-indent: 10px;
+} .addProgram-container button {
+	width: 60px; height: 25px; margin-left: 23px; float: left;
+} .addProgram-container img {
+	width: 22px; height: 22px; float: left; margin-left: 10px; margin-top: 2px; display: none;
+} .addProgram-container i {
+	float: left; font-size: 12px; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; margin-left: 10px;
+	color: rgb(49,189,122); display: none;
+} .addProgram-container i strong {
+	font-size: 18px; color: rgb(49,189,122);
+}
+
+ .display-programmer-container {
+	float: right; width: 70%; height: 470px; border-bottom-right-radius: 5px; overflow-y: scroll;
+	margin-right: 2px; margin-top: 2px;
+} .display-programmer-container #prog {
+	width: 100%; text-align: center; font-size: 20px; letter-spacing: 2px; font-weight: bold;
+	padding: 0px 0px 10px 0px; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+} .display-programmer-container #daysWrapper {
+	width: 96%; padding: 0px 0px 20px 0px; border: 1px solid rgba(0,0,0,.3); margin: 0 auto;
+	margin-bottom: 20px; box-shadow: 3px 3px 5px rgba(0,0,0,.1);
+} .display-programmer-container #daysWrapper p {
+	text-align: center; color: #000; background: rgba(0,0,0,.2); font-size: 12px; padding: 5px 0px 5px 0px;
+	width: 80px; margin-top: 0px;
+} .display-programmer-container #daysWrapper #div1 {
+	width: 45%; display: inline-block; text-align: left;
+} .display-programmer-container #daysWrapper #div1 label {
+	font-size: 12px;  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+} .display-programmer-container #daysWrapper #div2 {
+	width: 40%; display: inline-block; text-align: left;
+} .display-programmer-container #daysWrapper #div2 label {
+	font-size: 12px;  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+} .display-programmer-container img {
+	margin: 100px auto; width: 30px; height: 30px; display: none;
+}
+
+.view-event-modal {
+	z-index: 1; width: 100%; height: 100vh; background: rgba(0,0,0,.3);
+	display: none;
+}
+
+.view-event-space {
+	width: 100%; height: 100px; animation: modalSlide .5s;
+}
+
+.view-event-modal-container {
+	width: 450px; height: 490px; margin: 0 auto; border: 1px solid rgba(0,0,0,.4); border-radius: 10px;
+	box-shadow: 3px 3px 10px rgba(0,0,0,.3); /*background: url(../images/background/logoBackground.jpg);
+	background-size: 110%;*/ background: #fff;
+} .view-event-modal-container #close {
+	width: 25px; height: 25px; float: right;
+} .view-event-modal-container #close img {
+	width: 100%; height: 100%; opacity: .5;
+} .view-event-modal-container #close:hover {
+	opacity: .8; cursor: pointer;
+} .view-event-modal-container #close:active {
+	transform: scale(.9);
+} .view-event-modal-container #eventTarp {
+	margin: 20px auto; width: 90%; height: 230px; box-shadow: 3px 3px 10px rgba(0,0,0,.4);
+} .view-event-modal-container #eventTarp img {
+	width: 100%; height: 100%;
+} .view-event-modal-container #eventTarp #descTitle {
+	width: 32%; height: 200px; float: left;
+} .view-event-modal-container #eventTarp #descTitle p {
+	color: rgba(0,0,0,.7);font-size: 12px; padding-bottom: 10px; text-align: left; text-indent: 20px;
+	margin: 0; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-weight: bold;
+} .view-event-modal-container #eventTarp #desc {
+	width: 68%; height: 200px; float: right;
+} .view-event-modal-container #eventTarp #desc p {
+	color: #000; font-size: 13px; padding-bottom: 9px; text-align: left; text-indent: 10px; margin: 0;
+	font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-weight: bold;
+}
+
+.report-event-modal {
+	z-index: 1; width: 100%; height: 100vh; background: rgba(0,0,0,.3); display: none;
+}
+
+.report-event-space {
+	width: 100%; height: 100px; animation: modalSlide .5s;
+}
+
+.report-event-modal-container {
+	width: 450px; height: 500px; background: #fff; margin: 0 auto; border: 1px solid rgba(0,0,0,.4); border-radius: 10px;
+	box-shadow: 3px 3px 10px rgba(0,0,0,.3);
+} .report-event-modal-container #close {
+	width: 25px; height: 25px; float: right;
+} .report-event-modal-container #close img {
+	width: 100%; height: 100%; opacity: .5;
+} .report-event-modal-container #close:hover {
+	opacity: .8; cursor: pointer;
+} .report-event-modal-container #close:active {
+	transform: scale(.9);
+}
+
+.request-event-modal {
+	z-index: 1; width: 100%; height: 100vh; background: rgba(0,0,0,.3); display: none;
+}
+
+.request-event-space {
+	width: 100%; height: 100px; animation: modalSlide .5s;
+}
+
+.request-event-modal-container {
+	width: 450px; height: 490px; margin: 0 auto; border: 1px solid rgba(0,0,0,.4); border-radius: 10px;
+	box-shadow: 3px 3px 10px rgba(0,0,0,.3); background: #fff;
+} .request-event-modal-container #close {
+	width: 25px; height: 25px; float: right;
+} .request-event-modal-container #close img {
+	width: 100%; height: 100%; opacity: .5;
+} .request-event-modal-container #close:hover {
+	opacity: .8; cursor: pointer;
+} .request-event-modal-container #close:active {
+	transform: scale(.9);
+} .request-event-modal-container #eventTarp {
+	margin: 20px auto; width: 90%; height: 230px; box-shadow: 3px 3px 10px rgba(0,0,0,.4);
+} .request-event-modal-container #eventTarp img {
+	width: 100%; height: 100%;
+} .request-event-modal-container #eventTarp #descTitle {
+	width: 32%; height: 200px; float: left;
+} .request-event-modal-container #eventTarp #descTitle p {
+	color: rgba(0,0,0,.7);font-size: 12px; padding-bottom: 10px; text-align: left; text-indent: 20px;
+	margin: 0; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-weight: bold;
+} .request-event-modal-container #eventTarp #desc {
+	width: 68%; height: 200px; float: right;
+} .request-event-modal-container #eventTarp #desc p {
+	color: #000; font-size: 13px; padding-bottom: 9px; text-align: left; text-indent: 10px; margin: 0;
+	font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-weight: bold;
+}
+
+.approve-event-modal {
+	z-index: 1; width: 100%; height: 100vh; display: none;
+}
+
+.approve-event-space {
+	width: 100%; height: 600px;
+}
+
+.approve-event-modal-container {
+	width: 450px; height: 120px; background: #47F7F0; border: 1px solid rgba(0,0,0,.5); float: right;
+	box-shadow: 3px 3px 10px rgba(0,0,0,.3); margin-right: 40px; animation: approveSlide .5s;
+}.approve-event-modal-container #check {
+	float: left; width: 60px; height: 60px;margin: 25px 15px 0px 20px;
+}.approve-event-modal-container #check img {
+	width: 100%; height: 100%;
+}.approve-event-modal-container p {
+	float: left; margin-top: 40px; font-family: calibri; font-size: 20px;
+}
+
+
+/* -------------------------------------------------- MINISTRY ------------------------------------------- */
+.ministry-content {
+	width: 100%; height: 100%;/* background: rgb(255,254,232);*/
+}
+
+.ministry-nav {
+	width: 100%; height: 40px;background: -webkit-linear-gradient(top, #F4F8F8, #EDF0F0, #DBDFDF);
+	border-bottom: 1px solid rgba(0,0,0,.2);
+} .ministry-nav #all-ministry-title {
+	float: left; background: #fff; padding: 5px 10px 5px 10px; font-size: 13px; border: 1px solid rgba(0,0,0,.2);
+	margin: 14px 0px 0px 50px; border-bottom: 1px solid #fff; border-top-right-radius: 5px; border-top-left-radius: 5px;
+	font-family: calibri; font-weight: bold;
+}.ministry-nav #add-ministry-title {
+	float: right; background: #fff; padding: 5px 10px 5px 10px; font-size: 13px; border: 1px solid rgba(0,0,0,.2);
+	margin: 14px 320px 0px 0px; border-bottom: 1px solid #fff; border-top-right-radius: 5px; border-top-left-radius: 5px;
+	font-family: calibri; font-weight: bold;
+}
+
+.all-ministry-container {
+	width: 60%; height: 94%; margin-left: 20px; background: #fff; border-right: 1px solid rgba(0,0,0,.2);
+	border-left: 1px solid rgba(0,0,0,.2); float: left; overflow-y: scroll;
+}  .all-ministry-container table {
+	width: 95%; margin: 10px auto; border-collapse: collapse; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+} .all-ministry-container table thead {
+	border: 3px solid rgba(0,0,0,.2); background: rgb(150,150,150); color: #fff;
+	padding: 2px 0px 2px 0px;
+} .all-ministry-container table thead tr th {
+	height: 25px; font-size: 12px; border-right: 3px solid rgba(0,0,0,.1);
+} .all-ministry-container table tbody tr {
+	background: rgb(250,250,250);
+} .all-ministry-container table tbody tr td {
+	height: 25px; font-size: 12px; border: 1px solid rgba(0,0,0,.1); text-align: center;
+} .all-ministry-container table tbody tr:last-child td {
+	height: 10px;
+} .all-ministry-container table tbody tr:hover {
+	background: rgba(0,0,0,.1);
+} .all-ministry-container table tbody tr td label {
+	padding: 2px 5px 2px 5px; background: rgb(23,137,231); border-radius: 3px; color: #fff;
+} .all-ministry-container table tbody tr td label:hover {
+	cursor: pointer; color: #000;
+} /*.all-ministry-container table tbody tr td label:nth-child(2) {
+	background: rgb(17,193,126);
+} .all-ministry-container table tbody tr td label:last-child {
+	background: rgb(245,77,81);
+}*/
+
+/* -------------------------------------------------- CHURCH ------------------------------------------- */
+.church-content {
+	width: 100%; height: 100%; /*background: rgb(255,254,232);*/
+}
+
+.church-nav {
+	width: 100%; height: 40px;background: -webkit-linear-gradient(top, #F4F8F8, #EDF0F0, #DBDFDF);
+	border-bottom: 1px solid rgba(0,0,0,.2);
+} .church-nav #all-church-title {
+	float: left; background: #fff; padding: 5px 10px 5px 10px; font-size: 13px; border: 1px solid rgba(0,0,0,.2);
+	margin: 14px 0px 0px 50px; border-bottom: 1px solid #fff; border-top-right-radius: 5px; border-top-left-radius: 5px;
+	font-family: calibri; font-weight: bold;
+}.church-nav #add-church-title {
+	float: right; background: #fff; padding: 5px 10px 5px 10px; font-size: 13px; border: 1px solid rgba(0,0,0,.2);
+	margin: 14px 327px 0px 0px; border-bottom: 1px solid #fff; border-top-right-radius: 5px; border-top-left-radius: 5px;
+	font-family: calibri; font-weight: bold;
+}
+
+.all-church-container {
+	width: 60%; height: 94%; margin-left: 20px; background: #fff; border-right: 1px solid rgba(0,0,0,.2);
+	border-left: 1px solid rgba(0,0,0,.2); float: left; overflow-y: scroll;
+}  .all-church-container table {
+	width: 95%; margin: 10px auto; border-collapse: collapse; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+} .all-church-container table thead {
+	border: 3px solid rgba(0,0,0,.2); background: rgb(150,150,150); color: #fff;
+	padding: 2px 0px 2px 0px;
+} .all-church-container table thead tr th {
+	height: 25px; font-size: 12px; border-right: 3px solid rgba(0,0,0,.1);
+} .all-church-container table tbody tr {
+	background: rgb(250,250,250);
+} .all-church-container table tbody tr td {
+	height: 25px; font-size: 12px; border: 1px solid rgba(0,0,0,.1); text-align: center;
+} .all-church-container table tbody tr:last-child td {
+	height: 10px;
+} .all-church-container table tbody tr:hover {
+	background: rgba(0,0,0,.1);
+} .all-church-container table tbody tr td label {
+	padding: 2px 5px 2px 5px; background: rgb(23,137,231); border-radius: 3px; color: #fff;
+} .all-church-container table tbody tr td label:hover {
+	cursor: pointer; color: #000;
+} /*.all-church-container table tbody tr td label:nth-child(2) {
+	background: rgb(17,193,126);
+} .all-church-container table tbody tr td label:last-child {
+	background: rgb(245,77,81);
+}
+*/
+.all-church-container select {
+	width: 250px; height: 30px; padding-left: 10px; float: right; margin-bottom: 10px; margin-right: 2.5%;
+	outline: none;
+}.all-church-container p {
+	float: right; margin: 0; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-size: 15px; padding-top: 5px;
+	margin-right: 10px;
+}
+
+.registration-container {
+	width: 35%; height: 94%; margin-left: 20px; background: #fff; border-right: 1px solid rgba(0,0,0,.2);
+	border-left: 1px solid rgba(0,0,0,.2); float: right; margin-right: 20px; overflow-y: scroll;
+}
+
+/* -------------- MODAL --------------- */
+.view-church-modal {
+	z-index: 1; width: 100%; height: 100vh; background: rgba(0,0,0,.3); display: none;
+}
+
+.view-church-space {
+	width: 100%; height: 100px; animation: modalSlide .5s;
+}
+
+.view-church-modal-container {
+	width: 600px; height: 580px; background: #fff; margin: 0 auto; border: 1px solid rgba(0,0,0,.4); border-radius: 10px;
+	box-shadow: 3px 3px 10px rgba(0,0,0,.3);
+} .view-church-modal-container #close {
+	width: 25px; height: 25px; float: right;
+} .view-church-modal-container #close img {
+	width: 100%; height: 100%; opacity: .5;
+} .view-church-modal-container #close:hover {
+	opacity: .8; cursor: pointer;
+} .view-church-modal-container #close:active {
+	transform: scale(.9);
+} .view-church-modal-container #church-image-wrapper {
+	float: left; width: 250px; height: 150px; margin-left: 20px; box-shadow: 3px 3px 5px rgba(0,0,0,.1);
+} .view-church-modal-container #church-image-wrapper img {
+	width: 100%; height: 100%;
+} .view-church-modal-container #church-info-wrapper {
+	float: left; height: 150px; width: 290px; padding-left: 20px;
+} .view-church-modal-container #church-info-wrapper h3 {
+	margin: 0; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; color: rgba(0,0,0,.8);
+} .view-church-modal-container #church-info-wrapper p {
+	margin: 10px 0px 0px 0px; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-size: 13px; color: rgba(0,0,0,.5);
+	font-weight: bold;
+}.view-church-modal-container label {
+	float: left;font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; margin: 20px 0px 0px 40px; font-size: 13px;
+}.view-church-modal-container #mission-content,#vision-content {
+	width: 515px; height: 100px; padding: 10px; padding-bottom: 20px; box-shadow: 3px 3px 5px rgba(0,0,0,.1); float: left;
+	font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; border: 1px solid rgba(0,0,0,.2); margin-left: 30px;
+	margin-top: 5px; background: rgb(254,246,240); text-indent: 30px; text-align: justify; font-size: 13px; overflow-y: scroll;
+}
+
+/* -------------------------------------------------- PASTOR ------------------------------------------- */
+.pastor-content {
+	width: 100%; height: 100%;/* background: rgb(255,254,232);*/
+}
+
+.pastor-nav {
+	width: 100%; height: 40px;background: -webkit-linear-gradient(top, #F4F8F8, #EDF0F0, #DBDFDF);
+	border-bottom: 1px solid rgba(0,0,0,.2);
+} .pastor-nav #all-pastor-title {
+	float: left; background: #fff; padding: 5px 10px 5px 10px; font-size: 13px; border: 1px solid rgba(0,0,0,.2);
+	margin: 14px 0px 0px 50px; border-bottom: 1px solid #fff; border-top-right-radius: 5px; border-top-left-radius: 5px;
+	font-family: calibri; font-weight: bold;
+}.pastor-nav #add-pastor-title {
+	float: right; background: #fff; padding: 5px 10px 5px 10px; font-size: 13px; border: 1px solid rgba(0,0,0,.2);
+	margin: 14px 327px 0px 0px; border-bottom: 1px solid #fff; border-top-right-radius: 5px; border-top-left-radius: 5px;
+	font-family: calibri; font-weight: bold;
+}
+
+.all-pastor-container {
+	width: 60%; height: 94%; margin-left: 20px; background: #fff; border-right: 1px solid rgba(0,0,0,.2);
+	border-left: 1px solid rgba(0,0,0,.2); float: left; overflow-y: scroll;
+}  .all-pastor-container table {
+	width: 95%; margin: 10px auto; border-collapse: collapse; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+} .all-pastor-container table thead {
+	border: 3px solid rgba(0,0,0,.2); background: rgb(150,150,150); color: #fff;
+	padding: 2px 0px 2px 0px;
+} .all-pastor-container table thead tr th {
+	height: 25px; font-size: 12px; border-right: 3px solid rgba(0,0,0,.1);
+} .all-pastor-container table tbody tr {
+	background: rgb(250,250,250);
+} .all-pastor-container table tbody tr td {
+	height: 25px; font-size: 12px; border: 1px solid rgba(0,0,0,.1); text-align: center;
+} .all-pastor-container table tbody tr:last-child td {
+	height: 10px;
+} .all-pastor-container table tbody tr:hover {
+	background: rgba(0,0,0,.1);
+} .all-pastor-container table tbody tr td label {
+	padding: 2px 5px 2px 5px; background: rgb(23,137,231); border-radius: 3px; color: #fff;
+} .all-pastor-container table tbody tr td label:hover {
+	cursor: pointer; color: #000;
+}/* .all-pastor-container table tbody tr td label:last-child {
+	background: rgb(245,77,81);
+}*/
+
+
+.view-pastor-modal {
+	width: 100%; height: 100vh; background: rgba(0,0,0,.3); top: 0; left: 0; z-index: 1; color: #fff; display: none;
+} .view-pastor-space {
+	width: 100%; height: 150px; animation: modalSlideto .5s;
+} .view-pastor-modal-container {
+	margin: 0px auto; width: 50%; height: 300px; position: relative; border-radius: 5px; background: #fff;
+	box-shadow: 3px 3px 5px rgba(0,0,0,.3);	
+} .view-pastor-modal-container #close {
+	width: 25px; height: 25px; float: right;
+} .view-pastor-modal-container #close img {
+	width: 100%; height: 100%; opacity: .5;
+} .view-pastor-modal-container #close:hover {
+	opacity: .8; cursor: pointer;
+} .view-pastor-modal-container #close:active {
+	transform: scale(.9);
+}  .view-pastor-modal-container #imageDiv {
+	width: 40%; height: 90%; float: left;
+} .view-pastor-modal-container #imageDiv #imageWrapper {
+	width: 170px; height: 170px; margin: 0 auto;/* border-radius: 50%;*/
+	border: 1px solid rgba(0,0,0,.2); margin-top: 40px; box-shadow: 3px 3px 5px rgba(0,0,0,.1);
+} .view-pastor-modal-container #imageDiv #imageWrapper img {
+	width: 100%; height: 100%; /*border-radius: 50%;*/
+} .view-pastor-modal-container #infoDiv {
+	width: 60%; height: 90%; float: right;
+} .view-pastor-modal-container #infoDiv p {
+	font-size: 24px; color: rgb(23,137,231); padding-top: 20px; font-family: arial; margin-bottom: 0px;
+	font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-weight: bold;
+} .view-pastor-modal-container #infoDiv hr {
+	border: 1px dashed rgba(0,0,0,.1); width: 320px; float: left; margin-left: -10px;
+} .view-pastor-modal-container #infoDiv label {
+	color: rgba(0,0,0,.7); font-size: 13px; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-weight: bold;
+} .view-pastor-modal-container #infoDiv button {
+	width: 60px; border: none; color: rgba(255,255,255,.8); font-size: 11px; background: #24A276; margin-top: 20px;
+	height: 20px; letter-spacing: 1px;
+} .view-pastor-modal-container #infoDiv button:hover {
+	background: #29936E;
+} .view-pastor-modal-container #infoDiv #div1 {
+	width: 120px; height: 150px; margin-top: 20px; float: left;
+} .view-pastor-modal-container #infoDiv #div1 label {
+	color: rgba(0,0,0,.5); font-size: 13px; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+} .view-pastor-modal-container #infoDiv #div2 {
+	width: auto; height: 150px; margin-top: 20px; float: left;
+} .view-pastor-modal-container #infoDiv #div2 label {
+	color: rgba(0,0,0,.8); font-size: 13px; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-weight: bold;
+}
+
+
+
+/* ------------------------------------------------ MODAL ---------------------------------------------------------*/
+@keyframes responseModal {
+	0% {
+		transform: scale(0.2);
+	} 10% {
+		transform: scale(0.4);
+	} 20% {
+		transform: scale(0.6);
+	} 30% {
+		transform: scale(0.8);
+	} 40% {
+		transform: scale(0.9);
+	} 50% {
+		transform: scale(1);
+	} 60% {
+		transform: scale(1.1);
+	} 70% {
+		transform: scale(1.25);
+	} 80% {
+		transform: scale(1.25);
+	} 90% {
+		transform: scale(1.1);
+	} 100% {
+		transform: scale(1);
+	}
+}
+
+.response-event-modal {
+	z-index: 1; width: 100%; height: 100vh; background: rgba(0,0,0,.3); display: none;
+} .response-event-space {
+	width: 100%; height: 200px;
+} .response-event-modal-container {
+	width: 350px; height: 250px; margin: 0 auto; border: 1px solid rgba(0,0,0,.4); border-radius: 10px;
+	box-shadow: 3px 3px 10px rgba(0,0,0,.3); background: #fff; animation: responseModal .4s;
+} .response-event-modal-container #check-mark {
+	margin: 0 auto; width: 200px; height: 150px;
+} .response-event-modal-container #check-mark img {
+	width: 100%; height: 100%;
+} .response-event-modal-container p {
+	width: 100%; text-align: center; font-family: calibri; font-size: 27px; color: rgba(0,0,0,.5); margin: 0;
+	font-weight: bold;
+}
+
+
+.view-ministry-modal {
+	z-index: 1; width: 100%; height: 100vh; background: rgba(0,0,0,.3); display: none;
+}
+
+.view-ministry-space {
+	width: 100%; height: 100px; animation: modalSlide .5s;
+}
+
+.view-ministry-modal-container {
+	width: 450px; height: 400px; margin: 0 auto; border: 1px solid rgba(0,0,0,.4); border-radius: 10px;
+	box-shadow: 3px 3px 10px rgba(0,0,0,.3);/* background: url(../images/background/logoBackground.jpg);
+	background-size: 100%;*/ background: #fff;
+} .view-ministry-modal-container #close {
+	width: 25px; height: 25px; float: right;
+} .view-ministry-modal-container #close img {
+	width: 100%; height: 100%; opacity: .5;
+} .view-ministry-modal-container #close:hover {
+	opacity: .8; cursor: pointer;
+} .view-ministry-modal-container #close:active {
+	transform: scale(.9);
+}.view-ministry-modal-container p {
+	width: 85%; text-indent: 20px; font-size: 25px; font-family: calibri; margin: 0 auto; font-weight: bold;
+	color: rgba(0,0,0,.7); padding-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,.2);
+}.view-ministry-modal-container #ministry-description {
+	margin: 20px auto; width: 75%; box-shadow: 3px 3px 10px rgba(0,0,0,.3); padding: 20px; font-family: calibri;
+	text-indent: 20px; padding-bottom: 30px; background: #fff; text-align: justify;
+}
+
+.delete-event-modal {
+	z-index: 1; width: 100%; height: 100vh; background: rgba(0,0,0,.3); display: none;
+}
+
+.delete-event-space {
+	width: 100%; height: 200px;
+}
+
+.delete-event-modal-container {
+	width: 350px; height: 250px; margin: 0 auto; border: 1px solid rgba(0,0,0,.4); border-radius: 10px;
+	box-shadow: 3px 3px 10px rgba(0,0,0,.3); background: #fff; animation: responseModal .4s;
+} .delete-event-modal-container #check-mark {
+	margin: 0 auto; width: 60px; height: 60px; animation: fadeEffect 1s infinite;
+} .delete-event-modal-container #check-mark img {
+	width: 100%; height: 100%;
+} .delete-event-modal-container p {
+	width: 100%; text-align: center; font-family: calibri; font-size: 27px; color: rgba(0,0,0,.5); margin: 0;
+	font-weight: bold;
+} .delete-event-modal-container #del {
+	width: 120px; padding: 5px 0px 5px 0px; margin-left: 50px; float: left; border: none; background: #5486F9; color: #fff;
+	outline: none;
+} .delete-event-modal-container #del:hover {
+	background: #3B75FA; cursor: pointer;
+} .delete-event-modal-container #can {
+	width: 120px; padding: 5px 0px 5px 0px; margin-right: 50px; float: right; border: none; background: #FA7A51; color: #fff;
+	outline: none;
+} .delete-event-modal-container #can:hover {
+	background: #FA693B; cursor: pointer;
+} .delete-event-modal-container button:active {
+	transform: scale(.95);
+}
+
+@keyframes fadeEffect {
+	from {
+		opacity: .5;
+	} to {
+		opacity: 1;
+	}
+}
+
+.error-ministry-modal {
+	z-index: 1; width: 100%; height: 100vh; background: rgba(0,0,0,.3); display: none;
+}
+
+.error-ministry-space {
+	width: 100%; height: 200px;
+}
+
+.error-ministry-modal-container {
+	width: 350px; height: 250px; margin: 0 auto; border: 1px solid rgba(0,0,0,.4); border-radius: 10px;
+	box-shadow: 3px 3px 10px rgba(0,0,0,.3); background: #fff;  animation: responseModal .4s;
+} .error-ministry-modal-container #error-mark {
+	margin: 0 auto; width: 60px; height: 60px; animation: fadeEffect 1s infinite;
+} .error-ministry-modal-container #error-mark img {
+	width: 100%; height: 100%;
+} .error-ministry-modal-container p {
+	width: 100%; text-align: center; font-family: calibri; font-size: 27px; color: rgba(0,0,0,.5); margin: 0;
+	font-weight: bold;
+}
+
+
+.delete-church-modal {
+	z-index: 1; width: 100%; height: 100vh; background: rgba(0,0,0,.3); display: none;
+}
+.delete-church-space {
+	width: 100%; height: 200px;
+}
+.delete-church-modal-container {
+	width: 350px; height: 250px; margin: 0 auto; border: 1px solid rgba(0,0,0,.4); border-radius: 10px;
+	box-shadow: 3px 3px 10px rgba(0,0,0,.3); background: #fff; animation: responseModal .4s;
+} .delete-church-modal-container #check-mark {
+	margin: 0 auto; width: 60px; height: 60px; animation: fadeEffect 1s infinite;
+} .delete-church-modal-container #check-mark img {
+	width: 100%; height: 100%;
+} .delete-church-modal-container p {
+	width: 100%; text-align: center; font-family: calibri; font-size: 27px; color: rgba(0,0,0,.5); margin: 0;
+	font-weight: bold;
+} .delete-church-modal-container #del {
+	width: 120px; padding: 5px 0px 5px 0px; margin-left: 50px; float: left; border: none; background: #5486F9; color: #fff;
+	outline: none;
+} .delete-church-modal-container #del:hover {
+	background: #3B75FA; cursor: pointer;
+} .delete-church-modal-container #can {
+	width: 120px; padding: 5px 0px 5px 0px; margin-right: 50px; float: right; border: none; background: #FA7A51; color: #fff;
+	outline: none;
+} .delete-church-modal-container #can:hover {
+	background: #FA693B; cursor: pointer;
+} .delete-church-modal-container button:active {
+	transform: scale(.95);
+}
+
+.delete-pastor-modal {
+	z-index: 1; width: 100%; height: 100vh; background: rgba(0,0,0,.3); display: none;
+}
+
+.delete-pastor-space {
+	width: 100%; height: 200px;
+}
+
+.delete-pastor-modal-container {
+	width: 350px; height: 250px; margin: 0 auto; border: 1px solid rgba(0,0,0,.4); border-radius: 10px;
+	box-shadow: 3px 3px 10px rgba(0,0,0,.3); background: #fff; animation: responseModal .4s;
+} .delete-pastor-modal-container #check-mark {
+	margin: 0 auto; width: 60px; height: 60px; animation: fadeEffect 1s infinite;
+} .delete-pastor-modal-container #check-mark img {
+	width: 100%; height: 100%;
+} .delete-pastor-modal-container p {
+	width: 100%; text-align: center; font-family: calibri; font-size: 27px; color: rgba(0,0,0,.5); margin: 0;
+	font-weight: bold;
+} .delete-pastor-modal-container #del {
+	width: 120px; padding: 5px 0px 5px 0px; margin-left: 50px; float: left; border: none; background: #5486F9; color: #fff;
+	outline: none;
+} .delete-pastor-modal-container #del:hover {
+	background: #3B75FA; cursor: pointer;
+} .delete-pastor-modal-container #can {
+	width: 120px; padding: 5px 0px 5px 0px; margin-right: 50px; float: right; border: none; background: #FA7A51; color: #fff;
+	outline: none;
+} .delete-pastor-modal-container #can:hover {
+	background: #FA693B; cursor: pointer;
+} .delete-pastor-modal-container button:active {
+	transform: scale(.95);
+}
